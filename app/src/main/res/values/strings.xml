@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AppCubicajeDireccion</string>
+    <string name="tab_text_1">CARGAR</string>
+    <string name="tab_text_2">SILOS Y E/S</string>
+    <string name="tab_text_3">CELDAS</string>
+    <string name="tab_text_4">SILO BOLSA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
