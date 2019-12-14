@@ -28,6 +28,7 @@ public class Cargar_datos_main_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_carga_datos_principal,container,false);
 
+
         return view;
     }
 
