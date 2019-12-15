@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/silo"
+        android:background="@drawable/button_rnd"
+        android:textColor="#3700B3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,9 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/celda"
+        android:background="@drawable/button_rnd"
         app:layout_constraintEnd_toStartOf="@+id/buttonSilo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#3700B3"/>
 
     <Button
         android:id="@+id/buttonSbolsa"
@@ -47,6 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/silobolsa"
+        android:background="@drawable/button_rnd"
+        android:textColor="#3700B3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonSilo"
         app:layout_constraintTop_toTopOf="parent" />

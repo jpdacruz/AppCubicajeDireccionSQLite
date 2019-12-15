@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppCubicajeDireccion</string>
+    <string name="app_name"></string>
     <string name="tab_text_1">CARGAR</string>
     <string name="tab_text_2">SILOS Y E/S</string>
     <string name="tab_text_3">CELDAS</string>
@@ -7,6 +7,10 @@
     <string name="silo">SILO</string>
     <string name="celda">CELDA</string>
     <string name="silobolsa">S/Bolsa</string>
+    <string name="share">SHARE</string>
+    <string name="fiscapedia">FISCAPEDIA</string>
+    <string name="position">POSICION</string>
+    <string name="contact">CONTACTENOS</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
