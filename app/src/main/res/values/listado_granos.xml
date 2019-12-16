@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tipos_granos">
+        <item>SELECCIONA</item>
+        <item>SOJA</item>
+        <item>MAIZ</item>
+        <item>TRIGO</item>
+        <item>CEBADA</item>
+        <item>GIRASOL</item>
+        <item>ARROZ</item>
+        <item>GARBANZO</item>
+        <item>MANI</item>
+        <item>POROTO</item>
+        <item>SORGO</item>
+    </string-array>
+
+</resources>

@@ -15,4 +15,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phgrano">PH GRANO</string>
+    <string name="largocelda">LARGO CELDA</string>
+    <string name="anchocelda">ANCHO CELDA</string>
+    <string name="alturagrano">ALTURA GRANO</string>
+    <string name="cono">"CONO"</string>
+    <string name="calcularcono">CALCULAR CONO</string>
+    <string name="copete">COPETE</string>
+    <string name="calcular_copete">CALCULAR COPETE</string>
+    <string name="alturacelda">ALTURA CELDA</string>
+    <string name="cubicajeceldam3">TOTAL CELDA</string>
+    <string name="toneladasCelda">TONELADAS (tons)</string>
+    <string name="calcular">CALCULAR</string>
+    <string name="negativo">NEGATIVO</string>
+    <string name="idcelda">ID</string>
 </resources>
