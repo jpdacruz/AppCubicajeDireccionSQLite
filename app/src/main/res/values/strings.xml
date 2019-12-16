@@ -29,4 +29,6 @@
     <string name="calcular">CALCULAR</string>
     <string name="negativo">NEGATIVO</string>
     <string name="idcelda">ID</string>
+    <string name="cononegativo">negativo</string>
+    <string name="switchnegativo">negativo</string>
 </resources>

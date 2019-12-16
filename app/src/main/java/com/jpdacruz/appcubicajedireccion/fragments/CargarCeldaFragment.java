@@ -17,8 +17,6 @@ import android.widget.Spinner;
 
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Celda;
-import com.jpdacruz.appcubicajedireccion.dialogs.DialogCeldaConoFragment;
-
 import java.util.ArrayList;
 
 /**
@@ -31,14 +29,14 @@ public class CargarCeldaFragment extends Fragment {
     private ArrayList <Celda> listaCeldas;
     public Celda celda;
     private String mId, mTipoGrano;
-    private double mPh,mAlturaCelda,mAnchoCelda, mLargoCelda,mAlturaGrano, mCono, mCopete, mVolumen, mVolumenGrano, mMc3, mToneladas;
+    private double mPh,mAnchoCelda, mLargoCelda,mAlturaGrano, mCono, mCopete, mVolumen, mVolumenGrano, mMc3, mToneladas;
 
 
     //widgets
     private ArrayAdapter<CharSequence> adapter;
     private Spinner spinnerGranos;
     private Button calcularCono, calcularCopete,calcularCelda;
-    private EditText idCelda, ph,alturaCelda,anchoCelda,largoCelda,alturaGrano,cono,copete;
+    private EditText idCelda, ph,anchoCelda,largoCelda,alturaGrano,cono,copete;
 
     public CargarCeldaFragment() {
         // Required empty public constructor
@@ -68,7 +66,6 @@ public class CargarCeldaFragment extends Fragment {
 
         idCelda = view.findViewById(R.id.editTextIdCelda);
         ph = view.findViewById(R.id.editTextphCelda);
-        alturaCelda = view.findViewById(R.id.editTextAlturaCelda);
         anchoCelda = view.findViewById(R.id.editTextAnchoCelda);
         largoCelda = view.findViewById(R.id.editTextLargoCelda);
         alturaGrano = view.findViewById(R.id.editTextCeldaAlturaGrano);
@@ -81,7 +78,6 @@ public class CargarCeldaFragment extends Fragment {
 
                 calcularVolumenCelda();
 
-                toDialogCeldaCono();
             }
         });
     }
@@ -90,19 +86,10 @@ public class CargarCeldaFragment extends Fragment {
 
         mId = idCelda.getText().toString();
         mPh = Double.parseDouble(ph.getText().toString());
-        mAlturaCelda = Double.parseDouble(alturaCelda.getText().toString());
         mAlturaGrano = Double.parseDouble(alturaGrano.getText().toString());
         mAnchoCelda = Double.parseDouble(anchoCelda.getText().toString());
         mLargoCelda = Double.parseDouble(largoCelda.getText().toString());
         mVolumenGrano = (mLargoCelda*mAnchoCelda*mAlturaGrano)*mPh;
-        mVolumen = (mLargoCelda*mAnchoCelda*mAlturaCelda)* 0.8;
-    }
-
-    private void toDialogCeldaCono() {
-
-        DialogCeldaConoFragment dialogCeldaConoFragment = new DialogCeldaConoFragment();
-        dialogCeldaConoFragment.setTargetFragment(CargarCeldaFragment.this,1);
-        dialogCeldaConoFragment.show(getFragmentManager(),TAG);
     }
 
     private void crearSpinner(View view) {

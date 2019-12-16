@@ -22,7 +22,7 @@
         android:id="@+id/editTextphCelda"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/phgrano"
         android:inputType="numberDecimal"
@@ -33,9 +33,9 @@
         android:id="@+id/editTextLargoCelda"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/largocelda"
         android:inputType="numberDecimal"
@@ -47,9 +47,9 @@
         android:id="@+id/editTextAnchoCelda"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/anchocelda"
         android:inputType="numberDecimal"
@@ -58,43 +58,31 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextLargoCelda" />
 
     <EditText
-        android:id="@+id/editTextAlturaCelda"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="@string/alturacelda"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAnchoCelda" />
-
-    <EditText
         android:id="@+id/editTextCeldaAlturaGrano"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/alturagrano"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAlturaCelda" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAnchoCelda" />
 
     <EditText
         android:id="@+id/editTextCeldaCono"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/cono"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/editTextCeldaCopete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCeldaAlturaGrano" />
 
@@ -102,44 +90,45 @@
         android:id="@+id/buttonCeldaCono"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_rnd"
         android:text="@string/calcularcono"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCeldaAlturaGrano" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
     <EditText
         android:id="@+id/editTextCeldaCopete"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/copete"
         android:inputType="numberDecimal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCeldaCono" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextCeldaCono"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCeldaAlturaGrano" />
 
     <Button
         android:id="@+id/buttonCeldaCopete"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_rnd"
         android:text="@string/calcular_copete"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCeldaCono" />
+        app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
     <Button
         android:id="@+id/buttonCalcularCelda"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_rnd"
         android:text="@string/calcular"
@@ -147,19 +136,40 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCeldaCopete" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonCeldaCopete" />
 
     <EditText
         android:id="@+id/editTextIdCelda"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/idcelda"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/switchnegativo"
+        app:layout_constraintEnd_toStartOf="@+id/switch3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCeldaCono" />
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/switchnegativo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCeldaCopete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
