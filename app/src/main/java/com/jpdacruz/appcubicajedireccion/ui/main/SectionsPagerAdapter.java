@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.jpdacruz.appcubicajedireccion.R;
-import com.jpdacruz.appcubicajedireccion.fragments.Cargar_datos_main_Fragment;
 import com.jpdacruz.appcubicajedireccion.fragments.Lista_Celdas_Fragment;
 import com.jpdacruz.appcubicajedireccion.fragments.Lista_silo_bolsa_Fragment;
 import com.jpdacruz.appcubicajedireccion.fragments.Lista_silos_Fragment;
@@ -22,7 +21,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]
-            {R.string.tab_text_1, R.string.tab_text_2,R.string.tab_text_3,R.string.tab_text_4};
+            {R.string.tab_text_1,R.string.tab_text_2,R.string.tab_text_3};
 
     private final Context mContext;
 
@@ -37,21 +36,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         switch (position){
 
             case 0:
-                Cargar_datos_main_Fragment cargar_datos_main_fragment = new Cargar_datos_main_Fragment();
-                return cargar_datos_main_fragment;
-
-            case 1:
                 Lista_silos_Fragment lista_silos_fragment = new Lista_silos_Fragment();
                 return  lista_silos_fragment;
-
-            case 2:
+            case 1:
                 Lista_Celdas_Fragment lista_celdas_fragment = new Lista_Celdas_Fragment();
                 return lista_celdas_fragment;
-
-            case 3:
+            case 2:
                 Lista_silo_bolsa_Fragment lista_silo_bolsa_fragment = new Lista_silo_bolsa_Fragment();
                 return lista_silo_bolsa_fragment;
-        }
+}
         return null;
     }
 
@@ -64,6 +57,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return 4;
+        return 3;
     }
 }
