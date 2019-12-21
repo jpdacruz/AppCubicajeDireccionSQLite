@@ -19,21 +19,32 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
+import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoSiloFragment;
+import com.jpdacruz.appcubicajedireccion.dialogs.DialogCopeteSiloFragment;
+import com.jpdacruz.appcubicajedireccion.dialogs.DialogDiametroSiloFragment;
 
-public class CargaSilosActivity extends AppCompatActivity {
+public class CargaSilosActivity extends AppCompatActivity implements
+        DialogDiametroSiloFragment.TomarDatosDialogListener,
+        DialogConoSiloFragment.TomarDatosDialogListener,
+        DialogCopeteSiloFragment.TomarDatosDialogListener {
 
     //vars
+    private static final String TAG = "CargaSilosActivity";
     private Silo silo;
-    String idSilo,tipoGrano,phGranoString, largoChapasString, cantLargoChapasString,diametroSiloString,
-            alturaConoSiloString, alturaCopeteSiloString, anchoChapaString, cantChapasAltoString, cubicajeSiloString;
-    double phGrano,largoChapa,cantLargoChapas, diametroSilo, radioC, radio2, volumenCilindro, alturaGrano,
-            alturaConoSilo,conoSilo, anchoChapa, cantChapasAlto, alturaCopeteSilo, copeteSilo, volumenSilo, cubicajeSilo;
+    String idSilo,tipoGrano,phGranoString,diametroSiloString,
+            alturaConoSiloString, alturaCopeteSiloString, anchoChapaString,
+            alturaGranoChapasString, cubicajeSiloString;
+    double phGrano,diametroSilo, radio2, volumenCilindro, alturaGrano,
+            alturaConoSilo,conoSilo, anchoChapa, alturaGranoChapas,
+            alturaCopeteSilo, copeteSilo, volumenSilo, cubicajeSilo;
 
     //widgets
+    Spinner spinner;
     FloatingActionButton fabAceptar;
     Button mCalcularDiametro, mCalcularCono, mCalcularCopete, mCalcularCubicaje;
     TextView mToneladasSilo;
-    TextInputLayout mIdSilo,mPhGrano,mLargoChapa,mChapasLargo,mDiametro,mAnchoChapa, mCantidadChapasAlto,mCono, mCopete;
+    TextInputLayout mIdSilo,mPhGrano,mDiametro,mAnchoChapa, mAlturaGranoChapas,mCono, mCopete;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +61,6 @@ public class CargaSilosActivity extends AppCompatActivity {
         iniciarBotonesListener();
 
         crearSpiner();
-
     }
 
     private void iniciarWidgets() {
@@ -58,10 +68,10 @@ public class CargaSilosActivity extends AppCompatActivity {
         mIdSilo = findViewById(R.id.textinputIDSilo);
         mPhGrano = findViewById(R.id.textinputPHSilo);
         mDiametro = findViewById(R.id.textinputDiametroSilo);
-        mLargoChapa = findViewById(R.id.textinputLargoChapa);
-        mChapasLargo = findViewById(R.id.textinputTotalChapas);
+
+
         mAnchoChapa = findViewById(R.id.textinputAnchoChapa);
-        mCantidadChapasAlto = findViewById(R.id.textinputAlturaGranoSilo);
+        mAlturaGranoChapas = findViewById(R.id.textinputAlturaGranoSilo);
         mCono = findViewById(R.id.textinputConoSilo);
         mCopete = findViewById(R.id.textinputCopeteSilo);
 
@@ -73,7 +83,21 @@ public class CargaSilosActivity extends AppCompatActivity {
         mCalcularCubicaje = findViewById(R.id.botonCalcularSilo);
 
         fabAceptar = findViewById(R.id.fabGuardar);
+    }
 
+    private void crearSpiner() {
+
+        spinner = findViewById(R.id.spinner_Silos);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                tipoGrano = spinner.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void iniciarBotonesListener() {
@@ -87,11 +111,19 @@ public class CargaSilosActivity extends AppCompatActivity {
             }
         });
 
+        mCalcularDiametro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                calcularDiametro();
+            }
+        });
+
         mCalcularCono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ListenerBtnCono(view);
+                iniciarDialogCono();
             }
         });
 
@@ -99,184 +131,250 @@ public class CargaSilosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ListenerBtnCopete(view);
+                iniciarDialogCopete();
+            }
+        });
+
+        mCalcularCubicaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                calcularCubicajeSilo();
             }
         });
     }
 
-    private void crearSpiner() {
+    private void iniciarDialogCopete() {
 
-        final Spinner spinner = findViewById(R.id.spinner_Silos);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                tipoGrano = spinner.getSelectedItem().toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
-    private boolean validarDatosDiametro(){
-
-        idSilo = mIdSilo.getEditText().getText().toString().trim();
-        phGranoString = mPhGrano.getEditText().getText().toString();
-        largoChapasString = mLargoChapa.getEditText().getText().toString();
-        cantLargoChapasString = mChapasLargo.getEditText().getText().toString();
-
-        if (idSilo.isEmpty()) {
-
-            mIdSilo.setError("Ingrese ID silo");
-            return false;
-
-        } else if (phGranoString.isEmpty()) {
-
-            mPhGrano.setError("Ingrese PH del grano");
-            return false;
-
-        } else if (tipoGrano.equals("SELECCIONA")) {
-
-            Toast.makeText(getApplicationContext(), "Debe elegir un Grano", Toast.LENGTH_LONG).show();
-            return false;
-
-        } else if (largoChapasString.isEmpty()) {
-
-            mLargoChapa.setError("Ingrese largo chapa");
-            return false;
-
-        } else if (cantLargoChapasString.isEmpty()) {
-
-            mChapasLargo.setError("Ingrese cantidad chapas largo");
-            return false;
-
-        }else {
-
-            //resetea los datos de error
-            mIdSilo.setError(null);
-            mPhGrano.setError(null);
-            mLargoChapa.setError(null);
-            mChapasLargo.setError(null);
-
-            //asinacion de las variables int y double
-            phGrano = Double.parseDouble(phGranoString);
-            largoChapa = Double.parseDouble(largoChapasString);
-            cantLargoChapas = Double.parseDouble(cantLargoChapasString);
-
-            return true;
-        }
-    }
-
-    private boolean validarDatosVolumen(){
-
-        anchoChapaString = mAnchoChapa.getEditText().getText().toString();
-        cantChapasAltoString = mCantidadChapasAlto.getEditText().getText().toString();
-
-        alturaConoSiloString = mCono.getEditText().getText().toString();
-        if (alturaConoSiloString.isEmpty()){
-
-            calcularCono();
-        }
-
-        alturaCopeteSiloString = mCopete.getEditText().getText().toString();
-        if (alturaCopeteSiloString.isEmpty()){
-
-            calcularCopete();
-        }
-
-        if (anchoChapaString.isEmpty()){
-
-            mAnchoChapa.setError("Ingrese ancho chapa");
-            return false;
-
-        }else if (cantChapasAltoString.isEmpty()){
-
-            mCantidadChapasAlto.setError("Ingrese cantidad chapas con grano");
-            return false;
-        }else{
-
-            mCantidadChapasAlto.setError(null);
-            mAnchoChapa.setError(null);
-
-            anchoChapa = Double.parseDouble(anchoChapaString);
-            cantChapasAlto = Double.parseDouble(cantChapasAltoString);
-
-            return true;
-        }
-    }
-
-    public void calcularDiametro(View view) {
-
-        if (!validarDatosDiametro()){
+        if (!validadProcesoConoCopete()){
 
             return;
         }
 
-        diametroSilo = (largoChapa*cantLargoChapas)/Math.PI;
-        radioC = diametroSilo/2;
-        radio2 = radioC * radioC;
-        diametroSiloString = String.valueOf(diametroSilo);
-        mDiametro.getEditText().setText(diametroSiloString);
+        DialogCopeteSiloFragment dialogF = new DialogCopeteSiloFragment();
+        dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    public void calcularCubicajeSilo(View view) {
+    private void iniciarDialogCono() {
 
-        if (!validarDatosVolumen()) {
+        if (!validadProcesoConoCopete()){
 
             return;
         }
 
-        alturaGrano = anchoChapa * cantChapasAlto;
-        volumenCilindro = (Math.PI * radio2 * alturaGrano);
-        volumenSilo = volumenCilindro + conoSilo + copeteSilo;
-        cubicajeSilo = volumenSilo*phGrano;
-        cubicajeSiloString = String.valueOf(cubicajeSilo);
-        mToneladasSilo.setText(cubicajeSiloString);
+        DialogConoSiloFragment dialogF = new DialogConoSiloFragment();
+        dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    public void ListenerBtnCono(View view) {
+    private void calcularDiametro() {
 
-        calcularCono();
+        if (!validarProcesoDiametro()){
 
-    }
+            return;
+        }
 
-    public void ListenerBtnCopete(View view) {
+        DialogDiametroSiloFragment dialogF = new DialogDiametroSiloFragment();
+        dialogF.show(getSupportFragmentManager(),TAG);
 
-        calcularCopete();
     }
 
     private void calcularCono() {
 
-        alturaConoSiloString = mCono.getEditText().getText().toString();
+        if (!validadProcesoConoCopete()){
 
-        if (alturaConoSiloString.isEmpty()){
+            return;
+        }
 
-            alturaConoSilo = (diametroSilo/2)*0.7;
-            alturaConoSiloString = String.valueOf(alturaConoSilo);
-            mCono.getEditText().setText(alturaConoSiloString);
-            conoSilo = (Math.PI * radio2 * alturaConoSilo)/3;
+        diametroSiloString = getEditTextString(mDiametro);
+        diametroSilo = Double.parseDouble(diametroSiloString);
+        alturaConoSilo = Math.round(((diametroSilo/2)*0.7)*100)/100.0;
+        alturaConoSiloString = String.valueOf(alturaConoSilo);
+        setEditText(mCono,alturaConoSiloString);
+    }
 
-        } else {
+    private void calcularCopete(boolean b) {
 
-            alturaConoSilo = Double.parseDouble(alturaConoSiloString);
+        if (!validadProcesoConoCopete()){
+
+            return;
+        }
+
+        if (b) {
+
+            diametroSiloString = getEditTextString(mDiametro);
+            diametroSilo = Double.parseDouble(diametroSiloString);
+            alturaCopeteSilo = Math.round(((diametroSilo / 2) * 0.5) * 100) / 100.0;
+            alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
+            setEditText(mCopete, alturaCopeteSiloString);
+
+        }else {
+
+            diametroSiloString = getEditTextString(mDiametro);
+            diametroSilo = Double.parseDouble(diametroSiloString);
+            alturaCopeteSilo = -((diametroSilo /2) *0.5);
+            alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
+            setEditText(mCopete, alturaCopeteSiloString);
         }
     }
 
-    private void calcularCopete() {
+    public void calcularCubicajeSilo() {
 
-        alturaCopeteSiloString = mCopete.getEditText().getText().toString();
+        if (!validarDatos()){
 
-        if (alturaCopeteSiloString.isEmpty()){
+            return;
+        }
 
-            alturaCopeteSilo = (diametroSilo/2)*0.5;
-            alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
-            mCopete.getEditText().setText(alturaCopeteSiloString);
-            copeteSilo = (Math.PI * radio2 * alturaCopeteSilo)/3;
+        Toast.makeText(getApplicationContext(),"HOLA",Toast.LENGTH_LONG).show();
+
+
+
+    }
+
+    private boolean validarDatos() {
+
+        if (!validarProcesoDiametro()){
+
+            return false;
+
+        }else if (!validadProcesoConoCopete()){
+
+            return false;
+
+        }else if (!validarProcesoCalcular()) {
+
+            return false;
+
+        }else {
+
+            return true;
+        }
+    }
+
+    private boolean validarProcesoCalcular() {
+
+        anchoChapaString = getEditTextString(mAnchoChapa);
+        alturaGranoChapasString = getEditTextString(mAlturaGranoChapas);
+        alturaConoSiloString = getEditTextString(mCono);
+        alturaCopeteSiloString = getEditTextString(mCopete);
+
+        if (anchoChapaString.isEmpty()){
+
+            mAnchoChapa.setError("Dato requerido");
+            return false;
+
+        }else if (alturaGranoChapasString.isEmpty()){
+
+            mAlturaGranoChapas.setError("");
+            return false;
+
+        }else if(alturaConoSiloString.isEmpty()){
+
+            mCono.setError("Dato requerido");
+            return false;
+
+        }else if (alturaCopeteSiloString.isEmpty()){
+
+            mCopete.setError("Dato requerido");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarProcesoDiametro() {
+
+        idSilo = getEditTextString(mIdSilo);
+        phGranoString = getEditTextString(mPhGrano);
+
+        if (idSilo.isEmpty()) {
+
+            mIdSilo.setError("Dato requerido");
+            return false;
+
+        } else if (phGranoString.isEmpty()) {
+
+            mPhGrano.setError("Dato requerido");
+            return false;
+
+        } else if (tipoGrano.equals("SELECCIONA")) {
+
+            Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
+            return false;
 
         } else {
 
-            alturaCopeteSilo = Double.parseDouble(alturaCopeteSiloString);
+            mIdSilo.setError(null);
+            mPhGrano.setError(null);
+            return true;
         }
+    }
+
+    private boolean validadProcesoConoCopete() {
+
+        diametroSiloString = getEditTextString(mDiametro);
+
+        if (diametroSiloString.isEmpty()){
+
+            mDiametro.setError("Dato requerido");
+            return false;
+
+        }else {
+
+            mDiametro.setError("");
+            return true;
+        }
+    }
+
+    @Override
+    public void enviarDatosDialogDiametro(String diametro) {
+
+        diametroSiloString = diametro;
+        setEditText(mDiametro, diametroSiloString);
+    }
+
+    @Override
+    public void enviarDatosDialogCono(Boolean bool) {
+
+        if (bool){
+
+            calcularCono();
+
+        }else {
+
+           setEditText(mCono, "0.00");
+        }
+    }
+
+    @Override
+    public void enviarDatosDialogCopete(String string) {
+
+        if (string.equals("p")){
+
+            calcularCopete(true);
+
+        }else if (string.equals("n")){
+
+            calcularCopete(false);
+
+        }else {
+
+            setEditText(mCopete, "0,00");
+        }
+   }
+
+    private void setEditText(TextInputLayout editText, String string) {
+
+        editText.getEditText().setText(string);
+    }
+
+    private void resetEditText(TextInputLayout editText) {
+
+        editText.getEditText().setText("");
+    }
+
+    private String getEditTextString(TextInputLayout editText) {
+
+        return editText.getEditText().getText().toString();
+
     }
 }

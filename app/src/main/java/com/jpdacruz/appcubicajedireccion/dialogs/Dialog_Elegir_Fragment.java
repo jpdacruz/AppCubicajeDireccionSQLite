@@ -1,4 +1,4 @@
-package com.jpdacruz.appcubicajedireccion.fragments;
+package com.jpdacruz.appcubicajedireccion.dialogs;
 
 
 import android.app.AlertDialog;

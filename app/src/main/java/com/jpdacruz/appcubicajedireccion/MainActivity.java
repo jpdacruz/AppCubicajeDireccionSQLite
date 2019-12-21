@@ -1,10 +1,8 @@
 package com.jpdacruz.appcubicajedireccion;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.jpdacruz.appcubicajedireccion.fragments.Dialog_Elegir_Fragment;
+import com.jpdacruz.appcubicajedireccion.dialogs.Dialog_Elegir_Fragment;
 import com.jpdacruz.appcubicajedireccion.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
