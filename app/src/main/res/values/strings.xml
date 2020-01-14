@@ -14,15 +14,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="phgrano">Ph grano</string>
-    <string name="diametro">Diametro (mts)</string>
-    <string name="alturagrano">Altura en chapas</string>
-    <string name="cono">"Cono"</string>
-    <string name="copete">Copete</string>
+    <string name="TipoyPH">Tipo de grano y Ph</string>
+    <string name="Ph">Ph del grano</string>
+    <string name="diametro">Conozco diametro (en metros)</string>
+    <string name="alturagrano">Conozco la altura del grano (en metros)</string>
+    <string name="cono">Conozco el cono (en metros)</string>
+    <string name="copete">Conozco el copete (en metros)</string>
     <string name="toneladas">TONELADAS</string>
     <string name="calcular">CALCULAR</string>
     <string name="negativo">Negativo</string>
-    <string name="idcelda">Id</string>
+    <string name="idSilo">Identificador del Silo</string>
     <string name="raso">Raso</string>
     <string name="calcularcubicaje">Calcular Cubicaje</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
@@ -41,4 +42,6 @@
     <string name="copetenegativo">COPETE NEGATIVO</string>
     <string name="sincopete">SIN COPETE</string>
     <string name="datorequerido">Dato requerido</string>
+    <string name="chapasalto">Cantidad de chapas alto</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

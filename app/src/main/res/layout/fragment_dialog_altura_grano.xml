@@ -5,10 +5,10 @@
     android:id="@+id/frameLayout3"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".dialogs.DialogDiametroSiloFragment">
+    tools:context=".dialogs.DialogAlturaGranoFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputLargoChapa"
+        android:id="@+id/textinputAlturaGrano"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/largochapas"
+            android:hint="@string/anchoChapas"
             android:inputType="numberDecimal"
             android:maxLength="4"
             android:textSize="14sp" />
@@ -33,7 +33,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextPhGrano"
+        android:id="@+id/textinputCantChapasAlto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -42,7 +42,7 @@
         app:helperTextEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textinputLargoChapa">
+        app:layout_constraintTop_toBottomOf="@+id/textinputAlturaGrano">
 
 
         <EditText
@@ -50,14 +50,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="@string/cantidadchapaslargo"
-            android:inputType="number"
-            android:maxLength="2"
+            android:hint="@string/chapasalto"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonDiametroDIalog"
+        android:id="@+id/buttonAlturaGranoDialog"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -67,10 +67,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhGrano" />
+        app:layout_constraintTop_toBottomOf="@+id/textinputCantChapasAlto" />
 
     <TextView
-        android:id="@+id/textViewDiametroDialog"
+        android:id="@+id/textViewAlturaGranoDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -80,6 +80,6 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDiametroDIalog" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAlturaGranoDialog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,11 +19,7 @@ public class Silo {
                 String tipoGrano,
                 double phGrano,
                 double diametro,
-                double largoChapa,
-                int cantChapasLargo,
-                double altoChapa,
                 double altoGrano,
-                double volumenGrano,
                 double cono,
                 double copete,
                 double totalm3,
@@ -110,5 +106,20 @@ public class Silo {
 
     public void setTotaltons(double totaltons) {
         this.totaltons = totaltons;
+    }
+
+    @Override
+    public String toString() {
+        return "Silo{" +
+                "id='" + id + '\'' +
+                ", tipoGrano='" + tipoGrano + '\'' +
+                ", phGrano=" + phGrano +
+                ", diametro=" + diametro +
+                ", altoGrano=" + altoGrano +
+                ", cono=" + cono +
+                ", copete=" + copete +
+                ", totalm3=" + totalm3 +
+                ", totaltons=" + totaltons +
+                '}';
     }
 }
