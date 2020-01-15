@@ -13,7 +13,7 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ListadoGranosPh">Trigo 0.72 al 0.80 \nSoja 0.70 al 0.76 \nMaiz 0.72 al 0.80 </string>
     <string name="TipoyPH">Tipo de grano y Ph</string>
     <string name="Ph">Ph del grano</string>
     <string name="diametro">Conozco diametro (en metros)</string>

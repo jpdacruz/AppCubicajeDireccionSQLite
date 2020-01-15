@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.R;
@@ -24,7 +25,7 @@ import com.jpdacruz.appcubicajedireccion.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogTipoPHFragment extends DialogFragment {
+public class DialogTipoPHFragment extends DialogFragment{
 
     //widgetes
     private Spinner mSpinner;
@@ -34,7 +35,6 @@ public class DialogTipoPHFragment extends DialogFragment {
     private TomarDatosDialogListener listener;
 
     //vars
-    double phGrano;
     String phGranoString, tipoGranoString;
 
     private static final String TAG = "DialogTipoPHFragment";
@@ -51,8 +51,9 @@ public class DialogTipoPHFragment extends DialogFragment {
                 .setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        botonOk();
-
+                        tipoGranoString = mSpinner.getSelectedItem().toString();
+                        phGranoString = mPhGrano.getEditText().getText().toString();
+                        listener.enviarDatosDialogTipoPh(tipoGranoString, phGranoString);
                     }
                 })
                 .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
@@ -106,32 +107,10 @@ public class DialogTipoPHFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-
+                DialogListadoGranosConPH dialogF = new DialogListadoGranosConPH();
+                dialogF.show(getFragmentManager(),TAG);
             }
         });
-    }
-
-    private void botonOk() {
-
-        if (!validarDatos()){
-
-            return;
-        }
-
-        listener.enviarDatosDialogTipoPh(tipoGranoString, phGranoString);
-    }
-
-    private boolean validarDatos() {
-
-        phGranoString = mPhGrano.getEditText().getText().toString();
-
-        if (phGranoString.isEmpty()){
-
-            mPhGrano.setError("Dato obligatorio");
-            return false;
-        }
-
-        return true;
     }
 
     public interface TomarDatosDialogListener {

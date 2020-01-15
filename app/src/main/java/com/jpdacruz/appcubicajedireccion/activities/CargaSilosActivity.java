@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,7 +36,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
         DialogTipoPHFragment.TomarDatosDialogListener {
 
     //vars
-    ArrayList<Silo> silos;
+    private ArrayList<Silo>silos;
     private static final String TAG = "CargaSilosActivity";
     private Silo silo;
     String idSilo,tipoGrano,phGranoString,diametroSiloString,
@@ -61,6 +62,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
 
         silo = new Silo();
+        silos = new ArrayList<>();
 
         iniciarWidgets();
 
@@ -93,7 +95,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             public void onClick(View view) {
 
                 silo = new Silo (idSilo,tipoGrano,phGrano,diametroSilo,
-                        alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo );
+                           alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo );
 
                 silos.add(silo);
 
@@ -205,7 +207,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
         diametroSiloString = getEditTextString(mDiametro);
         diametroSilo = Double.parseDouble(diametroSiloString);
-        alturaConoSilo = Math.round(((diametroSilo/2)*0.7)*100)/100.0;
+        alturaConoSilo = Math.round(((diametroSilo / 2) * 0.7) * 100) / 100.0;
         alturaConoSiloString = String.valueOf(alturaConoSilo);
         setEditText(mCono,alturaConoSiloString);
     }
@@ -243,14 +245,10 @@ public class CargaSilosActivity extends AppCompatActivity implements
         }
 
         idSilo = getEditTextString(mIdSilo);
-        phGranoString = getEditTextString(mPhGrano);
-        //tipoGrano = spinner.getSelectedItem().toString();
         diametroSiloString = getEditTextString(mDiametro);
         alturaGranoString = getEditTextString(mAlturaGrano);
         alturaConoSiloString = getEditTextString(mCono);
         alturaCopeteSiloString = getEditTextString(mCopete);
-
-        phGrano = Double.parseDouble(phGranoString);
         diametroSilo = Double.parseDouble(diametroSiloString);
         alturaGrano= Double.parseDouble(alturaGranoString);
         alturaConoSilo = Double.parseDouble(alturaConoSiloString);
@@ -381,6 +379,12 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
     @Override
     public void enviarDatosDialogTipoPh(String tipo, String ph) {
+
+        tipoGrano = tipo;
+        phGranoString = ph;
+
+        setEditText(mPhGrano, tipoGrano + " " +  phGranoString);
+        phGrano = Double.parseDouble(phGranoString);
 
     }
 
