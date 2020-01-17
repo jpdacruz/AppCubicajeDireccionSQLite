@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textViewIdLS"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="ID: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTGLS"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Tipo Grano:"
+        android:textColor="@color/accent_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIdLS" />
+
+    <TextView
+        android:id="@+id/textViewPHLS"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_purple"
+        android:text="PH grano:"
+        android:textColor="@color/accent_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTGLS" />
+
+    <TextView
+        android:id="@+id/textViewDiaLS"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Diametro:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPHLS" />
+
+    <TextView
+        android:id="@+id/textViewAlGrLS"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Altura Grano:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textViewIdLS"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewCopLS"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Altura copete:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textViewPHLS"
+        app:layout_constraintTop_toBottomOf="@+id/textViewConoLS" />
+
+    <TextView
+        android:id="@+id/textViewTonSL"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        android:text="Toneladas: "
+        android:textColor="@color/accent_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textViewDiaLS"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCopLS" />
+
+    <TextView
+        android:id="@+id/textViewConoLS"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Altura cono:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textViewTGLS"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlGrLS" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:text=">"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

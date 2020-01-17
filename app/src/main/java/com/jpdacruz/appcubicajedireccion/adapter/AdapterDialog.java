@@ -45,6 +45,7 @@ public class AdapterDialog
 
     @Override
     public int getItemCount() {
+
         return estructura.size();
     }
 

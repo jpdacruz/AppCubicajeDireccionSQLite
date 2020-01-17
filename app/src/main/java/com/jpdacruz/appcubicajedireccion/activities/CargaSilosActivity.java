@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
+import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogAlturaGranoFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogCopeteSiloFragment;
@@ -36,15 +37,16 @@ public class CargaSilosActivity extends AppCompatActivity implements
         DialogTipoPHFragment.TomarDatosDialogListener {
 
     //vars
-    private ArrayList<Silo>silos;
+
     private static final String TAG = "CargaSilosActivity";
-    private Silo silo;
     String idSilo,tipoGrano,phGranoString,diametroSiloString,
             alturaConoSiloString, alturaCopeteSiloString,
             alturaGranoString, cubicajeSiloString;
     double  phGrano,diametroSilo, radio2, volumenCilindro, alturaGrano,
             alturaConoSilo,conoSilo,alturaCopeteSilo,
             copeteSilo, volumenSilo, cubicajeSilo;
+
+    DataBaseHelper conexion;
 
     //widgets
     FloatingActionButton fabAceptar;
@@ -61,12 +63,10 @@ public class CargaSilosActivity extends AppCompatActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        silo = new Silo();
-        silos = new ArrayList<>();
-
+        conexion = new DataBaseHelper(this);
         iniciarWidgets();
-
         iniciarBotonesListener();
+
     }
 
     private void iniciarWidgets() {
@@ -94,10 +94,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                silo = new Silo (idSilo,tipoGrano,phGrano,diametroSilo,
-                           alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo );
-
-                silos.add(silo);
+                insertaSiloDB();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -151,6 +148,21 @@ public class CargaSilosActivity extends AppCompatActivity implements
                 calcularCubicajeSilo();
             }
         });
+    }
+
+    private void insertaSiloDB() {
+
+        boolean insertSilo = conexion.addSilo(idSilo,tipoGrano,phGrano,diametroSilo,
+                alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo);
+
+        if (insertSilo){
+
+            Toast.makeText(getApplicationContext(), "Datos insertados correctamente",Toast.LENGTH_LONG).show();
+
+        }else {
+
+            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void iniciarDialogTipoPH() {
@@ -244,7 +256,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             return;
         }
 
-        idSilo = getEditTextString(mIdSilo);
+        idSilo = "Silo " + getEditTextString(mIdSilo);
         diametroSiloString = getEditTextString(mDiametro);
         alturaGranoString = getEditTextString(mAlturaGrano);
         alturaConoSiloString = getEditTextString(mCono);

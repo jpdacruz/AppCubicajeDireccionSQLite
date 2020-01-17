@@ -53,6 +53,10 @@ public class DialogTipoPHFragment extends DialogFragment{
 
                         tipoGranoString = mSpinner.getSelectedItem().toString();
                         phGranoString = mPhGrano.getEditText().getText().toString();
+                        if (phGranoString.isEmpty()){
+
+                            phGranoString = "0.80";
+                        }
                         listener.enviarDatosDialogTipoPh(tipoGranoString, phGranoString);
                     }
                 })

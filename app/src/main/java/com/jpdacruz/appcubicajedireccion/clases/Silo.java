@@ -2,6 +2,7 @@ package com.jpdacruz.appcubicajedireccion.clases;
 
 public class Silo {
 
+    private int idAuto;
     private String id;
     private String tipoGrano;
     private double phGrano;
@@ -34,6 +35,14 @@ public class Silo {
         this.copete = copete;
         this.totalm3 = totalm3;
         this.totaltons = totaltons;
+    }
+
+    public int getIdAuto() {
+        return idAuto;
+    }
+
+    public void setIdAuto(int idAuto) {
+        this.idAuto = idAuto;
     }
 
     public String getId() {
@@ -111,7 +120,8 @@ public class Silo {
     @Override
     public String toString() {
         return "Silo{" +
-                "id='" + id + '\'' +
+                "idAuto=" + idAuto +
+                ", id='" + id + '\'' +
                 ", tipoGrano='" + tipoGrano + '\'' +
                 ", phGrano=" + phGrano +
                 ", diametro=" + diametro +
