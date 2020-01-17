@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp"
+    >
+
+    <ImageView
+        android:id="@+id/imagen_itemRec"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/maiz"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Silo"
+        android:id="@+id/to_add_silo"
+        android:layout_toRightOf="@+id/imagen_itemRec"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:textSize="14dp"
+        android:textColor="@color/colorPrimaryDark"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        android:id="@+id/arrow_to_silo"
+        android:layout_toEndOf="@+id/to_add_silo"
+        android:layout_marginStart="20dp"
+        android:layout_centerVertical="true"/>
+
+
+</RelativeLayout>
