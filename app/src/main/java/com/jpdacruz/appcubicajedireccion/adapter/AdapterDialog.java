@@ -39,8 +39,8 @@ public class AdapterDialog
     public void onBindViewHolder(@NonNull AdapterDialog.ViewHolder holder, int position) {
 
         holder.imageView.setImageResource(estructura.get(position).getImagenEstructura());
-        holder.textView.setText(estructura.get(position).getEstructura());
-        holder.flecha.setImageResource(estructura.get(position).getImagenFlecha());
+        holder.textViewTitulo.setText(estructura.get(position).getEstructura());
+        holder.textViewFlecha.setText(">");
     }
 
     @Override
@@ -66,16 +66,14 @@ public class AdapterDialog
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        ImageView flecha;
-        TextView textView;
+        TextView textViewTitulo,textViewFlecha;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
         imageView = itemView.findViewById(R.id.imagen_itemRec);
-        flecha = itemView.findViewById(R.id.arrow_to_silo);
-        textView = itemView.findViewById(R.id.to_add_silo);
-
+        textViewTitulo = itemView.findViewById(R.id.to_add_silo);
+        textViewFlecha = itemView.findViewById(R.id.textViewFlecha);
         }
     }
 }

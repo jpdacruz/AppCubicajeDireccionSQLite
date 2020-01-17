@@ -87,12 +87,12 @@ public class Dialog_Elegir_Fragment extends DialogFragment {
     private void llenarLista() {
 
         estructura.add(new Estructura
-                ("Agregar silo",R.drawable.trigo,R.drawable.ic_arrow_forward_black_24dp));
+                ("Agregar silo",R.drawable.silo));
         estructura.add(new Estructura
-                ("Agregar entre/silo",R.drawable.harina,R.drawable.ic_arrow_forward_black_24dp));
+                ("Agregar entre/silo",R.drawable.entresilos));
         estructura.add(new Estructura
-                ("Agregar celda",R.drawable.soja,R.drawable.ic_arrow_forward_black_24dp));
+                ("Agregar celda",R.drawable.celda));
         estructura.add(new Estructura
-                ("Agregar silo/bolsa",R.drawable.maiz,R.drawable.ic_arrow_forward_black_24dp));
+                ("Agregar silo/bolsa",R.drawable.silobolsa));
     }
 }

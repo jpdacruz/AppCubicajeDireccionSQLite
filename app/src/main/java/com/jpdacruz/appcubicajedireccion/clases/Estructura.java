@@ -4,12 +4,12 @@ public class Estructura {
 
     private String estructura;
     private int imagenEstructura;
-    private int imagenFlecha;
 
-    public Estructura(String estructura, int imagenEstructura, int imagenFlecha) {
+
+    public Estructura(String estructura, int imagenEstructura) {
         this.estructura = estructura;
         this.imagenEstructura = imagenEstructura;
-        this.imagenFlecha = imagenFlecha;
+
     }
 
     public String getEstructura() {
@@ -26,13 +26,5 @@ public class Estructura {
 
     public void setImagenEstructura(int imagenEstructura) {
         this.imagenEstructura = imagenEstructura;
-    }
-
-    public int getImagenFlecha() {
-        return imagenFlecha;
-    }
-
-    public void setImagenFlecha(int imagenFlecha) {
-        this.imagenFlecha = imagenFlecha;
     }
 }

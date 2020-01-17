@@ -42,7 +42,7 @@ public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder> 
         holder.altuGrano.setText("Alt Grano: " + String.valueOf(silos.get(position).getAltoGrano()));
         holder.cono.setText("Alt Cono: "+String.valueOf(silos.get(position).getCono()));
         holder.copete.setText("Alt Copete: "+String.valueOf(silos.get(position).getCopete()));
-        holder.tons.setText("Tons: "+String.valueOf(silos.get(position).getTotaltons()));
+        holder.tons.setText(String.valueOf(silos.get(position).getTotaltons()));
     }
 
     @Override
