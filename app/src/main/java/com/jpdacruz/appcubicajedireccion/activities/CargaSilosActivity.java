@@ -69,6 +69,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
         conexion = new DataBaseHelper(this);
         iniciarWidgets();
         comprobarBundle();
+        iniciarEditTextListener();
         iniciarBotonesListener();
     }
 
@@ -109,7 +110,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             alturaGranoString = String.valueOf(siloEnviado.getAltoGrano());
             alturaConoSiloString = String.valueOf(siloEnviado.getCono());
             alturaCopeteSiloString = String.valueOf(siloEnviado.getCopete());
-            cubicajeSiloString = String.valueOf(siloEnviado.getTotaltons());
+            //cubicajeSiloString = String.valueOf(siloEnviado.getTotaltons());
 
             setEditText(mIdSilo, idSilo);
             setEditText(mPhGrano, tipoGrano + " " +  phGranoString);
@@ -118,24 +119,22 @@ public class CargaSilosActivity extends AppCompatActivity implements
             setEditText(mAlturaGrano, alturaGranoString);
             setEditText(mCono,alturaConoSiloString);
             setEditText(mCopete,alturaCopeteSiloString);
-            mToneladasSilo.setText(cubicajeSiloString + " Toneladas");
+            mToneladasSilo.setText("");
 
             mIngresarSilo.setVisibility(View.GONE);
 
         }else {
 
-            mActualizarSilo.setVisibility(View.GONE);
-            mEliminarSilo.setVisibility(View.INVISIBLE);
+            mActualizarSilo.setVisibility(View.INVISIBLE);
+            mEliminarSilo.setVisibility(View.GONE);
         }
     }
 
-
-    private void iniciarBotonesListener() {
+    private void iniciarEditTextListener() {
 
         mDiametro.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
 
             }
 
@@ -151,7 +150,6 @@ public class CargaSilosActivity extends AppCompatActivity implements
                 resetEditText(mCopete);
                 mToneladasSilo.setText("");
                 cubicajeSiloString = "";
-
             }
         });
 
@@ -192,6 +190,8 @@ public class CargaSilosActivity extends AppCompatActivity implements
                 cubicajeSiloString = "";
             }
         });
+    }
+    private void iniciarBotonesListener() {
 
         mIngresarSilo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,9 +235,10 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
                     return;
 
-                }else if  (cubicajeSiloString.isEmpty()){
+                }else if  (mToneladasSilo.getText().equals("")){
 
-                    Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
                     return;
 
                 }else {

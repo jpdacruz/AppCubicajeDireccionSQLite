@@ -2,44 +2,42 @@ package com.jpdacruz.appcubicajedireccion.clases;
 
 public class Celda {
 
+    private int idAuto;
     private String id;
     private String tipoGrano;
     private double phGrano;
-    private double largoCelda;
-    private double anchoCelda;
+    private double tamañoCelda;
     private double altoGrano;
-    private double volumenGrano;
     private double cono;
     private double copete;
     private double totalm3;
     private double totaltons;
 
-    public Celda() {
-    }
-
-    public Celda(String id,
-                 String tipoGrano,
-                 double phGrano,
-                 double largoCelda,
-                 double anchoCelda,
-                 double altoGrano,
-                 double volumenGrano,
-                 double cono,
-                 double copete,
-                 double totalm3,
-                 double totaltons) {
+    public Celda(String id, String tipoGrano,
+                 double phGrano, double tamañoCelda, double altoGrano,
+                 double cono, double copete, double totalm3, double totaltons) {
 
         this.id = id;
         this.tipoGrano = tipoGrano;
         this.phGrano = phGrano;
-        this.largoCelda = largoCelda;
-        this.anchoCelda = anchoCelda;
+        this.tamañoCelda = tamañoCelda;
         this.altoGrano = altoGrano;
-        this.volumenGrano = volumenGrano;
         this.cono = cono;
         this.copete = copete;
         this.totalm3 = totalm3;
         this.totaltons = totaltons;
+    }
+
+    public Celda() {
+
+    }
+
+    public int getIdAuto() {
+        return idAuto;
+    }
+
+    public void setIdAuto(int idAuto) {
+        this.idAuto = idAuto;
     }
 
     public String getId() {
@@ -66,20 +64,12 @@ public class Celda {
         this.phGrano = phGrano;
     }
 
-    public double getLargoCelda() {
-        return largoCelda;
+    public double getTamañoCelda() {
+        return tamañoCelda;
     }
 
-    public void setLargoCelda(double largoCelda) {
-        this.largoCelda = largoCelda;
-    }
-
-    public double getAnchoCelda() {
-        return anchoCelda;
-    }
-
-    public void setAnchoCelda(double anchoCelda) {
-        this.anchoCelda = anchoCelda;
+    public void setTamañoCelda(double tamañoCelda) {
+        this.tamañoCelda = tamañoCelda;
     }
 
     public double getAltoGrano() {
@@ -88,14 +78,6 @@ public class Celda {
 
     public void setAltoGrano(double altoGrano) {
         this.altoGrano = altoGrano;
-    }
-
-    public double getVolumenGrano() {
-        return volumenGrano;
-    }
-
-    public void setVolumenGrano(double volumenGrano) {
-        this.volumenGrano = volumenGrano;
     }
 
     public double getCono() {
@@ -128,5 +110,21 @@ public class Celda {
 
     public void setTotaltons(double totaltons) {
         this.totaltons = totaltons;
+    }
+
+    @Override
+    public String toString() {
+        return "Celda{" +
+                "idAuto=" + idAuto +
+                ", id='" + id + '\'' +
+                ", tipoGrano='" + tipoGrano + '\'' +
+                ", phGrano=" + phGrano +
+                ", tamañoCelda=" + tamañoCelda +
+                ", altoGrano=" + altoGrano +
+                ", cono=" + cono +
+                ", copete=" + copete +
+                ", totalm3=" + totalm3 +
+                ", totaltons=" + totaltons +
+                '}';
     }
 }
