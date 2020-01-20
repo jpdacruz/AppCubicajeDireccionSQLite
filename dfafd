@@ -1,0 +1,78 @@
+[33mcommit 03b4c4ba00bbe741419cea186b797cc8a505204e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Wed Jan 15 22:50:58 2020 -0300
+
+    implementando ROOM
+
+[33mcommit 9e248dbba8672904d2672c0a506ae0a2ca830c06[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Wed Jan 15 00:37:15 2020 -0300
+
+    terminados cambios color gris
+
+[33mcommit e4b8872659ca764d1b4f0e79c9cdc6b174d0d404[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Tue Jan 14 19:41:37 2020 -0300
+
+    terminado modelo carga silos
+
+[33mcommit 2733a96b030b719584f5d80d45968cadf2c4dc04[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Fri Dec 20 21:35:38 2019 -0300
+
+    terminado modelo carga silos
+
+[33mcommit a18f07910beb1b816d29d408b4d51431929aade7[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Wed Dec 18 23:49:16 2019 -0300
+
+    terminado modelo carga silos
+
+[33mcommit f10b62a6cf69d8160a0e43591e47365f6ca96703[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Tue Dec 17 19:35:12 2019 -0300
+
+    cambie todo que se vaya a la mierda
+
+[33mcommit 0aba55fd578a16c09839ddd571b70d74ad8094ca[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Tue Dec 17 00:20:59 2019 -0300
+
+    cambie todo que se vaya a la mierda
+
+[33mcommit 84c8571f448cda774b83be724918f1ea053931c4[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Mon Dec 16 03:07:37 2019 -0300
+
+    renegando con el tamaño
+
+[33mcommit 3e5a6bf4bb10a65d0ab2fb34caed4c26f41cb4cb[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Mon Dec 16 01:55:35 2019 -0300
+
+    trabajando en la carga de celda..implemetancion clase celda
+
+[33mcommit 7b65351c0b8fb84c8a5d07702278f8d8316ff28e[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Sun Dec 15 03:10:27 2019 -0300
+
+    modificado toolbar y colores
+
+[33mcommit fed578815617934dc2c064092b71f292f94f847b[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Sun Dec 15 01:53:27 2019 -0300
+
+    agregado fragment de carga de datos
+
+[33mcommit bc6ea3135f9670510edafd75ad6c2d93a7e4e129[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Sat Dec 14 17:30:30 2019 -0300
+
+    agregado toolbar con sus botones
+
+[33mcommit d2a982dbd0b4c2bf746be4eac8745d778a67f4c9[m
+Author: jpdacruz <jpdacruz@hotmail.com>
+Date:   Sat Dec 14 13:41:58 2019 -0300
+
+    Initial commit
+    Se crea el viewPager con los 4 fragmentos de la vista principal
