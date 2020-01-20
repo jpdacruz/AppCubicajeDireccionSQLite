@@ -1,6 +1,8 @@
 package com.jpdacruz.appcubicajedireccion.clases;
 
-public class Silo {
+import java.io.Serializable;
+
+public class Silo implements Serializable {
 
     private int idAuto;
     private String id;

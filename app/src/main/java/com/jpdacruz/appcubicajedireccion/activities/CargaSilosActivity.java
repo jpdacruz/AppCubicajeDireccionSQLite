@@ -8,6 +8,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +29,7 @@ import com.jpdacruz.appcubicajedireccion.dialogs.DialogCopeteSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogDiametroSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CargaSilosActivity extends AppCompatActivity implements
@@ -34,7 +37,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
         DialogConoSiloFragment.TomarDatosDialogListener,
         DialogCopeteSiloFragment.TomarDatosDialogListener,
         DialogAlturaGranoFragment.TomarDatosDialogListener,
-        DialogTipoPHFragment.TomarDatosDialogListener {
+        DialogTipoPHFragment.TomarDatosDialogListener{
 
     //vars
 
@@ -49,9 +52,8 @@ public class CargaSilosActivity extends AppCompatActivity implements
     DataBaseHelper conexion;
 
     //widgets
-    FloatingActionButton fabAceptar;
     Button mCalcularDiametro, mCalcularAlturaGrano, mIngreseTipoPh,
-            mCalcularCono, mCalcularCopete, mCalcularCubicaje;
+            mCalcularCono, mCalcularCopete, mCalcularCubicaje, mIngresarSilo;
     TextView mToneladasSilo;
     TextInputLayout mIdSilo,mPhGrano,mDiametro,mAlturaGrano,mCono, mCopete;
 
@@ -65,8 +67,8 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
         conexion = new DataBaseHelper(this);
         iniciarWidgets();
+        comprobarBundle();
         iniciarBotonesListener();
-
     }
 
     private void iniciarWidgets() {
@@ -84,20 +86,95 @@ public class CargaSilosActivity extends AppCompatActivity implements
         mCalcularCono = findViewById(R.id.buttonCalcularCono);
         mCalcularCopete = findViewById(R.id.buttonCalcularCopete);
         mCalcularCubicaje = findViewById(R.id.botonCalcularSilo);
-
-        fabAceptar = findViewById(R.id.fabGuardar);
+        mIngresarSilo = findViewById(R.id.botonIngresarSilo);
     }
+
+    private void comprobarBundle() {
+
+        Bundle bundleEnviado = getIntent().getExtras();
+        Silo siloEnviado = null;
+
+        if (bundleEnviado!=null){
+
+            siloEnviado = (Silo) bundleEnviado.getSerializable("silo");
+
+            idSilo = siloEnviado.getId();
+            tipoGrano = siloEnviado.getTipoGrano();
+            phGranoString = String.valueOf(siloEnviado.getPhGrano());
+            diametroSiloString = String.valueOf(siloEnviado.getDiametro());
+            alturaGranoString = String.valueOf(siloEnviado.getAltoGrano());
+            alturaConoSiloString = String.valueOf(siloEnviado.getCono());
+            alturaCopeteSiloString = String.valueOf(siloEnviado.getCopete());
+            cubicajeSiloString = String.valueOf(siloEnviado.getTotaltons());
+
+            setEditText(mIdSilo, idSilo);
+            setEditText(mPhGrano, tipoGrano + " " +  phGranoString);
+            phGrano = Double.parseDouble(phGranoString);
+            setEditText(mDiametro, diametroSiloString);
+            setEditText(mAlturaGrano, alturaGranoString);
+            setEditText(mCono,alturaConoSiloString);
+            setEditText(mCopete,alturaCopeteSiloString);
+            mToneladasSilo.setText(cubicajeSiloString + " Toneladas");
+        }
+    }
+
 
     private void iniciarBotonesListener() {
 
-        fabAceptar.setOnClickListener(new View.OnClickListener() {
+        mDiametro.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                resetEditText(mCono);
+                resetEditText(mCopete);
+
+            }
+        });
+
+        mPhGrano.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                mToneladasSilo.setText("");
+            }
+        });
+
+        mIngresarSilo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                insertaSiloDB();
+                if (!validarDatos()){
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                    return;
+
+                }else {
+
+                    insertaSiloDB();
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -171,14 +248,20 @@ public class CargaSilosActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    private void iniciarDialogCopete() {
+    private void calcularDiametro() {
 
-        if (!validadProcesoConoCopete()){
+        if (!validarProcesoDiametro()){
 
             return;
         }
 
-        DialogCopeteSiloFragment dialogF = new DialogCopeteSiloFragment();
+        DialogDiametroSiloFragment dialogF = new DialogDiametroSiloFragment();
+        dialogF.show(getSupportFragmentManager(),TAG);
+    }
+
+    private void iniciarDialogAlturaGrano() {
+
+        DialogAlturaGranoFragment dialogF = new DialogAlturaGranoFragment();
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
@@ -193,20 +276,14 @@ public class CargaSilosActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    private void iniciarDialogAlturaGrano() {
+    private void iniciarDialogCopete() {
 
-        DialogAlturaGranoFragment dialogF = new DialogAlturaGranoFragment();
-        dialogF.show(getSupportFragmentManager(),TAG);
-    }
-
-    private void calcularDiametro() {
-
-        if (!validarProcesoDiametro()){
+        if (!validadProcesoConoCopete()){
 
             return;
         }
 
-        DialogDiametroSiloFragment dialogF = new DialogDiametroSiloFragment();
+        DialogCopeteSiloFragment dialogF = new DialogCopeteSiloFragment();
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
@@ -256,7 +333,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             return;
         }
 
-        idSilo = "Silo " + getEditTextString(mIdSilo);
+        idSilo = getEditTextString(mIdSilo);
         diametroSiloString = getEditTextString(mDiametro);
         alturaGranoString = getEditTextString(mAlturaGrano);
         alturaConoSiloString = getEditTextString(mCono);
@@ -459,6 +536,4 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
         editText.getEditText().setText("");
     }
-
-
 }

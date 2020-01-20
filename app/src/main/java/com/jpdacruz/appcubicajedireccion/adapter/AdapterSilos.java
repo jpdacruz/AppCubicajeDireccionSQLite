@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
 
+
 import java.util.ArrayList;
 
-public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder> {
+public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder>
+                        implements View.OnClickListener{
 
     ArrayList<Silo> silos;
+    private View.OnClickListener listener;
 
     public AdapterSilos(ArrayList<Silo> silos) {
         this.silos = silos;
@@ -28,6 +31,8 @@ public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder> 
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_listasilos,null,false);
+
+        view.setOnClickListener(this);
 
         return new ViewHolder(view);
     }
@@ -48,6 +53,20 @@ public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder> 
     @Override
     public int getItemCount() {
         return silos.size();
+    }
+
+
+    public void setOnClickListener (View.OnClickListener listener) {
+        this.listener = listener;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null){
+
+            listener.onClick(v);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

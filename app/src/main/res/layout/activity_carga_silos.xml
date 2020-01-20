@@ -33,16 +33,6 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
-        layout="@layout/content_carga_silos"
-        android:onClick="calcularDiametro" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_check_black_24dp" />
+    <include layout="@layout/content_carga_silos" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

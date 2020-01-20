@@ -1,7 +1,7 @@
 package com.jpdacruz.appcubicajedireccion.fragments;
 
 
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -13,24 +13,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.activities.CargaSilosActivity;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterSilos;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Lista_silos_Fragment extends Fragment {
+public class Lista_silos_Fragment extends Fragment implements Serializable {
 
     ArrayList<Silo> silos;
     DataBaseHelper conexion;
     RecyclerView recyclerView;
-
+    private int idAuto;
+    private String idName, tipoGrano;
+    private double ph,diametro, alturaGrano, cono, copete, tons;
 
     public Lista_silos_Fragment() {
         // Required empty public constructor
@@ -50,6 +54,21 @@ public class Lista_silos_Fragment extends Fragment {
         mostrarSilos();
 
         AdapterSilos adapterSilos = new AdapterSilos(silos);
+
+        adapterSilos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Silo siloAmodificar = silos.get(recyclerView.getChildAdapterPosition(v));
+
+                Intent intent = new Intent(getContext(), CargaSilosActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("silo", siloAmodificar);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),1);
         recyclerView.addItemDecoration(mDividerItemDecoration);
         recyclerView.setAdapter(adapterSilos);
