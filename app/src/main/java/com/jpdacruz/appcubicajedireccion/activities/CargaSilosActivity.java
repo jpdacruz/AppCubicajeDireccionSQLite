@@ -45,6 +45,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
     String idSilo,tipoGrano,phGranoString,diametroSiloString,
             alturaConoSiloString, alturaCopeteSiloString,
             alturaGranoString, cubicajeSiloString;
+    int idAuto;
     double  phGrano,diametroSilo, radio2, volumenCilindro, alturaGrano,
             alturaConoSilo,conoSilo,alturaCopeteSilo,
             copeteSilo, volumenSilo, cubicajeSilo;
@@ -53,7 +54,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
     //widgets
     Button mCalcularDiametro, mCalcularAlturaGrano, mIngreseTipoPh,
-            mCalcularCono, mCalcularCopete, mCalcularCubicaje, mIngresarSilo;
+            mCalcularCono, mCalcularCopete, mCalcularCubicaje, mIngresarSilo, mActualizarSilo, mEliminarSilo;
     TextView mToneladasSilo;
     TextInputLayout mIdSilo,mPhGrano,mDiametro,mAlturaGrano,mCono, mCopete;
 
@@ -87,6 +88,8 @@ public class CargaSilosActivity extends AppCompatActivity implements
         mCalcularCopete = findViewById(R.id.buttonCalcularCopete);
         mCalcularCubicaje = findViewById(R.id.botonCalcularSilo);
         mIngresarSilo = findViewById(R.id.botonIngresarSilo);
+        mActualizarSilo = findViewById(R.id.botonUpdate);
+        mEliminarSilo = findViewById(R.id.botonDelete);
     }
 
     private void comprobarBundle() {
@@ -98,6 +101,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
             siloEnviado = (Silo) bundleEnviado.getSerializable("silo");
 
+            idAuto = siloEnviado.getIdAuto();
             idSilo = siloEnviado.getId();
             tipoGrano = siloEnviado.getTipoGrano();
             phGranoString = String.valueOf(siloEnviado.getPhGrano());
@@ -115,6 +119,13 @@ public class CargaSilosActivity extends AppCompatActivity implements
             setEditText(mCono,alturaConoSiloString);
             setEditText(mCopete,alturaCopeteSiloString);
             mToneladasSilo.setText(cubicajeSiloString + " Toneladas");
+
+            mIngresarSilo.setVisibility(View.GONE);
+
+        }else {
+
+            mActualizarSilo.setVisibility(View.GONE);
+            mEliminarSilo.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -138,6 +149,8 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
                 resetEditText(mCono);
                 resetEditText(mCopete);
+                mToneladasSilo.setText("");
+                cubicajeSiloString = "";
 
             }
         });
@@ -157,6 +170,26 @@ public class CargaSilosActivity extends AppCompatActivity implements
             public void afterTextChanged(Editable s) {
 
                 mToneladasSilo.setText("");
+                cubicajeSiloString = "";
+            }
+        });
+
+        mAlturaGrano.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                mToneladasSilo.setText("");
+                cubicajeSiloString = "";
             }
         });
 
@@ -168,9 +201,48 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
                     return;
 
+                }else if  (cubicajeSiloString.isEmpty()){
+
+                    Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    return;
+
                 }else {
 
                     insertaSiloDB();
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        mEliminarSilo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                eliminarSiloDB();
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mActualizarSilo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!validarDatos()){
+
+                    return;
+
+                }else if  (cubicajeSiloString.isEmpty()){
+
+                    Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    return;
+
+                }else {
+
+                    actualizarSiloDB();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -225,6 +297,37 @@ public class CargaSilosActivity extends AppCompatActivity implements
                 calcularCubicajeSilo();
             }
         });
+    }
+
+    private void actualizarSiloDB() {
+
+        boolean insertSilo = conexion.upDateSilo(idAuto, idSilo,tipoGrano,phGrano,diametroSilo,
+                alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo);
+
+        if (insertSilo){
+
+            Toast.makeText(getApplicationContext(), "Silo actualizado",Toast.LENGTH_LONG).show();
+
+        }else {
+
+            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void eliminarSiloDB() {
+
+        Integer deleteRow = conexion.deleteSilo(idAuto);
+
+        if (deleteRow > 0 ){
+
+            Toast.makeText(getApplicationContext(),"Silo eliminado",Toast.LENGTH_LONG).show();
+
+        }else {
+
+            Toast.makeText(getApplicationContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     private void insertaSiloDB() {
@@ -398,6 +501,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
         alturaGranoString = getEditTextString(mAlturaGrano);
         alturaConoSiloString = getEditTextString(mCono);
         alturaCopeteSiloString = getEditTextString(mCopete);
+
 
         if (alturaGranoString.isEmpty()){
 

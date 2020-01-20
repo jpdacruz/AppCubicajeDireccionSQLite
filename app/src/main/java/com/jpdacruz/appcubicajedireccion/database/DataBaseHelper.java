@@ -81,6 +81,42 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Integer deleteSilo (int idAuto){
+
+        String idAutoString = String.valueOf(idAuto);
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "idAuto = ?", new String[]{idAutoString});
+    }
+
+    public boolean upDateSilo (int idAuto, String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
+                            double cono, double copete, double totalm3, double totaltons){
+
+        String idAutoString = String.valueOf(idAuto);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL2_IDN,id);
+        contentValues.put(COL3_TG,tipoGrano);
+        contentValues.put(COL4_PHG,phGrano);
+        contentValues.put(COL5_DIA,diametro);
+        contentValues.put(COL6_ALT,altoGrano);
+        contentValues.put(COL7_CONO,cono);
+        contentValues.put(COL8_COPE,copete);
+        contentValues.put(COL9_VOL,totalm3);
+        contentValues.put(COL10_CUBC,totaltons);
+
+        long result = db.update(TABLE_NAME,contentValues,"idAuto = ?", new String[]{idAutoString});
+
+        if (result == -1){
+
+            return false;
+
+        }else {
+
+            return true;
+        }
+    }
+
     public Cursor showSilos(){
 
         SQLiteDatabase db = this.getReadableDatabase();
