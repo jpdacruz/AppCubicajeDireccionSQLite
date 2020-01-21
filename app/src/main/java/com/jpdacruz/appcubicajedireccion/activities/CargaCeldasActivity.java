@@ -18,36 +18,37 @@ import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogAlturaGranoFragment;
+import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoCeldaFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogCopeteSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogDiametroSiloFragment;
+import com.jpdacruz.appcubicajedireccion.dialogs.DialogTamanioCeldaFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
 
 public class CargaCeldasActivity extends AppCompatActivity implements
-        DialogDiametroSiloFragment.TomarDatosDialogListener,
-        DialogConoSiloFragment.TomarDatosDialogListener,
-        DialogCopeteSiloFragment.TomarDatosDialogListener,
-        DialogAlturaGranoFragment.TomarDatosDialogListener,
+
+        DialogConoCeldaFragment.TomarDatosDialogListener,
+        DialogTamanioCeldaFragment.TomarDatosDialogListener,
         DialogTipoPHFragment.TomarDatosDialogListener{
 
     //vars
 
-    private static final String TAG = "CargaSilosActivity";
-    String idSilo,tipoGrano,phGranoString,diametroSiloString,
-            alturaConoSiloString, alturaCopeteSiloString,
-            alturaGranoString, cubicajeSiloString;
-    int idAuto;
-    double  phGrano,diametroSilo, radio2, volumenCilindro, alturaGrano,
-            alturaConoSilo,conoSilo,alturaCopeteSilo,
-            copeteSilo, volumenSilo, cubicajeSilo;
+    private static final String TAG = "CargaCeldasActivity";
+    String idCelda,tipoGranoCelda,phGranoCeldaStringCelda,tamañoStringCelda, largoCeldaString, anchoCeldaString,
+            alturaConoStringCelda, alturaCopeteStringCelda,
+            alturaGranoStringCelda, tipoCeldaString, cubicajeStringCelda;
+    int idAutoCelda;
+    double  phGranoCelda,largoCelda, anchoCelda, tamañoCelda, alturaGrano,
+            alturaConoCelda, alturaCopeteCelda, volumenCelda, cubicajeCelda;
 
     DataBaseHelper conexion;
 
     //widgets
-    Button mCalcularDiametro, mCalcularAlturaGrano, mIngreseTipoPh,
-            mCalcularCono, mCalcularCopete, mCalcularCubicaje, mIngresarSilo, mActualizarSilo, mEliminarSilo;
-    TextView mToneladasSilo;
-    TextInputLayout mIdSilo,mPhGrano,mDiametro,mAlturaGrano,mCono, mCopete;
+    Button mCalcularTamañoCelda, mIngreseTipoPhCelda,
+            mCalcularConoCelda, mCalcularCubicajeCelda, mIngresarCelda,
+            mActualizarCelda, mEliminarCelda;
+    TextView mToneladasCelda;
+    TextInputLayout midCelda,mphGranoCeldaCelda,mTamañoCelda,mAlturaGranoCelda,mConoCelda, mCopeteCelda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,22 +67,20 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
     private void iniciarWidgets() {
 
-        mIdSilo = findViewById(R.id.textinputIDSilo);
-        mPhGrano = findViewById(R.id.textinputPHSilo);
-        mDiametro = findViewById(R.id.textinputDiametroSilo);
-        mAlturaGrano = findViewById(R.id.textinputAlturaGrano);
-        mCono = findViewById(R.id.textinputConoSilo);
-        mCopete = findViewById(R.id.textinputCopeteSilo);
-        mToneladasSilo = findViewById(R.id.textViewMostrarToneldas);
-        mIngreseTipoPh = findViewById(R.id.buttonTipoPH);
-        mCalcularDiametro = findViewById(R.id.buttonCalcularDiametro);
-        mCalcularAlturaGrano = findViewById(R.id.buttonCalcularAlturaGrano);
-        mCalcularCono = findViewById(R.id.buttonCalcularCono);
-        mCalcularCopete = findViewById(R.id.buttonCalcularCopete);
-        mCalcularCubicaje = findViewById(R.id.botonCalcularSilo);
-        mIngresarSilo = findViewById(R.id.botonIngresarSilo);
-        mActualizarSilo = findViewById(R.id.botonUpdate);
-        mEliminarSilo = findViewById(R.id.botonDelete);
+        midCelda = findViewById(R.id.textinputIDCelda);
+        mphGranoCeldaCelda = findViewById(R.id.textinputPHCelda);
+        mTamañoCelda = findViewById(R.id.textinputTamañoCelda);
+        mAlturaGranoCelda = findViewById(R.id.textinputAlturaGranoCelda);
+        mConoCelda = findViewById(R.id.textinputConoCelda);
+        mCopeteCelda = findViewById(R.id.textinputCopeteCelda);
+        mToneladasCelda = findViewById(R.id.textViewMostrarToneldasCeldas);
+        mIngreseTipoPhCelda = findViewById(R.id.buttonTipoPHCelda);
+        mCalcularTamañoCelda = findViewById(R.id.buttonCalcularTamañoCelda);
+        mCalcularConoCelda = findViewById(R.id.buttonCalcularConoCelda);
+        mCalcularCubicajeCelda = findViewById(R.id.botonCalcularCelda);
+        mIngresarCelda = findViewById(R.id.botonIngresarCelda);
+        mActualizarCelda = findViewById(R.id.botonUpdateCelda);
+        mEliminarCelda = findViewById(R.id.botonDeleteCelda);
     }
 
     private void comprobarBundle() {
@@ -93,37 +92,36 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
             siloEnviado = (Silo) bundleEnviado.getSerializable("silo");
 
-            idAuto = siloEnviado.getIdAuto();
-            idSilo = siloEnviado.getId();
-            tipoGrano = siloEnviado.getTipoGrano();
-            phGranoString = String.valueOf(siloEnviado.getPhGrano());
-            diametroSiloString = String.valueOf(siloEnviado.getDiametro());
-            alturaGranoString = String.valueOf(siloEnviado.getAltoGrano());
-            alturaConoSiloString = String.valueOf(siloEnviado.getCono());
-            alturaCopeteSiloString = String.valueOf(siloEnviado.getCopete());
-            //cubicajeSiloString = String.valueOf(siloEnviado.getTotaltons());
+            idAutoCelda = siloEnviado.getIdAuto();
+            idCelda = siloEnviado.getId();
+            tipoGranoCelda = siloEnviado.getTipoGrano();
+            phGranoCeldaStringCelda = String.valueOf(siloEnviado.getPhGrano());
+            tamañoStringCelda = String.valueOf(siloEnviado.getDiametro());
+            alturaGranoStringCelda = String.valueOf(siloEnviado.getAltoGrano());
+            alturaConoStringCelda = String.valueOf(siloEnviado.getCono());
+            alturaCopeteStringCelda = String.valueOf(siloEnviado.getCopete());
+            cubicajeStringCelda = String.valueOf(siloEnviado.getTotaltons());
 
-            setEditText(mIdSilo, idSilo);
-            setEditText(mPhGrano, tipoGrano + " " +  phGranoString);
-            phGrano = Double.parseDouble(phGranoString);
-            setEditText(mDiametro, diametroSiloString);
-            setEditText(mAlturaGrano, alturaGranoString);
-            setEditText(mCono,alturaConoSiloString);
-            setEditText(mCopete,alturaCopeteSiloString);
-            mToneladasSilo.setText("");
-
-            mIngresarSilo.setVisibility(View.GONE);
+            setEditText(midCelda, idCelda);
+            setEditText(mphGranoCeldaCelda, tipoGranoCelda + " " +  phGranoCeldaStringCelda);
+            phGranoCelda = Double.parseDouble(phGranoCeldaStringCelda);
+            setEditText(mTamañoCelda, tamañoStringCelda);
+            setEditText(mAlturaGranoCelda, alturaGranoStringCelda);
+            setEditText(mConoCelda,alturaConoStringCelda);
+            setEditText(mCopeteCelda,alturaCopeteStringCelda);
+            mToneladasCelda.setText("");
+            mIngresarCelda.setVisibility(View.GONE);
 
         }else {
 
-            mActualizarSilo.setVisibility(View.INVISIBLE);
-            mEliminarSilo.setVisibility(View.GONE);
+            mActualizarCelda.setVisibility(View.INVISIBLE);
+            mEliminarCelda.setVisibility(View.GONE);
         }
     }
 
     private void iniciarEditTextListener() {
 
-        mDiametro.getEditText().addTextChangedListener(new TextWatcher() {
+        mTamañoCelda.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -137,14 +135,13 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                resetEditText(mCono);
-                resetEditText(mCopete);
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetEditText(mConoCelda);
+                resetEditText(mCopeteCelda);
+                resetToneladas();
             }
         });
 
-        mPhGrano.getEditText().addTextChangedListener(new TextWatcher() {
+        mphGranoCeldaCelda.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -158,12 +155,11 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
             }
         });
 
-        mAlturaGrano.getEditText().addTextChangedListener(new TextWatcher() {
+        mAlturaGranoCelda.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -177,14 +173,50 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
+            }
+        });
+
+        mConoCelda.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                resetToneladas();
+            }
+        });
+
+        mCopeteCelda.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                resetToneladas();
             }
         });
     }
+
     private void iniciarBotonesListener() {
 
-        mIngresarSilo.setOnClickListener(new View.OnClickListener() {
+        mIngresarCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -192,7 +224,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
                     return;
 
-                }else if  (cubicajeSiloString.isEmpty()){
+                }else if  (cubicajeStringCelda.isEmpty()){
 
                     Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
                     return;
@@ -207,7 +239,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             }
         });
 
-        mEliminarSilo.setOnClickListener(new View.OnClickListener() {
+        mEliminarCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -218,7 +250,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             }
         });
 
-        mActualizarSilo.setOnClickListener(new View.OnClickListener() {
+        mActualizarCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -226,7 +258,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
                     return;
 
-                }else if  (mToneladasSilo.getText().equals("")){
+                }else if  (mToneladasCelda.getText().equals("")){
 
                     Toast.makeText(getApplicationContext(),
                             "Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
@@ -242,7 +274,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             }
         });
 
-        mIngreseTipoPh.setOnClickListener(new View.OnClickListener() {
+        mIngreseTipoPhCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -250,23 +282,15 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             }
         });
 
-        mCalcularDiametro.setOnClickListener(new View.OnClickListener() {
+        mCalcularTamañoCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                calcularDiametro();
+                calcularTamaño();
             }
         });
 
-        mCalcularAlturaGrano.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                iniciarDialogAlturaGrano();
-            }
-        });
-
-        mCalcularCono.setOnClickListener(new View.OnClickListener() {
+        mCalcularConoCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -274,27 +298,19 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             }
         });
 
-        mCalcularCopete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                iniciarDialogCopete();
-            }
-        });
-
-        mCalcularCubicaje.setOnClickListener(new View.OnClickListener() {
+        mCalcularCubicajeCelda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                calcularCubicajeSilo();
+                calcularcubicajeCelda();
             }
         });
     }
 
     private void actualizarSiloDB() {
 
-        boolean insertSilo = conexion.upDateSilo(idAuto, idSilo,tipoGrano,phGrano,diametroSilo,
-                alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo);
+        boolean insertSilo = conexion.upDateSilo(idAutoCelda, idCelda,tipoGranoCelda,phGranoCelda,tamañoCelda,
+                alturaGrano,alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
 
         if (insertSilo){
 
@@ -308,7 +324,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
     private void eliminarSiloDB() {
 
-        Integer deleteRow = conexion.deleteSilo(idAuto);
+        Integer deleteRow = conexion.deleteSilo(idAutoCelda);
 
         if (deleteRow > 0 ){
 
@@ -318,14 +334,12 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
             Toast.makeText(getApplicationContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     private void insertaSiloDB() {
 
-        boolean insertSilo = conexion.addSilo(idSilo,tipoGrano,phGrano,diametroSilo,
-                alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo);
+        boolean insertSilo = conexion.addSilo(idCelda,tipoGranoCelda,phGranoCelda,tamañoCelda,
+                alturaGrano,alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
 
         if (insertSilo){
 
@@ -343,20 +357,14 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    private void calcularDiametro() {
+    private void calcularTamaño() {
 
         if (!validarProcesoDiametro()){
 
             return;
         }
 
-        DialogDiametroSiloFragment dialogF = new DialogDiametroSiloFragment();
-        dialogF.show(getSupportFragmentManager(),TAG);
-    }
-
-    private void iniciarDialogAlturaGrano() {
-
-        DialogAlturaGranoFragment dialogF = new DialogAlturaGranoFragment();
+        DialogTamanioCeldaFragment dialogF = new DialogTamanioCeldaFragment();
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
@@ -367,105 +375,46 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             return;
         }
 
-        DialogConoSiloFragment dialogF = new DialogConoSiloFragment();
+        DialogConoCeldaFragment dialogF = new DialogConoCeldaFragment();
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    private void iniciarDialogCopete() {
-
-        if (!validadProcesoConoCopete()){
-
-            return;
-        }
-
-        DialogCopeteSiloFragment dialogF = new DialogCopeteSiloFragment();
-        dialogF.show(getSupportFragmentManager(),TAG);
-    }
-
-    private void calcularCono() {
-
-        if (!validadProcesoConoCopete()){
-
-            return;
-        }
-
-        diametroSiloString = getEditTextString(mDiametro);
-        diametroSilo = Double.parseDouble(diametroSiloString);
-        alturaConoSilo = Math.round(((diametroSilo / 2) * 0.7) * 100) / 100.0;
-        alturaConoSiloString = String.valueOf(alturaConoSilo);
-        setEditText(mCono,alturaConoSiloString);
-    }
-
-    private void calcularCopete(boolean b) {
-
-        if (!validadProcesoConoCopete()){
-
-            return;
-        }
-
-        if (b) {
-
-            diametroSiloString = getEditTextString(mDiametro);
-            diametroSilo = Double.parseDouble(diametroSiloString);
-            alturaCopeteSilo = Math.round(((diametroSilo / 2) * 0.5) * 100) / 100.0;
-            alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
-            setEditText(mCopete, alturaCopeteSiloString);
-
-        }else {
-
-            diametroSiloString = getEditTextString(mDiametro);
-            diametroSilo = Double.parseDouble(diametroSiloString);
-            alturaCopeteSilo = -((diametroSilo /2) *0.5);
-            alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
-            setEditText(mCopete, alturaCopeteSiloString);
-        }
-    }
-
-    public void calcularCubicajeSilo() {
+    public void calcularcubicajeCelda() {
 
         if (!validarDatos()){
 
             return;
         }
 
-        idSilo = getEditTextString(mIdSilo);
-        diametroSiloString = getEditTextString(mDiametro);
-        alturaGranoString = getEditTextString(mAlturaGrano);
-        alturaConoSiloString = getEditTextString(mCono);
-        alturaCopeteSiloString = getEditTextString(mCopete);
-        diametroSilo = Double.parseDouble(diametroSiloString);
-        alturaGrano= Double.parseDouble(alturaGranoString);
-        alturaConoSilo = Double.parseDouble(alturaConoSiloString);
-        alturaCopeteSilo = Double.parseDouble(alturaCopeteSiloString);
+        idCelda = getEditTextString(midCelda);
 
-        radio2 = (diametroSilo/2)*(diametroSilo/2);
-        volumenCilindro = (Math.PI * radio2 *alturaGrano);
+        alturaGranoStringCelda = getEditTextString(mAlturaGranoCelda);
+        alturaGrano = Double.parseDouble(alturaGranoStringCelda);
 
-        if (alturaConoSilo == 0){
+        alturaCopeteStringCelda = getEditTextString(mCopeteCelda);
+        alturaCopeteCelda = Double.parseDouble(alturaCopeteStringCelda);
 
-            conoSilo = 0;
+        tamañoCelda = (largoCelda * anchoCelda * alturaGrano) + ((largoCelda*anchoCelda*alturaCopeteCelda/2));
 
-        }else {
+        if (tipoCeldaString.equals("Galpon")){
 
-            conoSilo = (Math.PI * radio2 * alturaConoSilo)/3;
+            volumenCelda = tamañoCelda;
+
+        }else if (tipoCeldaString.equals("Piso Trapesoidal")){
+
+            volumenCelda = tamañoCelda + (largoCelda - (alturaConoCelda*0.577*2))
+                    * (anchoCelda - (alturaConoCelda*0.577*2)) * alturaConoCelda;
+
+        }else if (tipoCeldaString.equals("Piso Conico")){
+
+            volumenCelda = tamañoCelda + ((anchoCelda*largoCelda*alturaConoCelda)/2);
         }
 
-        if (alturaCopeteSilo == 0){
+        cubicajeCelda = volumenCelda * phGranoCelda;
 
-            copeteSilo = 0;
+        cubicajeStringCelda = String.valueOf(cubicajeCelda);
 
-        }else {
-
-            copeteSilo = (Math.PI * radio2 * alturaCopeteSilo)/3;
-        }
-
-        volumenSilo = volumenCilindro + conoSilo + copeteSilo;
-        cubicajeSilo = Math.round((volumenSilo * phGrano) * 100)/100.0;
-
-        cubicajeSiloString = String.valueOf(cubicajeSilo);
-
-        mToneladasSilo.setText(cubicajeSiloString + " Toneladas");
-
+        mToneladasCelda.setText(cubicajeStringCelda + " Toneladas");
     }
 
     private boolean validarDatos() {
@@ -490,74 +439,88 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
     private boolean validarProcesoCalcular() {
 
-        alturaGranoString = getEditTextString(mAlturaGrano);
-        alturaConoSiloString = getEditTextString(mCono);
-        alturaCopeteSiloString = getEditTextString(mCopete);
+        alturaGranoStringCelda = getEditTextString(mAlturaGranoCelda);
+        alturaConoStringCelda = getEditTextString(mConoCelda);
+        alturaCopeteStringCelda = getEditTextString(mCopeteCelda);
 
+        if (alturaGranoStringCelda.isEmpty()){
 
-        if (alturaGranoString.isEmpty()){
-
-            mAlturaGrano.setError("Dato requerido");
+            mAlturaGranoCelda.setError("Dato requerido");
             return false;
 
-        }else if(alturaConoSiloString.isEmpty()){
+        }else if(alturaConoStringCelda.isEmpty()){
 
-            mCono.setError("Dato requerido");
+            mConoCelda.setError("Dato requerido");
             return false;
 
-        }else if (alturaCopeteSiloString.isEmpty()){
+        }else if (tipoCeldaString.equals("Elegir")) {
 
-            mCopete.setError("Dato requerido");
+            Toast.makeText(getApplicationContext(),"Debe seleccionar altura  y tipo de Cono",Toast.LENGTH_LONG).show();
+            return false;
+
+        }else if (alturaCopeteStringCelda.isEmpty()){
+
+            mCopeteCelda.setError("Dato requerido");
             return false;
         }
 
-        mAlturaGrano.setError("");
-        mCono.setError("");
-        mCopete.setError("");
+        mAlturaGranoCelda.setError("");
+        mConoCelda.setError("");
+        mCopeteCelda.setError("");
 
         return true;
     }
 
     private boolean validarProcesoDiametro() {
 
-        idSilo = getEditTextString(mIdSilo);
-        phGranoString = getEditTextString(mPhGrano);
+        idCelda = getEditTextString(midCelda);
+        phGranoCeldaStringCelda = getEditTextString(mphGranoCeldaCelda);
 
-        if (idSilo.isEmpty()) {
+        if (idCelda.isEmpty()) {
 
-            mIdSilo.setError("Dato requerido");
+            midCelda.setError("Dato requerido");
             return false;
 
-        } else if (phGranoString.isEmpty()) {
+        } else if (phGranoCeldaStringCelda.isEmpty()) {
 
-            mPhGrano.setError("Dato requerido");
+            mphGranoCeldaCelda.setError("Dato requerido");
             return false;
 
-        } else if (tipoGrano.equals("SELECCIONA")) {
+        } else if (tipoGranoCelda.equals("SELECCIONA GRANO")) {
 
             Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
             return false;
 
         } else {
 
-            mIdSilo.setError(null);
-            mPhGrano.setError(null);
+            midCelda.setError(null);
+            mphGranoCeldaCelda.setError(null);
             return true;
         }
     }
 
     private boolean validadProcesoConoCopete() {
 
-        diametroSiloString = getEditTextString(mDiametro);
+        tamañoStringCelda = getEditTextString(mTamañoCelda);
 
-        if (diametroSiloString.isEmpty()){
+        if (tamañoStringCelda.isEmpty()){
 
-            mDiametro.setError("Dato requerido");
+            mTamañoCelda.setError("Dato requerido");
+            return false;
+
+        }else if (largoCelda < 1){
+
+            mTamañoCelda.setError("Debe ingresar un tamaño celda valido");
+            return false;
+
+        }else if (anchoCelda < 1){
+
+            mTamañoCelda.setError("Debe ingresar un tamaño celda valido");
             return false;
 
         }else {
 
-            mDiametro.setError("");
+            mTamañoCelda.setError("");
             return true;
         }
     }
@@ -565,57 +528,35 @@ public class CargaCeldasActivity extends AppCompatActivity implements
     @Override
     public void enviarDatosDialogTipoPh(String tipo, String ph) {
 
-        tipoGrano = tipo;
-        phGranoString = ph;
+        tipoGranoCelda = tipo;
+        phGranoCeldaStringCelda = ph;
 
-        setEditText(mPhGrano, tipoGrano + " " +  phGranoString);
-        phGrano = Double.parseDouble(phGranoString);
-
+        setEditText(mphGranoCeldaCelda, tipoGranoCelda + " " +  phGranoCeldaStringCelda);
+        phGranoCelda = Double.parseDouble(phGranoCeldaStringCelda);
     }
 
     @Override
-    public void enviarDatosDialogDiametro(String diametro) {
+    public void enviarDatosDialogTamCelda(String largoCString, String anchoCString) {
 
-        diametroSiloString = diametro;
-        setEditText(mDiametro, diametroSiloString);
+        largoCeldaString = largoCString;
+        anchoCeldaString = anchoCString;
+
+        largoCelda = Double.parseDouble(largoCeldaString);
+        anchoCelda = Double.parseDouble(anchoCeldaString);
+
+        setEditText(mTamañoCelda, largoCeldaString + "mts * " + anchoCeldaString + "mts " );
     }
 
     @Override
-    public void enviarDatosDialogAlturaGrano(String alturaGrano) {
+    public void enviarDatosConoInfDialogCelda(String altuConoInfCelda, String tipoCelda) {
 
-        alturaGranoString = alturaGrano;
-        setEditText(mAlturaGrano, alturaGranoString);
+        alturaConoStringCelda = altuConoInfCelda;
+        tipoCeldaString = tipoCelda;
+
+        alturaConoCelda = Double.parseDouble(alturaConoStringCelda);
+
+        setEditText(mConoCelda, alturaConoStringCelda + "mts / " + tipoCeldaString);
     }
-
-    @Override
-    public void enviarDatosDialogCono(Boolean bool) {
-
-        if (bool){
-
-            calcularCono();
-
-        }else {
-
-           setEditText(mCono, "0.00");
-        }
-    }
-
-    @Override
-    public void enviarDatosDialogCopete(String string) {
-
-        if (string.equals("p")){
-
-            calcularCopete(true);
-
-        }else if (string.equals("n")){
-
-            calcularCopete(false);
-
-        }else {
-
-            setEditText(mCopete, "0.00");
-        }
-   }
 
     private void setEditText(TextInputLayout editText, String string) {
 
@@ -631,5 +572,11 @@ public class CargaCeldasActivity extends AppCompatActivity implements
     private void resetEditText(TextInputLayout editText){
 
         editText.getEditText().setText("");
+    }
+
+    private void resetToneladas() {
+
+        mToneladasCelda .setText("");
+        cubicajeStringCelda = "";
     }
 }

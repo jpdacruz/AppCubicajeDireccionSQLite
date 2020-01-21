@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.activities.CargaCeldasActivity;
 import com.jpdacruz.appcubicajedireccion.activities.CargaSilosActivity;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterDialog;
 import com.jpdacruz.appcubicajedireccion.clases.Estructura;
@@ -74,6 +75,12 @@ public class Dialog_Elegir_Fragment extends DialogFragment {
                 if (seleccion.equals("Agregar silo")){
 
                     Intent intent = new Intent(getContext(),CargaSilosActivity.class);
+                    startActivity(intent);
+                }
+
+                if (seleccion.equals("Agregar celda")){
+
+                    Intent intent = new Intent(getContext(),CargaCeldasActivity.class);
                     startActivity(intent);
                 }
             }

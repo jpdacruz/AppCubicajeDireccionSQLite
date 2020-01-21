@@ -3,18 +3,13 @@ package com.jpdacruz.appcubicajedireccion.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +23,6 @@ import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogCopeteSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogDiametroSiloFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class CargaSilosActivity extends AppCompatActivity implements
         DialogDiametroSiloFragment.TomarDatosDialogListener,
@@ -120,7 +112,6 @@ public class CargaSilosActivity extends AppCompatActivity implements
             setEditText(mCono,alturaConoSiloString);
             setEditText(mCopete,alturaCopeteSiloString);
             mToneladasSilo.setText("");
-
             mIngresarSilo.setVisibility(View.GONE);
 
         }else {
@@ -148,8 +139,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
                 resetEditText(mCono);
                 resetEditText(mCopete);
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
             }
         });
 
@@ -167,8 +157,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
             }
         });
 
@@ -186,8 +175,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
             }
         });
 
@@ -205,8 +193,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
             }
         });
 
@@ -224,11 +211,11 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void afterTextChanged(Editable s) {
 
-                mToneladasSilo.setText("");
-                cubicajeSiloString = "";
+                resetToneladas();
             }
         });
     }
+
     private void iniciarBotonesListener() {
 
         mIngresarSilo.setOnClickListener(new View.OnClickListener() {
@@ -365,8 +352,6 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
             Toast.makeText(getApplicationContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     private void insertaSiloDB() {
@@ -580,7 +565,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             mPhGrano.setError("Dato requerido");
             return false;
 
-        } else if (tipoGrano.equals("SELECCIONA")) {
+        } else if (tipoGrano.equals("SELECCIONA GRANO")) {
 
             Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
             return false;
@@ -678,5 +663,11 @@ public class CargaSilosActivity extends AppCompatActivity implements
     private void resetEditText(TextInputLayout editText){
 
         editText.getEditText().setText("");
+    }
+
+    private void resetToneladas() {
+
+        mToneladasSilo.setText("");
+        cubicajeSiloString = "";
     }
 }

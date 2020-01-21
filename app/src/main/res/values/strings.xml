@@ -16,10 +16,10 @@
     <string name="ListadoGranosPh">Trigo 0.72 al 0.80 \nSoja 0.70 al 0.76 \nMaiz 0.72 al 0.80 </string>
     <string name="TipoyPH">Tipo de grano y Ph</string>
     <string name="Ph">Ph del grano</string>
-    <string name="diametro">Conozco diametro (en metros)</string>
-    <string name="alturagrano">Conozco la altura del grano (en metros)</string>
-    <string name="cono">Conozco el cono (en metros)</string>
-    <string name="copete">Conozco el copete (en metros)</string>
+    <string name="diametro">Conozco el diametro (en mts)</string>
+    <string name="alturagrano">Conozco la altura del grano (mts)</string>
+    <string name="cono">Conozco la altura del cono (mts)</string>
+    <string name="copete">Conozco la altura del copete (mts)</string>
     <string name="toneladas">TONELADAS</string>
     <string name="calcular">CALCULAR</string>
     <string name="negativo">Negativo</string>
@@ -30,7 +30,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="e_silo">E/SILO</string>
-    <string name="title_activity_carga_silos">CargaSilosActivity</string>
+    <string name="title_activity_carga_silos">Cargar Silo</string>
+    <string name="title_activity_carga_celda">Cargar Celda</string>
     <string name="anchoChapas">Ancho chapas (mts)</string>
     <string name="cancelar">CANCELAR</string>
     <string name="continuar">OK</string>
@@ -50,4 +51,6 @@
     <string name="ingresar">Ingresar</string>
     <string name="update">Actualizar</string>
     <string name="delete">Eliminar</string>
+    <string name="largoCelda">Largo celda (mts)</string>
+    <string name="anchoCelda">Ancho Celda (mts)</string>
 </resources>

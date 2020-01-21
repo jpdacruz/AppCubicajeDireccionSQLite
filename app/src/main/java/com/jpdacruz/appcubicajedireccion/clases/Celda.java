@@ -9,13 +9,14 @@ public class Celda {
     private double tamañoCelda;
     private double altoGrano;
     private double cono;
+    private String tipoCelda;
     private double copete;
     private double totalm3;
     private double totaltons;
 
     public Celda(String id, String tipoGrano,
                  double phGrano, double tamañoCelda, double altoGrano,
-                 double cono, double copete, double totalm3, double totaltons) {
+                 double cono, double copete, String tipoCelda, double totalm3, double totaltons) {
 
         this.id = id;
         this.tipoGrano = tipoGrano;
@@ -24,6 +25,7 @@ public class Celda {
         this.altoGrano = altoGrano;
         this.cono = cono;
         this.copete = copete;
+        this.tipoCelda = tipoCelda;
         this.totalm3 = totalm3;
         this.totaltons = totaltons;
     }
@@ -96,6 +98,14 @@ public class Celda {
         this.copete = copete;
     }
 
+    public String getTipoCelda() {
+        return tipoCelda;
+    }
+
+    public void setTipoCelda(String tipoCelda) {
+        this.tipoCelda = tipoCelda;
+    }
+
     public double getTotalm3() {
         return totalm3;
     }
@@ -122,6 +132,7 @@ public class Celda {
                 ", tamañoCelda=" + tamañoCelda +
                 ", altoGrano=" + altoGrano +
                 ", cono=" + cono +
+                ", tipoCelda='" + tipoCelda + '\'' +
                 ", copete=" + copete +
                 ", totalm3=" + totalm3 +
                 ", totaltons=" + totaltons +

@@ -87,7 +87,7 @@
                 android:ems="10"
                 android:hint="Largo * ancho Celda (mts)"
                 android:inputType="numberDecimal"
-                android:maxLength="5"
+                android:enabled="false"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -108,29 +108,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputPHCelda" />
 
-        <Button
-            android:id="@+id/buttonCalcularAlturaGranoCelda"
-            android:layout_width="50dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/accent_light"
-            android:stateListAnimator="@null"
-            android:text=">"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textinputTamañoCelda" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinputAlturaGranoCelda"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
             app:helperTextEnabled="false"
-            app:layout_constraintEnd_toStartOf="@+id/buttonCalcularAlturaGranoCelda"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputTamañoCelda">
 
@@ -139,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/alturagrano"
+                android:hint="Altura del grano (mts)"
                 android:inputType="numberDecimal"
                 android:maxLength="4"
                 android:textSize="12sp" />
@@ -164,9 +151,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/cono"
+                android:hint="Tipo y altura del cono inferior (mts)"
                 android:inputType="numberSigned|numberDecimal"
-                android:maxLength="5"
+                android:enabled="false"
                 android:textSize="12sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -187,13 +174,14 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinputCopeteCelda"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
             app:helperTextEnabled="false"
-            app:layout_constraintEnd_toStartOf="@+id/buttonCalcularCopeteCelda"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputConoCelda">
 
@@ -202,26 +190,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/copete"
+                android:hint="Altura del cono superior (mts)"
                 android:inputType="numberSigned|numberDecimal"
                 android:maxLength="5"
                 android:textSize="12sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/buttonCalcularCopeteCelda"
-            android:layout_width="50dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/accent_light"
-            android:stateListAnimator="@null"
-            android:text=">"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textinputConoCelda" />
 
         <Button
             android:id="@+id/botonCalcularCelda"
