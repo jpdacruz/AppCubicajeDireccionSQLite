@@ -1,37 +1,41 @@
 package com.jpdacruz.appcubicajedireccion.clases;
 
-public class Celda {
+import java.io.Serializable;
+
+public class Celda implements Serializable {
 
     private int idAuto;
     private String id;
     private String tipoGrano;
     private double phGrano;
-    private double tamañoCelda;
+    private double largoCelda;
+    private double anchoCelda;
     private double altoGrano;
-    private double cono;
     private String tipoCelda;
+    private double cono;
     private double copete;
     private double totalm3;
     private double totaltons;
 
-    public Celda(String id, String tipoGrano,
-                 double phGrano, double tamañoCelda, double altoGrano,
-                 double cono, double copete, String tipoCelda, double totalm3, double totaltons) {
+    public Celda() {
+    }
 
+    public Celda(int idAuto, String id, String tipoGrano, double phGrano, double largoCelda,
+                 double anchoCelda, double altoGrano, String tipoCelda, double cono,
+                 double copete, double totalm3, double totaltons) {
+
+        this.idAuto = idAuto;
         this.id = id;
         this.tipoGrano = tipoGrano;
         this.phGrano = phGrano;
-        this.tamañoCelda = tamañoCelda;
+        this.largoCelda = largoCelda;
+        this.anchoCelda = anchoCelda;
         this.altoGrano = altoGrano;
         this.cono = cono;
-        this.copete = copete;
         this.tipoCelda = tipoCelda;
+        this.copete = copete;
         this.totalm3 = totalm3;
         this.totaltons = totaltons;
-    }
-
-    public Celda() {
-
     }
 
     public int getIdAuto() {
@@ -66,12 +70,20 @@ public class Celda {
         this.phGrano = phGrano;
     }
 
-    public double getTamañoCelda() {
-        return tamañoCelda;
+    public double getLargoCelda() {
+        return largoCelda;
     }
 
-    public void setTamañoCelda(double tamañoCelda) {
-        this.tamañoCelda = tamañoCelda;
+    public void setLargoCelda(double largoCelda) {
+        this.largoCelda = largoCelda;
+    }
+
+    public double getAnchoCelda() {
+        return anchoCelda;
+    }
+
+    public void setAnchoCelda(double anchoCelda) {
+        this.anchoCelda = anchoCelda;
     }
 
     public double getAltoGrano() {
@@ -90,20 +102,20 @@ public class Celda {
         this.cono = cono;
     }
 
-    public double getCopete() {
-        return copete;
-    }
-
-    public void setCopete(double copete) {
-        this.copete = copete;
-    }
-
     public String getTipoCelda() {
         return tipoCelda;
     }
 
     public void setTipoCelda(String tipoCelda) {
         this.tipoCelda = tipoCelda;
+    }
+
+    public double getCopete() {
+        return copete;
+    }
+
+    public void setCopete(double copete) {
+        this.copete = copete;
     }
 
     public double getTotalm3() {
@@ -129,7 +141,8 @@ public class Celda {
                 ", id='" + id + '\'' +
                 ", tipoGrano='" + tipoGrano + '\'' +
                 ", phGrano=" + phGrano +
-                ", tamañoCelda=" + tamañoCelda +
+                ", largoCelda=" + largoCelda +
+                ", anchoCelda=" + anchoCelda +
                 ", altoGrano=" + altoGrano +
                 ", cono=" + cono +
                 ", tipoCelda='" + tipoCelda + '\'' +

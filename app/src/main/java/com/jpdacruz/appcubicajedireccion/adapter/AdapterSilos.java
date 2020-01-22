@@ -40,12 +40,12 @@ public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.id.setText("ID: " + silos.get(position).getId());
+        holder.id.setText("ID Silo: " + silos.get(position).getId());
         holder.tipoGrano.setText("Grano: " + silos.get(position).getTipoGrano());
         holder.phGrano.setText("PH: " + String.valueOf(silos.get(position).getPhGrano()));
         holder.diametro.setText("Diametro: "+ String.valueOf(silos.get(position).getDiametro()));
-        holder.altuGrano.setText("Alt Grano: " + String.valueOf(silos.get(position).getAltoGrano()));
-        holder.cono.setText("Alt Cono: "+String.valueOf(silos.get(position).getCono()));
+        holder.altuGrano.setText("Altura Grano: " + String.valueOf(silos.get(position).getAltoGrano()));
+        holder.cono.setText("Altura Cono: "+String.valueOf(silos.get(position).getCono()));
         holder.copete.setText("Alt Copete: "+String.valueOf(silos.get(position).getCopete()));
         holder.tons.setText(String.valueOf(silos.get(position).getTotaltons()));
     }

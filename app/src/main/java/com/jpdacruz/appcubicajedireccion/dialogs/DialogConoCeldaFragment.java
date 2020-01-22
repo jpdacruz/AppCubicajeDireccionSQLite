@@ -103,7 +103,7 @@ public class DialogConoCeldaFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                tipoCelda = "Piso Trapesoidal";
+                tipoCelda = "Piso_Trapesoidal";
                 calcularConoInfCelda(v);
             }
         });
@@ -112,7 +112,7 @@ public class DialogConoCeldaFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                tipoCelda = "Piso Conico";
+                tipoCelda = "Piso_Conico";
                 calcularConoInfCelda(v);
             }
         });

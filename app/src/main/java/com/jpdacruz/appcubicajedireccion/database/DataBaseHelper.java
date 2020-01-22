@@ -11,7 +11,9 @@ import androidx.annotation.Nullable;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "fiscalizacion.db";
-    public static final String TABLE_NAME = "silos_table";
+
+    //tablas silos
+    public static final String TABLE_NAME_SILOS = "silos_table";
     public static final String COL1_IDA= "idAuto";
     public static final String COL2_IDN = "id";
     public static final String COL3_TG = "tipoGrano";
@@ -23,6 +25,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL9_VOL = "totalm3";
     public static final String COL10_CUBC = "totaltons";
 
+    //tabla celdas
+    public static final String TABLE_NAME_CELDAS = "celdas_table";
+    public static final String COL1_IDA_CELDA= "idAuto";
+    public static final String COL2_IDN_CELDA = "id";
+    public static final String COL3_TG_CELDA = "tipoGrano";
+    public static final String COL4_PHG_CELDA = "phGrano";
+    public static final String COL5_LARGO_CELDA = "largo";
+    public static final String COL6_ANC_CELDA = "ancho";
+    public static final String COL7_ALTGR_CELDA = "altoGrano";
+    public static final String COL8_TIPO_CELDA = "tipo";
+    public static final String COL9_CONO_CELDA = "cono";
+    public static final String COL10_COPE_CELDA = "copete";
+    public static final String COL11_VOL_CELDA = "totalm3";
+    public static final String COL12_CUBC_CELDA = "totaltons";
+
+
+
     public DataBaseHelper
             (@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -31,7 +50,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createTable = "CREATE TABLE " + TABLE_NAME
+        String createTableCeldas = "CREATE TABLE " + TABLE_NAME_CELDAS
+                +" (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +"id TEXT not null, "
+                +"tipoGrano TEXT not null, "
+                +"phGrano REAL not null, "
+                +"largo REAL not null, "
+                +"ancho REAL not null,"
+                +"altoGrano REAL not null, "
+                +"tipo TEXT not null, "
+                +"cono REAL not null, "
+                +"copete REAL not null, "
+                +"totalm3 REAL not null, "
+                +"totaltons REAL not null)";
+
+        String createTableSilos = "CREATE TABLE " + TABLE_NAME_SILOS
                 +" (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +"id TEXT not null, "
                 +"tipoGrano TEXT not null, "
@@ -43,13 +76,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 +"totalm3 REAL not null, "
                 +"totaltons REAL not null)";
 
-        db.execSQL(createTable);
+        db.execSQL(createTableSilos);
+        db.execSQL(createTableCeldas);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SILOS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CELDAS);
         onCreate(db);
     }
 
@@ -69,7 +104,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL9_VOL,totalm3);
         contentValues.put(COL10_CUBC,totaltons);
 
-        long result = db.insert(TABLE_NAME,null,contentValues);
+        long result = db.insert(TABLE_NAME_SILOS,null,contentValues);
+
+        if (result == -1){
+
+            return false;
+
+        }else {
+
+            return true;
+        }
+    }
+
+    public boolean addCelda (String id, String tipoGrano, double phGrano, double largo, double ancho, double altoGrano,
+                             String tipo, double cono, double copete, double totalm3, double totaltons){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL2_IDN_CELDA,id);
+        contentValues.put(COL3_TG_CELDA,tipoGrano);
+        contentValues.put(COL4_PHG_CELDA,phGrano);
+        contentValues.put(COL5_LARGO_CELDA,largo);
+        contentValues.put(COL6_ANC_CELDA,ancho);
+        contentValues.put(COL7_ALTGR_CELDA,altoGrano);
+        contentValues.put(COL8_TIPO_CELDA,tipo);
+        contentValues.put(COL9_CONO_CELDA,cono);
+        contentValues.put(COL10_COPE_CELDA,copete);
+        contentValues.put(COL11_VOL_CELDA,totalm3);
+        contentValues.put(COL12_CUBC_CELDA,totaltons);
+
+        long result = db.insert(TABLE_NAME_CELDAS,null,contentValues);
 
         if (result == -1){
 
@@ -85,11 +150,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "idAuto = ?", new String[]{idAutoString});
+        return db.delete(TABLE_NAME_SILOS, "idAuto = ?", new String[]{idAutoString});
+    }
+
+    public Integer deleteCelda (int idAuto){
+
+        String idAutoString = String.valueOf(idAuto);
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME_CELDAS, "idAuto = ?", new String[]{idAutoString});
     }
 
     public boolean upDateSilo (int idAuto, String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
-                            double cono, double copete, double totalm3, double totaltons){
+                                double cono, double copete, double totalm3, double totaltons){
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -105,7 +177,38 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL9_VOL,totalm3);
         contentValues.put(COL10_CUBC,totaltons);
 
-        long result = db.update(TABLE_NAME,contentValues,"idAuto = ?", new String[]{idAutoString});
+        long result = db.update(TABLE_NAME_SILOS,contentValues,"idAuto = ?", new String[]{idAutoString});
+
+        if (result == -1){
+
+            return false;
+
+        }else {
+
+            return true;
+        }
+    }
+
+    public boolean upDateCelda (int idAuto, String id, String tipoGrano, double phGrano, double largo, double ancho,
+                                double altoGrano, String tipo, double cono, double copete, double totalm3, double totaltons){
+
+        String idAutoString = String.valueOf(idAuto);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL2_IDN_CELDA,id);
+        contentValues.put(COL3_TG_CELDA,tipoGrano);
+        contentValues.put(COL4_PHG_CELDA,phGrano);
+        contentValues.put(COL5_LARGO_CELDA,largo);
+        contentValues.put(COL6_ANC_CELDA,ancho);
+        contentValues.put(COL7_ALTGR_CELDA,altoGrano);
+        contentValues.put(COL8_TIPO_CELDA,tipo);
+        contentValues.put(COL9_CONO_CELDA,cono);
+        contentValues.put(COL10_COPE_CELDA,copete);
+        contentValues.put(COL11_VOL_CELDA,totalm3);
+        contentValues.put(COL12_CUBC_CELDA,totaltons);
+
+        long result = db.update(TABLE_NAME_CELDAS,contentValues,"idAuto = ?", new String[]{idAutoString});
 
         if (result == -1){
 
@@ -121,7 +224,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT * FROM "+ TABLE_NAME, null);
+        Cursor data = db.rawQuery("SELECT * FROM "+ TABLE_NAME_SILOS, null);
+
+        return data;
+    }
+
+    public Cursor showCeldas(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor data = db.rawQuery("SELECT * FROM "+ TABLE_NAME_CELDAS, null);
 
         return data;
     }

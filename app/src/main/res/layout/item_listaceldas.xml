@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textViewIdLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:text="ID Celda: "
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTGLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorPrimary"
+        android:text="Tipo Grano:"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIdLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewPHLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorPrimary"
+        android:text="PH grano:"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTGLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewTamLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Altura Celda:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11Celda"
+        app:layout_constraintStart_toEndOf="@+id/textViewIdLSCelda"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAncLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Ancho Celda:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11Celda"
+        app:layout_constraintStart_toEndOf="@+id/textViewTGLSCelda"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTamLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewAlGrLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Altura Grano:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11Celda"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/textViewPHLSCelda"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAncLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewTipoLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Tipo Celda:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11Celda"
+        app:layout_constraintStart_toEndOf="@+id/textViewTonCelda"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlGrLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewConoLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Altura cono:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11Celda"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toEndOf="@+id/textViewTGLSCelda"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipoLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewCopLSCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Altura copete:"
+        app:layout_constraintEnd_toStartOf="@+id/textView11Celda"
+        app:layout_constraintStart_toEndOf="@+id/textViewTonSLCelda"
+        app:layout_constraintTop_toBottomOf="@+id/textViewConoLSCelda" />
+
+    <TextView
+        android:id="@+id/textViewTonSLCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="right"
+        android:textColor="@android:color/background_light"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTonCelda" />
+
+
+    <TextView
+        android:id="@+id/textView11Celda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        android:text=">"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTonCelda"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorPrimaryLight"
+        android:text="Toneladas:"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPHLSCelda" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

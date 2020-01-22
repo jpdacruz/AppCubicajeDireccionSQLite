@@ -15,40 +15,35 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
-import com.jpdacruz.appcubicajedireccion.clases.Silo;
+import com.jpdacruz.appcubicajedireccion.clases.Celda;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
-import com.jpdacruz.appcubicajedireccion.dialogs.DialogAlturaGranoFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoCeldaFragment;
-import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoSiloFragment;
-import com.jpdacruz.appcubicajedireccion.dialogs.DialogCopeteSiloFragment;
-import com.jpdacruz.appcubicajedireccion.dialogs.DialogDiametroSiloFragment;
-import com.jpdacruz.appcubicajedireccion.dialogs.DialogTamanioCeldaFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
 
 public class CargaCeldasActivity extends AppCompatActivity implements
 
         DialogConoCeldaFragment.TomarDatosDialogListener,
-        DialogTamanioCeldaFragment.TomarDatosDialogListener,
         DialogTipoPHFragment.TomarDatosDialogListener{
 
     //vars
-
     private static final String TAG = "CargaCeldasActivity";
-    String idCelda,tipoGranoCelda,phGranoCeldaStringCelda,tamañoStringCelda, largoCeldaString, anchoCeldaString,
-            alturaConoStringCelda, alturaCopeteStringCelda,
-            alturaGranoStringCelda, tipoCeldaString, cubicajeStringCelda;
+
+    String idCelda,tipoGranoCelda,phGranoCeldaStringCelda, largoCeldaString, anchoCeldaString,alturaGranoStringCelda,
+            alturaConoStringCelda, alturaCopeteStringCelda, tipoCeldaString, cubicajeStringCelda;
+
     int idAutoCelda;
+
     double  phGranoCelda,largoCelda, anchoCelda, tamañoCelda, alturaGrano,
             alturaConoCelda, alturaCopeteCelda, volumenCelda, cubicajeCelda;
 
     DataBaseHelper conexion;
 
     //widgets
-    Button mCalcularTamañoCelda, mIngreseTipoPhCelda,
-            mCalcularConoCelda, mCalcularCubicajeCelda, mIngresarCelda,
-            mActualizarCelda, mEliminarCelda;
+    Button mIngreseTipoPhCelda, mCalcularConoCelda, mCalcularCubicajeCelda, mIngresarCelda, mActualizarCelda, mEliminarCelda;
+
     TextView mToneladasCelda;
-    TextInputLayout midCelda,mphGranoCeldaCelda,mTamañoCelda,mAlturaGranoCelda,mConoCelda, mCopeteCelda;
+
+    TextInputLayout midCelda,mphGranoCeldaCelda,mLargoCelda, mAnchoCelda, mAlturaGranoCelda,mConoCelda, mCopeteCelda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +64,13 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
         midCelda = findViewById(R.id.textinputIDCelda);
         mphGranoCeldaCelda = findViewById(R.id.textinputPHCelda);
-        mTamañoCelda = findViewById(R.id.textinputTamañoCelda);
+        mLargoCelda = findViewById(R.id.textinputLargoCelda);
+        mAnchoCelda = findViewById(R.id.textinputAnchoCelda);
         mAlturaGranoCelda = findViewById(R.id.textinputAlturaGranoCelda);
         mConoCelda = findViewById(R.id.textinputConoCelda);
         mCopeteCelda = findViewById(R.id.textinputCopeteCelda);
         mToneladasCelda = findViewById(R.id.textViewMostrarToneldasCeldas);
         mIngreseTipoPhCelda = findViewById(R.id.buttonTipoPHCelda);
-        mCalcularTamañoCelda = findViewById(R.id.buttonCalcularTamañoCelda);
         mCalcularConoCelda = findViewById(R.id.buttonCalcularConoCelda);
         mCalcularCubicajeCelda = findViewById(R.id.botonCalcularCelda);
         mIngresarCelda = findViewById(R.id.botonIngresarCelda);
@@ -86,28 +81,31 @@ public class CargaCeldasActivity extends AppCompatActivity implements
     private void comprobarBundle() {
 
         Bundle bundleEnviado = getIntent().getExtras();
-        Silo siloEnviado = null;
+        Celda celdaEnviada = null;
 
         if (bundleEnviado!=null){
 
-            siloEnviado = (Silo) bundleEnviado.getSerializable("silo");
+            celdaEnviada = (Celda) bundleEnviado.getSerializable("celda");
 
-            idAutoCelda = siloEnviado.getIdAuto();
-            idCelda = siloEnviado.getId();
-            tipoGranoCelda = siloEnviado.getTipoGrano();
-            phGranoCeldaStringCelda = String.valueOf(siloEnviado.getPhGrano());
-            tamañoStringCelda = String.valueOf(siloEnviado.getDiametro());
-            alturaGranoStringCelda = String.valueOf(siloEnviado.getAltoGrano());
-            alturaConoStringCelda = String.valueOf(siloEnviado.getCono());
-            alturaCopeteStringCelda = String.valueOf(siloEnviado.getCopete());
-            cubicajeStringCelda = String.valueOf(siloEnviado.getTotaltons());
+            idAutoCelda = celdaEnviada.getIdAuto();
+            idCelda = celdaEnviada.getId();
+            tipoGranoCelda = celdaEnviada.getTipoGrano();
+            phGranoCeldaStringCelda = String.valueOf(celdaEnviada.getPhGrano());
+            largoCeldaString = String.valueOf(celdaEnviada.getLargoCelda());
+            anchoCeldaString = String.valueOf(celdaEnviada.getAnchoCelda());
+            alturaGranoStringCelda = String.valueOf(celdaEnviada.getAltoGrano());
+            alturaConoStringCelda = String.valueOf(celdaEnviada.getCono());
+            alturaCopeteStringCelda = String.valueOf(celdaEnviada.getCopete());
+            tipoCeldaString = celdaEnviada.getTipoCelda();
+            cubicajeStringCelda = String.valueOf(celdaEnviada.getTotaltons());
 
             setEditText(midCelda, idCelda);
             setEditText(mphGranoCeldaCelda, tipoGranoCelda + " " +  phGranoCeldaStringCelda);
             phGranoCelda = Double.parseDouble(phGranoCeldaStringCelda);
-            setEditText(mTamañoCelda, tamañoStringCelda);
+            setEditText(mLargoCelda, largoCeldaString);
+            setEditText(mAnchoCelda, anchoCeldaString);
             setEditText(mAlturaGranoCelda, alturaGranoStringCelda);
-            setEditText(mConoCelda,alturaConoStringCelda);
+            setEditText(mConoCelda,alturaConoStringCelda + "mts / " + tipoCeldaString);
             setEditText(mCopeteCelda,alturaCopeteStringCelda);
             mToneladasCelda.setText("");
             mIngresarCelda.setVisibility(View.GONE);
@@ -121,7 +119,27 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
     private void iniciarEditTextListener() {
 
-        mTamañoCelda.getEditText().addTextChangedListener(new TextWatcher() {
+        mLargoCelda.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                resetEditText(mConoCelda);
+                resetEditText(mCopeteCelda);
+                resetToneladas();
+            }
+        });
+
+        mAnchoCelda.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -231,7 +249,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
                 }else {
 
-                    insertaSiloDB();
+                    insertaCeldaDB();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -243,7 +261,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                eliminarSiloDB();
+                eliminarCeldaDB();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -266,7 +284,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
                 }else {
 
-                    actualizarSiloDB();
+                    actualizarCeldaDB();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -279,14 +297,6 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             public void onClick(View v) {
 
                 iniciarDialogTipoPH();
-            }
-        });
-
-        mCalcularTamañoCelda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                calcularTamaño();
             }
         });
 
@@ -307,14 +317,14 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         });
     }
 
-    private void actualizarSiloDB() {
+    private void actualizarCeldaDB() {
 
-        boolean insertSilo = conexion.upDateSilo(idAutoCelda, idCelda,tipoGranoCelda,phGranoCelda,tamañoCelda,
-                alturaGrano,alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
+        boolean insertCelda = conexion.upDateCelda(idAutoCelda, idCelda,tipoGranoCelda,phGranoCelda,largoCelda, anchoCelda,
+                alturaGrano, tipoCeldaString, alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
 
-        if (insertSilo){
+        if (insertCelda){
 
-            Toast.makeText(getApplicationContext(), "Silo actualizado",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Celda actualizada",Toast.LENGTH_LONG).show();
 
         }else {
 
@@ -322,13 +332,13 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         }
     }
 
-    private void eliminarSiloDB() {
+    private void eliminarCeldaDB() {
 
-        Integer deleteRow = conexion.deleteSilo(idAutoCelda);
+        Integer deleteRow = conexion.deleteCelda(idAutoCelda);
 
         if (deleteRow > 0 ){
 
-            Toast.makeText(getApplicationContext(),"Silo eliminado",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Celda eliminada",Toast.LENGTH_LONG).show();
 
         }else {
 
@@ -336,12 +346,12 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         }
     }
 
-    private void insertaSiloDB() {
+    private void insertaCeldaDB() {
 
-        boolean insertSilo = conexion.addSilo(idCelda,tipoGranoCelda,phGranoCelda,tamañoCelda,
-                alturaGrano,alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
+        boolean insertCelda = conexion.addCelda(idCelda,tipoGranoCelda,phGranoCelda,largoCelda, anchoCelda,
+                alturaGrano,tipoCeldaString, alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
 
-        if (insertSilo){
+        if (insertCelda){
 
             Toast.makeText(getApplicationContext(), "Datos insertados correctamente",Toast.LENGTH_LONG).show();
 
@@ -354,17 +364,6 @@ public class CargaCeldasActivity extends AppCompatActivity implements
     private void iniciarDialogTipoPH() {
 
         DialogTipoPHFragment dialogF = new DialogTipoPHFragment();
-        dialogF.show(getSupportFragmentManager(),TAG);
-    }
-
-    private void calcularTamaño() {
-
-        if (!validarProcesoDiametro()){
-
-            return;
-        }
-
-        DialogTamanioCeldaFragment dialogF = new DialogTamanioCeldaFragment();
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
@@ -400,12 +399,12 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
             volumenCelda = tamañoCelda;
 
-        }else if (tipoCeldaString.equals("Piso Trapesoidal")){
+        }else if (tipoCeldaString.equals("Piso_Trapesoidal")){
 
             volumenCelda = tamañoCelda + (largoCelda - (alturaConoCelda*0.577*2))
                     * (anchoCelda - (alturaConoCelda*0.577*2)) * alturaConoCelda;
 
-        }else if (tipoCeldaString.equals("Piso Conico")){
+        }else if (tipoCeldaString.equals("Piso_Conico")){
 
             volumenCelda = tamañoCelda + ((anchoCelda*largoCelda*alturaConoCelda)/2);
         }
@@ -501,26 +500,25 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
     private boolean validadProcesoConoCopete() {
 
-        tamañoStringCelda = getEditTextString(mTamañoCelda);
+        largoCeldaString = getEditTextString(mLargoCelda);
+        anchoCeldaString = getEditTextString(mAnchoCelda);
 
-        if (tamañoStringCelda.isEmpty()){
+        if (largoCeldaString.isEmpty()){
 
-            mTamañoCelda.setError("Dato requerido");
+            mLargoCelda.setError("Dato requerido");
             return false;
 
-        }else if (largoCelda < 1){
+        }else if (anchoCeldaString.isEmpty()){
 
-            mTamañoCelda.setError("Debe ingresar un tamaño celda valido");
-            return false;
-
-        }else if (anchoCelda < 1){
-
-            mTamañoCelda.setError("Debe ingresar un tamaño celda valido");
+            mAnchoCelda.setError("Dato requerido");
             return false;
 
         }else {
 
-            mTamañoCelda.setError("");
+            largoCelda = Double.parseDouble(largoCeldaString);
+            anchoCelda = Double.parseDouble(anchoCeldaString);
+            mLargoCelda.setError("");
+            mAnchoCelda.setError("");
             return true;
         }
     }
@@ -533,18 +531,6 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
         setEditText(mphGranoCeldaCelda, tipoGranoCelda + " " +  phGranoCeldaStringCelda);
         phGranoCelda = Double.parseDouble(phGranoCeldaStringCelda);
-    }
-
-    @Override
-    public void enviarDatosDialogTamCelda(String largoCString, String anchoCString) {
-
-        largoCeldaString = largoCString;
-        anchoCeldaString = anchoCString;
-
-        largoCelda = Double.parseDouble(largoCeldaString);
-        anchoCelda = Double.parseDouble(anchoCeldaString);
-
-        setEditText(mTamañoCelda, largoCeldaString + "mts * " + anchoCeldaString + "mts " );
     }
 
     @Override

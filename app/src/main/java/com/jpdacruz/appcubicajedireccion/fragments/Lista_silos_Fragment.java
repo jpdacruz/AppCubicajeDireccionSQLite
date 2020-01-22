@@ -27,19 +27,15 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Lista_silos_Fragment extends Fragment implements Serializable {
+public class Lista_silos_Fragment extends Fragment{
 
     ArrayList<Silo> silos;
     DataBaseHelper conexion;
     RecyclerView recyclerView;
-    private int idAuto;
-    private String idName, tipoGrano;
-    private double ph,diametro, alturaGrano, cono, copete, tons;
 
     public Lista_silos_Fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
