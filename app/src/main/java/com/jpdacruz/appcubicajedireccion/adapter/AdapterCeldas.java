@@ -41,15 +41,15 @@ implements View.OnClickListener {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.id.setText("ID Celda: " + celdas.get(position).getId());
-        holder.tipoGrano.setText("Grano: " + celdas.get(position).getTipoGrano());
-        holder.phGrano.setText("PH: " + String.valueOf(celdas.get(position).getPhGrano()));
-        holder.largo.setText("Largo Celda: "+ String.valueOf(celdas.get(position).getLargoCelda()));
-        holder.ancho.setText("Ancho Celda: "+ String.valueOf(celdas.get(position).getAnchoCelda()));
-        holder.altuGrano.setText("Altura Grano: " + String.valueOf(celdas.get(position).getAltoGrano()));
-        holder.tipo.setText("Tipo Celda: " + celdas.get(position).getTipoCelda());
-        holder.cono.setText("Altura Cono inf: "+String.valueOf(celdas.get(position).getCono()));
-        holder.copete.setText("Altura Cono Sup: "+String.valueOf(celdas.get(position).getCopete()));
+        holder.id.setText(String.format("ID Celda: %s", celdas.get(position).getId()));
+        holder.tipoGrano.setText(String.format("Grano: %s", celdas.get(position).getTipoGrano()));
+        holder.phGrano.setText(String.format("PH: %s", String.valueOf(celdas.get(position).getPhGrano())));
+        holder.largo.setText(String.format("Largo Celda: %s mts", String.valueOf(celdas.get(position).getLargoCelda())));
+        holder.ancho.setText(String.format("Ancho Celda: %s mts", String.valueOf(celdas.get(position).getAnchoCelda())));
+        holder.altuGrano.setText(String.format("Altura Grano: %s mts", String.valueOf(celdas.get(position).getAltoGrano())));
+        holder.tipo.setText(String.format("Tipo: %s", celdas.get(position).getTipoCelda()));
+        holder.cono.setText(String.format("Altura Cono inf: %s mts", String.valueOf(celdas.get(position).getCono())));
+        holder.copete.setText(String.format("Altura Cono Sup: %s mts", String.valueOf(celdas.get(position).getCopete())));
         holder.tons.setText(String.valueOf(celdas.get(position).getTotaltons()));
     }
 

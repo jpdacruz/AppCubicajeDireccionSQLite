@@ -399,12 +399,12 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
             volumenCelda = tamañoCelda;
 
-        }else if (tipoCeldaString.equals("Piso_Trapesoidal")){
+        }else if (tipoCeldaString.equals("Piso Trapesoidal")){
 
             volumenCelda = tamañoCelda + (largoCelda - (alturaConoCelda*0.577*2))
                     * (anchoCelda - (alturaConoCelda*0.577*2)) * alturaConoCelda;
 
-        }else if (tipoCeldaString.equals("Piso_Conico")){
+        }else if (tipoCeldaString.equals("Piso Conico")){
 
             volumenCelda = tamañoCelda + ((anchoCelda*largoCelda*alturaConoCelda)/2);
         }
