@@ -409,7 +409,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             volumenCelda = tamañoCelda + ((anchoCelda*largoCelda*alturaConoCelda)/2);
         }
 
-        cubicajeCelda = volumenCelda * phGranoCelda;
+        cubicajeCelda = Math.round((volumenCelda * phGranoCelda) * 100 / 100.0);
 
         cubicajeStringCelda = String.valueOf(cubicajeCelda);
 

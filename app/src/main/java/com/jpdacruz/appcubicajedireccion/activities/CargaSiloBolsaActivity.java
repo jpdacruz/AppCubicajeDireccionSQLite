@@ -352,11 +352,13 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
 
         volumenaSb = (anchoSb * largoSb * alturaBaseSb) + (((anchoSb * largoSb * alturaParabolaSb ) * 2) / 3);
 
-        cubicajeSb = volumenaSb * phGranoSb;
+        cubicajeSb = Math.round((volumenaSb * phGranoSb) * 100) /100.0;
 
         cubicajeStringSb = String.valueOf(cubicajeSb);
 
         mToneladasSb.setText(cubicajeStringSb + " Toneladas");
+
+
     }
 
     private boolean validarProcesoCalcular() {

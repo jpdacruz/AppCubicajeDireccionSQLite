@@ -59,7 +59,6 @@ public class Lista_Resumen_Fragment extends Fragment {
                 (recyclerView.getContext(),1);
         recyclerView.addItemDecoration(dividerItemDecorationsb);
         recyclerView.setAdapter(adapterResumen);
-
     }
 
     private void mostrarSuma() {
@@ -75,10 +74,5 @@ public class Lista_Resumen_Fragment extends Fragment {
 
             siloSumas.add(siloSuma);
         }
-
-
-
-
     }
-
 }

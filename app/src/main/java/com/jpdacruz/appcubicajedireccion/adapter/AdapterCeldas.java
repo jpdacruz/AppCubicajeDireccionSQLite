@@ -46,10 +46,10 @@ implements View.OnClickListener {
         holder.phGrano.setText(String.format("PH: %s", String.valueOf(celdas.get(position).getPhGrano())));
         holder.largo.setText(String.format("Largo: %s mts", String.valueOf(celdas.get(position).getLargoCelda())));
         holder.ancho.setText(String.format("Ancho: %s mts", String.valueOf(celdas.get(position).getAnchoCelda())));
-        holder.altuGrano.setText(String.format("Altura Grano: %s mts", String.valueOf(celdas.get(position).getAltoGrano())));
+        holder.altuGrano.setText(String.format("Alt Grano: %s mts", String.valueOf(celdas.get(position).getAltoGrano())));
         holder.tipo.setText(String.format("Tipo: %s", celdas.get(position).getTipoCelda()));
-        holder.cono.setText(String.format("Cono inf: %s mts", String.valueOf(celdas.get(position).getCono())));
-        holder.copete.setText(String.format("Cono Sup: %s mts", String.valueOf(celdas.get(position).getCopete())));
+        holder.cono.setText(String.format("Cono: %s mts", String.valueOf(celdas.get(position).getCono())));
+        holder.copete.setText(String.format("Copete: %s mts", String.valueOf(celdas.get(position).getCopete())));
         holder.tons.setText(String.valueOf(celdas.get(position).getTotaltons()));
     }
 
