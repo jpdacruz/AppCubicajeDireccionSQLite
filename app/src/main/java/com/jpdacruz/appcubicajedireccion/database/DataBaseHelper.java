@@ -17,7 +17,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     //tablas silos
     public static final String TABLE_NAME_SILOS = "silos_table";
-    public static final String COL1_IDA= "idAuto";
+    public static final String COL1_IDA = "idAuto";
     public static final String COL2_IDN = "id";
     public static final String COL3_TG = "tipoGrano";
     public static final String COL4_PHG = "phGrano";
@@ -30,7 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     //tabla celdas
     public static final String TABLE_NAME_CELDAS = "celdas_table";
-    public static final String COL1_IDA_CELDA= "idAuto";
+    public static final String COL1_IDA_CELDA = "idAuto";
     public static final String COL2_IDN_CELDA = "id";
     public static final String COL3_TG_CELDA = "tipoGrano";
     public static final String COL4_PHG_CELDA = "phGrano";
@@ -46,14 +46,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //tabla silob
 
     public static final String TABLE_NAME_SB = "sb_table";
-    public static final String COL1_IDA_SB= "idAuto";
+    public static final String COL1_IDA_SB = "idAuto";
     public static final String COL2_IDN_SB = "id";
     public static final String COL3_TG_SB = "tipoGrano";
     public static final String COL4_PHG_SB = "phGrano";
-    public static final String COL5_LARGO_SB= "largo";
-    public static final String COL6_ANC_SB= "ancho";
+    public static final String COL5_LARGO_SB = "largo";
+    public static final String COL6_ANC_SB = "ancho";
     public static final String COL7_AB_SB = "altuBase";
-    public static final String COL8_AP_SB= "altuPara";
+    public static final String COL8_AP_SB = "altuPara";
     public static final String COL9_VOL_SB = "totalm3";
     public static final String COL10_CUBC_SB = "totaltons";
 
@@ -66,42 +66,42 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String createTablesb = "CREATE TABLE " + TABLE_NAME_SB
-                +" (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +"id TEXT not null, "
-                +"tipoGrano TEXT not null, "
-                +"phGrano REAL not null, "
-                +"largo REAL not null, "
-                +"ancho REAL not null,"
-                +"altuBase REAL not null, "
-                +"altuPara REAL not null, "
-                +"totalm3 REAL not null, "
-                +"totaltons REAL not null)";
+                + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "id TEXT not null, "
+                + "tipoGrano TEXT not null, "
+                + "phGrano REAL not null, "
+                + "largo REAL not null, "
+                + "ancho REAL not null,"
+                + "altuBase REAL not null, "
+                + "altuPara REAL not null, "
+                + "totalm3 REAL not null, "
+                + "totaltons REAL not null)";
 
         String createTableCeldas = "CREATE TABLE " + TABLE_NAME_CELDAS
-                +" (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +"id TEXT not null, "
-                +"tipoGrano TEXT not null, "
-                +"phGrano REAL not null, "
-                +"largo REAL not null, "
-                +"ancho REAL not null,"
-                +"altoGrano REAL not null, "
-                +"tipo TEXT not null, "
-                +"cono REAL not null, "
-                +"copete REAL not null, "
-                +"totalm3 REAL not null, "
-                +"totaltons REAL not null)";
+                + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "id TEXT not null, "
+                + "tipoGrano TEXT not null, "
+                + "phGrano REAL not null, "
+                + "largo REAL not null, "
+                + "ancho REAL not null,"
+                + "altoGrano REAL not null, "
+                + "tipo TEXT not null, "
+                + "cono REAL not null, "
+                + "copete REAL not null, "
+                + "totalm3 REAL not null, "
+                + "totaltons REAL not null)";
 
         String createTableSilos = "CREATE TABLE " + TABLE_NAME_SILOS
-                +" (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +"id TEXT not null, "
-                +"tipoGrano TEXT not null, "
-                +"phGrano REAL not null, "
-                +"diametro REAL not null, "
-                +"altoGrano REAL not null, "
-                +"cono REAL not null, "
-                +"copete REAL not null, "
-                +"totalm3 REAL not null, "
-                +"totaltons REAL not null)";
+                + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "id TEXT not null, "
+                + "tipoGrano TEXT not null, "
+                + "phGrano REAL not null, "
+                + "diametro REAL not null, "
+                + "altoGrano REAL not null, "
+                + "cono REAL not null, "
+                + "copete REAL not null, "
+                + "totalm3 REAL not null, "
+                + "totaltons REAL not null)";
 
         db.execSQL(createTableSilos);
         db.execSQL(createTableCeldas);
@@ -117,230 +117,245 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addSilo (String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
-                            double cono, double copete, double totalm3, double totaltons){
+    public boolean addSilo(String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
+                           double cono, double copete, double totalm3, double totaltons) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL2_IDN,id);
-        contentValues.put(COL3_TG,tipoGrano);
-        contentValues.put(COL4_PHG,phGrano);
-        contentValues.put(COL5_DIA,diametro);
-        contentValues.put(COL6_ALT,altoGrano);
-        contentValues.put(COL7_CONO,cono);
-        contentValues.put(COL8_COPE,copete);
-        contentValues.put(COL9_VOL,totalm3);
-        contentValues.put(COL10_CUBC,totaltons);
+        contentValues.put(COL2_IDN, id);
+        contentValues.put(COL3_TG, tipoGrano);
+        contentValues.put(COL4_PHG, phGrano);
+        contentValues.put(COL5_DIA, diametro);
+        contentValues.put(COL6_ALT, altoGrano);
+        contentValues.put(COL7_CONO, cono);
+        contentValues.put(COL8_COPE, copete);
+        contentValues.put(COL9_VOL, totalm3);
+        contentValues.put(COL10_CUBC, totaltons);
 
-        long result = db.insert(TABLE_NAME_SILOS,null,contentValues);
+        long result = db.insert(TABLE_NAME_SILOS, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
 
             return false;
 
-        }else {
+        } else {
 
             return true;
         }
     }
 
-    public boolean addCelda (String id, String tipoGrano, double phGrano, double largo, double ancho, double altoGrano,
-                             String tipo, double cono, double copete, double totalm3, double totaltons){
+    public boolean addCelda(String id, String tipoGrano, double phGrano, double largo, double ancho, double altoGrano,
+                            String tipo, double cono, double copete, double totalm3, double totaltons) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL2_IDN_CELDA,id);
-        contentValues.put(COL3_TG_CELDA,tipoGrano);
-        contentValues.put(COL4_PHG_CELDA,phGrano);
-        contentValues.put(COL5_LARGO_CELDA,largo);
-        contentValues.put(COL6_ANC_CELDA,ancho);
-        contentValues.put(COL7_ALTGR_CELDA,altoGrano);
-        contentValues.put(COL8_TIPO_CELDA,tipo);
-        contentValues.put(COL9_CONO_CELDA,cono);
-        contentValues.put(COL10_COPE_CELDA,copete);
-        contentValues.put(COL11_VOL_CELDA,totalm3);
-        contentValues.put(COL12_CUBC_CELDA,totaltons);
+        contentValues.put(COL2_IDN_CELDA, id);
+        contentValues.put(COL3_TG_CELDA, tipoGrano);
+        contentValues.put(COL4_PHG_CELDA, phGrano);
+        contentValues.put(COL5_LARGO_CELDA, largo);
+        contentValues.put(COL6_ANC_CELDA, ancho);
+        contentValues.put(COL7_ALTGR_CELDA, altoGrano);
+        contentValues.put(COL8_TIPO_CELDA, tipo);
+        contentValues.put(COL9_CONO_CELDA, cono);
+        contentValues.put(COL10_COPE_CELDA, copete);
+        contentValues.put(COL11_VOL_CELDA, totalm3);
+        contentValues.put(COL12_CUBC_CELDA, totaltons);
 
-        long result = db.insert(TABLE_NAME_CELDAS,null,contentValues);
+        long result = db.insert(TABLE_NAME_CELDAS, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
 
             return false;
 
-        }else {
+        } else {
 
             return true;
         }
     }
 
-    public boolean addSb (String id, String tipoGrano, double phGrano, double largo, double ancho, double altuBase,
-                             double altuPara, double totalm3, double totaltons){
+    public boolean addSb(String id, String tipoGrano, double phGrano, double largo, double ancho, double altuBase,
+                         double altuPara, double totalm3, double totaltons) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL2_IDN_SB,id);
-        contentValues.put(COL3_TG_SB,tipoGrano);
-        contentValues.put(COL4_PHG_SB,phGrano);
-        contentValues.put(COL5_LARGO_SB,largo);
-        contentValues.put(COL6_ANC_SB,ancho);
-        contentValues.put(COL7_AB_SB,altuBase);
-        contentValues.put(COL8_AP_SB,altuPara);
-        contentValues.put(COL9_VOL_SB,totalm3);
-        contentValues.put(COL10_CUBC_SB,totaltons);
+        contentValues.put(COL2_IDN_SB, id);
+        contentValues.put(COL3_TG_SB, tipoGrano);
+        contentValues.put(COL4_PHG_SB, phGrano);
+        contentValues.put(COL5_LARGO_SB, largo);
+        contentValues.put(COL6_ANC_SB, ancho);
+        contentValues.put(COL7_AB_SB, altuBase);
+        contentValues.put(COL8_AP_SB, altuPara);
+        contentValues.put(COL9_VOL_SB, totalm3);
+        contentValues.put(COL10_CUBC_SB, totaltons);
 
-        String b = id +" " +tipoGrano +" "+ phGrano +" "+ largo +" "+ ancho
-                +" "+ altuBase +" "+ altuPara +" "+ totalm3 +" "+totaltons;
+        String b = id + " " + tipoGrano + " " + phGrano + " " + largo + " " + ancho
+                + " " + altuBase + " " + altuPara + " " + totalm3 + " " + totaltons;
 
-        Log.i(TAG,b);
+        Log.i(TAG, b);
 
-        long result = db.insert(TABLE_NAME_SB,null,contentValues);
+        long result = db.insert(TABLE_NAME_SB, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
 
             return false;
 
-        }else {
+        } else {
 
             return true;
         }
     }
 
-    public Integer deleteSilo (int idAuto){
+    public Integer deleteSilo(int idAuto) {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME_SILOS, "idAuto = ?", new String[]{idAutoString});
     }
 
-    public Integer deleteCelda (int idAuto){
+    public Integer deleteCelda(int idAuto) {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME_CELDAS, "idAuto = ?", new String[]{idAutoString});
     }
 
-    public Integer deleteSb (int idAuto){
+    public Integer deleteSb(int idAuto) {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME_SB, "idAuto = ?", new String[]{idAutoString});
     }
 
-    public boolean upDateSilo (int idAuto, String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
-                                double cono, double copete, double totalm3, double totaltons){
+    public boolean upDateSilo(int idAuto, String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
+                              double cono, double copete, double totalm3, double totaltons) {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL2_IDN,id);
-        contentValues.put(COL3_TG,tipoGrano);
-        contentValues.put(COL4_PHG,phGrano);
-        contentValues.put(COL5_DIA,diametro);
-        contentValues.put(COL6_ALT,altoGrano);
-        contentValues.put(COL7_CONO,cono);
-        contentValues.put(COL8_COPE,copete);
-        contentValues.put(COL9_VOL,totalm3);
-        contentValues.put(COL10_CUBC,totaltons);
+        contentValues.put(COL2_IDN, id);
+        contentValues.put(COL3_TG, tipoGrano);
+        contentValues.put(COL4_PHG, phGrano);
+        contentValues.put(COL5_DIA, diametro);
+        contentValues.put(COL6_ALT, altoGrano);
+        contentValues.put(COL7_CONO, cono);
+        contentValues.put(COL8_COPE, copete);
+        contentValues.put(COL9_VOL, totalm3);
+        contentValues.put(COL10_CUBC, totaltons);
 
-        long result = db.update(TABLE_NAME_SILOS,contentValues,"idAuto = ?", new String[]{idAutoString});
+        long result = db.update(TABLE_NAME_SILOS, contentValues, "idAuto = ?", new String[]{idAutoString});
 
-        if (result == -1){
+        if (result == -1) {
 
             return false;
 
-        }else {
+        } else {
 
             return true;
         }
     }
 
-    public boolean upDateCelda (int idAuto, String id, String tipoGrano, double phGrano, double largo, double ancho,
-                                 double altoGrano, String tipo, double cono, double copete, double totalm3, double totaltons){
+    public boolean upDateCelda(int idAuto, String id, String tipoGrano, double phGrano, double largo, double ancho,
+                               double altoGrano, String tipo, double cono, double copete, double totalm3, double totaltons) {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL2_IDN_CELDA,id);
-        contentValues.put(COL3_TG_CELDA,tipoGrano);
-        contentValues.put(COL4_PHG_CELDA,phGrano);
-        contentValues.put(COL5_LARGO_CELDA,largo);
-        contentValues.put(COL6_ANC_CELDA,ancho);
-        contentValues.put(COL7_ALTGR_CELDA,altoGrano);
-        contentValues.put(COL8_TIPO_CELDA,tipo);
-        contentValues.put(COL9_CONO_CELDA,cono);
-        contentValues.put(COL10_COPE_CELDA,copete);
-        contentValues.put(COL11_VOL_CELDA,totalm3);
-        contentValues.put(COL12_CUBC_CELDA,totaltons);
+        contentValues.put(COL2_IDN_CELDA, id);
+        contentValues.put(COL3_TG_CELDA, tipoGrano);
+        contentValues.put(COL4_PHG_CELDA, phGrano);
+        contentValues.put(COL5_LARGO_CELDA, largo);
+        contentValues.put(COL6_ANC_CELDA, ancho);
+        contentValues.put(COL7_ALTGR_CELDA, altoGrano);
+        contentValues.put(COL8_TIPO_CELDA, tipo);
+        contentValues.put(COL9_CONO_CELDA, cono);
+        contentValues.put(COL10_COPE_CELDA, copete);
+        contentValues.put(COL11_VOL_CELDA, totalm3);
+        contentValues.put(COL12_CUBC_CELDA, totaltons);
 
-        long result = db.update(TABLE_NAME_CELDAS,contentValues,"idAuto = ?", new String[]{idAutoString});
+        long result = db.update(TABLE_NAME_CELDAS, contentValues, "idAuto = ?", new String[]{idAutoString});
 
-        if (result == -1){
+        if (result == -1) {
 
             return false;
 
-        }else {
+        } else {
 
             return true;
         }
     }
 
-    public boolean upDateSb (int idAuto, String id, String tipoGrano, double phGrano, double largo, double ancho,
-                             double altuBase,double altuPara, double totalm3, double totaltons){
+    public boolean upDateSb(int idAuto, String id, String tipoGrano, double phGrano, double largo, double ancho,
+                            double altuBase, double altuPara, double totalm3, double totaltons) {
 
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL2_IDN_SB,id);
-        contentValues.put(COL3_TG_SB,tipoGrano);
-        contentValues.put(COL4_PHG_SB,phGrano);
-        contentValues.put(COL5_LARGO_SB,largo);
-        contentValues.put(COL6_ANC_SB,ancho);
-        contentValues.put(COL7_AB_SB,altuBase);
-        contentValues.put(COL8_AP_SB,altuPara);
-        contentValues.put(COL9_VOL_SB,totalm3);
-        contentValues.put(COL10_CUBC_SB,totaltons);
+        contentValues.put(COL2_IDN_SB, id);
+        contentValues.put(COL3_TG_SB, tipoGrano);
+        contentValues.put(COL4_PHG_SB, phGrano);
+        contentValues.put(COL5_LARGO_SB, largo);
+        contentValues.put(COL6_ANC_SB, ancho);
+        contentValues.put(COL7_AB_SB, altuBase);
+        contentValues.put(COL8_AP_SB, altuPara);
+        contentValues.put(COL9_VOL_SB, totalm3);
+        contentValues.put(COL10_CUBC_SB, totaltons);
 
-        long result = db.update(TABLE_NAME_SB,contentValues,"idAuto = ?", new String[]{idAutoString});
+        long result = db.update(TABLE_NAME_SB, contentValues, "idAuto = ?", new String[]{idAutoString});
 
-        if (result == -1){
+        if (result == -1) {
 
             return false;
 
-        }else {
+        } else {
 
             return true;
         }
     }
 
-    public Cursor showSilos(){
+    public Cursor showSilos() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT * FROM "+ TABLE_NAME_SILOS, null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME_SILOS, null);
 
         return data;
     }
 
-    public Cursor showCeldas(){
+    public Cursor showCeldas() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT * FROM "+ TABLE_NAME_CELDAS, null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME_CELDAS, null);
 
         return data;
     }
 
-    public Cursor showSb(){
+    public Cursor showSb() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT * FROM "+ TABLE_NAME_SB, null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME_SB, null);
+
+        return data;
+    }
+
+    public Cursor sumarGranos() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor data = db.rawQuery("SELECT " + COL3_TG + ", SUM (" + COL10_CUBC + ") total " +
+                " FROM ( SELECT " + COL3_TG + " ," + COL10_CUBC +" FROM "+ TABLE_NAME_SILOS +
+                " UNION ALL "+
+                " SELECT "+COL3_TG_CELDA+" , "+ COL12_CUBC_CELDA + " FROM "+ TABLE_NAME_CELDAS +
+                " UNION ALL "+
+                " SELECT "+COL3_TG_SB+" , "+ COL10_CUBC_SB+ " FROM "+ TABLE_NAME_SB +") t" +
+                " GROUP BY " + COL3_TG , null);
 
         return data;
     }

@@ -102,8 +102,6 @@ public class Dialog_Elegir_Fragment extends DialogFragment {
         estructura.add(new Estructura
                 ("Agregar silo",R.drawable.silo));
         estructura.add(new Estructura
-                ("Agregar entre/silo",R.drawable.entresilos));
-        estructura.add(new Estructura
                 ("Agregar celda",R.drawable.celda));
         estructura.add(new Estructura
                 ("Agregar silo/bolsa",R.drawable.silobolsa));

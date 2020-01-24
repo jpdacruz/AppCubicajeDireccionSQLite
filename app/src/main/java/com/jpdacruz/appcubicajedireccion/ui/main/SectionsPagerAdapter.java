@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.fragments.Lista_Celdas_Fragment;
-import com.jpdacruz.appcubicajedireccion.fragments.Lista_silo_bolsa_Fragment;
+import com.jpdacruz.appcubicajedireccion.fragments.Lista_Resumen_Fragment;
 import com.jpdacruz.appcubicajedireccion.fragments.Lista_silos_Fragment;
 
 /**
@@ -42,8 +42,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 Lista_Celdas_Fragment lista_celdas_fragment = new Lista_Celdas_Fragment();
                 return lista_celdas_fragment;
             case 2:
-                Lista_silo_bolsa_Fragment lista_silo_bolsa_fragment = new Lista_silo_bolsa_Fragment();
-                return lista_silo_bolsa_fragment;
+                Lista_Resumen_Fragment lista_resumen_fragment = new Lista_Resumen_Fragment();
+                return lista_resumen_fragment;
 }
         return null;
     }

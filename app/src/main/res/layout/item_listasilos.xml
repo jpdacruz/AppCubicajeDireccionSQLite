@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/colorAccent"
         android:text="ID: "
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +25,9 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/white"
         android:text="Tipo Grano:"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIdLS" />
 

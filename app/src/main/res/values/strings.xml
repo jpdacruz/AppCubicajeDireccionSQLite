@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name"></string>
-    <string name="tab_text_1">SILOS Y E/S</string>
-    <string name="tab_text_2">CELDAS</string>
-    <string name="tab_text_3">SILO BOLSA</string>
+    <string name="tab_text_1">SILOS</string>
+    <string name="tab_text_2">CELDAS y SB</string>
+    <string name="tab_text_3">RESUMEN</string>
     <string name="silo">SILO</string>
     <string name="celda">CELDA</string>
     <string name="silobolsa">S/Bolsa</string>
