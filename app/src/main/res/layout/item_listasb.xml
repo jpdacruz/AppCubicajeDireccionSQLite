@@ -2,104 +2,100 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayoutsilos"
+    android:id="@+id/linearLayoutsilobolsas"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
     <TextView
-        android:id="@+id/textViewIdLS"
+        android:id="@+id/textViewIdLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/white"
         android:text="ID: "
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewTGLS"
+        android:id="@+id/textViewTGLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/white"
         android:text="Tipo Grano:"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewIdLS" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewIdLSsb" />
 
     <TextView
-        android:id="@+id/textViewPHLS"
+        android:id="@+id/textViewPHLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/background_light"
-        android:text="PH grano:"
         android:textColor="@android:color/tertiary_text_light"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textViewIdLS"
+        app:layout_constraintStart_toEndOf="@+id/textViewIdLSsb"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewDiaLS"
+        android:id="@+id/textViewLarLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Diametro:"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textViewIdLS"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPHLS" />
+        app:layout_constraintStart_toEndOf="@+id/textViewIdLSsb"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPHLSsb" />
 
     <TextView
-        android:id="@+id/textViewAlGrLS"
+        android:id="@+id/textViewAncSLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Altura Grano:"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDiaLS" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLarLSsb" />
 
     <TextView
-        android:id="@+id/textViewCopLS"
+        android:id="@+id/textViewParaLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Altura copete:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textViewTonSL"
-        app:layout_constraintTop_toBottomOf="@+id/textViewConoLS" />
+        app:layout_constraintStart_toEndOf="@+id/textViewTonSLsb"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBaseLSsb" />
 
     <TextView
-        android:id="@+id/textViewTonSL"
+        android:id="@+id/textViewTonSLsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:gravity="right"
         android:textColor="@android:color/background_light"
         android:textSize="28sp"
+        android:maxLength="6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewConoLS"
+        android:id="@+id/textViewBaseLSsb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Altura cono:"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
         app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toEndOf="@+id/textViewTGLS"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAlGrLS" />
+        app:layout_constraintStart_toEndOf="@+id/textViewTGLSsb"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAncSLSsb" />
 
     <TextView
         android:id="@+id/textView11"
@@ -118,10 +114,10 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:text="Toneladas:"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTGLS" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTGLSsb" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

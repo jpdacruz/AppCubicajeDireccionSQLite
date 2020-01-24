@@ -32,6 +32,7 @@
     <string name="e_silo">E/SILO</string>
     <string name="title_activity_carga_silos">Cargar Silo</string>
     <string name="title_activity_carga_celda">Cargar Celda</string>
+    <string name="title_activity_carga_silobolsa">Cargar Silo Bolsa</string>
     <string name="anchoChapas">Ancho chapas (mts)</string>
     <string name="cancelar">CANCELAR</string>
     <string name="continuar">OK</string>

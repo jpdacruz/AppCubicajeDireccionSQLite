@@ -17,6 +17,11 @@
         </activity>
 
         <activity
+            android:name=".activities.CargaSiloBolsaActivity"
+            android:label="@string/title_activity_carga_silobolsa"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".activities.CargaCeldasActivity"
             android:label="@string/title_activity_carga_celda"
             android:theme="@style/AppTheme.NoActionBar">

@@ -45,8 +45,8 @@ public class AdapterSilos extends RecyclerView.Adapter<AdapterSilos.ViewHolder>
         holder.phGrano.setText(String.format("PH: %s", String.valueOf(silos.get(position).getPhGrano())));
         holder.diametro.setText(String.format("Diametro: %s mts", String.valueOf(silos.get(position).getDiametro())));
         holder.altuGrano.setText(String.format("Altura Grano: %s mts", String.valueOf(silos.get(position).getAltoGrano())));
-        holder.cono.setText(String.format("Altura Cono: %s mts", String.valueOf(silos.get(position).getCono())));
-        holder.copete.setText(String.format("Alt Copete: %s mts", String.valueOf(silos.get(position).getCopete())));
+        holder.cono.setText(String.format("Cono: %s mts", String.valueOf(silos.get(position).getCono())));
+        holder.copete.setText(String.format("Copete: %s mts", String.valueOf(silos.get(position).getCopete())));
         holder.tons.setText(String.valueOf(silos.get(position).getTotaltons()));
     }
 
