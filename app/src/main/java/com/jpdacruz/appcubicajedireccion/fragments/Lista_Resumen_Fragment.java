@@ -62,7 +62,7 @@ public class Lista_Resumen_Fragment extends Fragment {
 
         mostrarSuma();
         mostrarDif();
-        verificarDiferencias();
+        //verificarDiferencias();
         armarReciclerSuma();
         armarReciclerDife();
         return view;
@@ -149,19 +149,16 @@ public class Lista_Resumen_Fragment extends Fragment {
 
     private void mostrarSuma() {
 
-        String tipoGranoString;
-        double cubicaje;
+        Cursor cursorSum = conexion.sumarGranos();
+        SiloSuma siloSuma;
 
-        conexion.deleteAllSum();
+        while ( (cursorSum.moveToNext())){
 
-        Cursor cursor = conexion.sumarGranos();
+            siloSuma = new SiloSuma();
+            siloSuma.setTipoGrano(cursorSum.getString(0));
+            siloSuma.setCubicaje(cursorSum.getDouble(1));
 
-        while (cursor.moveToNext()){
-
-            tipoGranoString = cursor.getString(0);
-            cubicaje = cursor.getDouble(1);
-
-            conexion.addSumGrano(tipoGranoString,cubicaje);
+            siloSumas.add(siloSuma);
         }
     }
 
