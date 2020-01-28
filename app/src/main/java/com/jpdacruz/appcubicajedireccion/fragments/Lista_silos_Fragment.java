@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.activities.CargaDiferenciaGrano;
 import com.jpdacruz.appcubicajedireccion.activities.CargaSilosActivity;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterSilos;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
@@ -57,7 +58,7 @@ public class Lista_silos_Fragment extends Fragment{
 
                 Silo siloAmodificar = silos.get(recyclerView.getChildAdapterPosition(v));
 
-                Intent intent = new Intent(getContext(), CargaSilosActivity.class);
+                Intent intent = new Intent(getContext(), CargaDiferenciaGrano.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("silo", siloAmodificar);

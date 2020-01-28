@@ -1,6 +1,8 @@
 package com.jpdacruz.appcubicajedireccion.clases;
 
-public class SiloSuma {
+import java.io.Serializable;
+
+public class SiloSuma implements Serializable {
 
     private String tipoGrano;
     private double cubicaje;

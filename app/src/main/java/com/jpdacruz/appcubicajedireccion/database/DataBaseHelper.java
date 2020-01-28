@@ -57,6 +57,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL9_VOL_SB = "totalm3";
     public static final String COL10_CUBC_SB = "totaltons";
 
+    //tabla diferenciasG
+
+    public static final String TABLE_NAME_DIF = "difgranos_table";
+    public static final String COL1_IDA_DIF = "idAuto";
+    public static final String COL2_GRANO = "grano";
+    public static final String COL3_CUBICAJE = "cubicaje";
+    public static final String COL4_AFIP = "afip";
+    public static final String COL5_DIFERENCIA = "diferencia";
+    public static final String COL6_PORCENTAJE = "porcentaje";
+    public static final String COL7_MASOMENOS = "masomenos";
+
     public DataBaseHelper
             (@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -64,6 +75,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        String createTabledif = "CREATE TABLE " + TABLE_NAME_DIF
+                + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "grano TEXT not null, "
+                + "cubicaje REAL not null, "
+                + "afip REAL not null, "
+                + "diferencia REAL not null, "
+                + "porcentaje REAL not null,"
+                + "masomenos TEXT not null)";
 
         String createTablesb = "CREATE TABLE " + TABLE_NAME_SB
                 + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -106,6 +126,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTableSilos);
         db.execSQL(createTableCeldas);
         db.execSQL(createTablesb);
+        db.execSQL(createTabledif);
     }
 
     @Override
@@ -114,6 +135,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SILOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CELDAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SB);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_DIF);
         onCreate(db);
     }
 
@@ -176,7 +198,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addSb(String id, String tipoGrano, double phGrano, double largo, double ancho, double altuBase,
-                         double altuPara, double totalm3, double totaltons) {
+                           double altuPara, double totalm3, double totaltons) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -208,6 +230,36 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean addDifGrano (String grano, double cubicaje, double afip, double diferencia, double porcentaje,
+                                String masomenos) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL2_GRANO, grano);
+        contentValues.put(COL3_CUBICAJE, cubicaje);
+        contentValues.put(COL4_AFIP, afip);
+        contentValues.put(COL5_DIFERENCIA, diferencia);
+        contentValues.put(COL6_PORCENTAJE, porcentaje);
+        contentValues.put(COL7_MASOMENOS, masomenos);
+
+        String b = grano + " " + cubicaje + " " + afip + " " + diferencia + " " + porcentaje
+                + " " + masomenos;
+
+        Log.i(TAG, b);
+
+        long result = db.insert(TABLE_NAME_DIF, null, contentValues);
+
+        if (result == -1) {
+
+            return false;
+
+        } else {
+
+            return true;
+        }
+    }
+
     public Integer deleteSilo(int idAuto) {
 
         String idAutoString = String.valueOf(idAuto);
@@ -227,6 +279,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String idAutoString = String.valueOf(idAuto);
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME_SB, "idAuto = ?", new String[]{idAutoString});
+    }
+
+    public Integer deleteDif(int idAuto) {
+
+        String idAutoString = String.valueOf(idAuto);
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME_DIF, "idAuto = ?", new String[]{idAutoString});
     }
 
     public boolean upDateSilo(int idAuto, String id, String tipoGrano, double phGrano, double diametro, double altoGrano,

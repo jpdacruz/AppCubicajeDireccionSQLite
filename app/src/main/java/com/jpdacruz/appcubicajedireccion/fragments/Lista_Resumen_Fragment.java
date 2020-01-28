@@ -1,6 +1,7 @@
 package com.jpdacruz.appcubicajedireccion.fragments;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.activities.CargaDiferenciaGrano;
+import com.jpdacruz.appcubicajedireccion.activities.CargaSilosActivity;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterResumen;
 import com.jpdacruz.appcubicajedireccion.clases.SiloSuma;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
@@ -55,6 +58,22 @@ public class Lista_Resumen_Fragment extends Fragment {
     private void armarReciclerSuma() {
 
         AdapterResumen adapterResumen = new AdapterResumen(siloSumas);
+
+        adapterResumen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SiloSuma siloSuma = siloSumas.get(recyclerView.getChildAdapterPosition(v));
+
+                Intent intent = new Intent(getContext(), CargaDiferenciaGrano.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("diferencia", siloSuma);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
         DividerItemDecoration dividerItemDecorationsb = new DividerItemDecoration
                 (recyclerView.getContext(),1);
         recyclerView.addItemDecoration(dividerItemDecorationsb);
