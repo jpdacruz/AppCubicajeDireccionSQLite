@@ -72,6 +72,8 @@ public class AdapterResumen extends RecyclerView.Adapter<AdapterResumen.ViewHold
 
             granos = itemView.findViewById(R.id.textViewTGResumen);
             totales = itemView.findViewById(R.id.textViewTotalResumen);
+
+
         }
     }
 }

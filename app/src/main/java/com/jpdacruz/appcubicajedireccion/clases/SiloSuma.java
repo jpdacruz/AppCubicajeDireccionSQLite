@@ -38,4 +38,16 @@ public class SiloSuma implements Serializable {
                 ", cubicaje=" + cubicaje +
                 '}';
     }
+
+    public boolean comparar(String grano){
+
+        if (this.tipoGrano.equals(grano)){
+
+            return true;
+
+        }else {
+
+            return false;
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.jpdacruz.appcubicajedireccion.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -57,6 +58,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL9_VOL_SB = "totalm3";
     public static final String COL10_CUBC_SB = "totaltons";
 
+    //tabla sumasGranos
+
+    public static final String TABLE_NAME_SUM = "sumgranos_table";
+    public static final String COL1_IDA_SUM = "idAuto";
+    public static final String COL2_GRANOSUM = "grano";
+    public static final String COL3_CUBICAJESUM = "cubicaje";
+
     //tabla diferenciasG
 
     public static final String TABLE_NAME_DIF = "difgranos_table";
@@ -75,6 +83,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        String createTablesum = "CREATE TABLE " + TABLE_NAME_SUM
+                + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "grano TEXT not null, "
+                + "cubicaje REAL not null)";
 
         String createTabledif = "CREATE TABLE " + TABLE_NAME_DIF
                 + " (idAuto INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -127,6 +140,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTableCeldas);
         db.execSQL(createTablesb);
         db.execSQL(createTabledif);
+        db.execSQL(createTablesum);
     }
 
     @Override
@@ -136,6 +150,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CELDAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SB);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_DIF);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SUM);
         onCreate(db);
     }
 
@@ -230,6 +245,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void addSumGrano (String grano, double cubicaje){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL2_GRANOSUM, grano);
+        contentValues.put(COL3_CUBICAJESUM,cubicaje);
+
+        db.insert(TABLE_NAME_SUM, null, contentValues);
+    }
+
     public boolean addDifGrano (String grano, double cubicaje, double afip, double diferencia, double porcentaje,
                                 String masomenos) {
 
@@ -242,11 +268,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL5_DIFERENCIA, diferencia);
         contentValues.put(COL6_PORCENTAJE, porcentaje);
         contentValues.put(COL7_MASOMENOS, masomenos);
-
-        String b = grano + " " + cubicaje + " " + afip + " " + diferencia + " " + porcentaje
-                + " " + masomenos;
-
-        Log.i(TAG, b);
 
         long result = db.insert(TABLE_NAME_DIF, null, contentValues);
 
@@ -287,6 +308,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME_DIF, "idAuto = ?", new String[]{idAutoString});
     }
+
+    public Integer deleteSum (int idAuto){
+
+        String idAutoString = String.valueOf(idAuto);
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME_SUM, "idAuto = ?", new String[]{idAutoString});
+    }
+
+    public Integer deleteAllSum(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME_SUM,null,null);
+    }
+
+
 
     public boolean upDateSilo(int idAuto, String id, String tipoGrano, double phGrano, double diametro, double altoGrano,
                               double cono, double copete, double totalm3, double totaltons) {
@@ -402,6 +438,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME_SB, null);
 
         return data;
+    }
+
+    public Cursor showDif(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor data = db.rawQuery( "SELECT * FROM " + TABLE_NAME_DIF, null);
+
+        return  data;
     }
 
     public Cursor sumarGranos() {
