@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,7 @@ import android.widget.Toast;
 
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
-import com.jpdacruz.appcubicajedireccion.activities.CargaDiferenciaGrano;
-import com.jpdacruz.appcubicajedireccion.activities.CargaSilosActivity;
+import com.jpdacruz.appcubicajedireccion.activities.CargaDiferenciaGranoActivity;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterDiferencia;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterResumen;
 import com.jpdacruz.appcubicajedireccion.clases.DiferenciaGrano;
@@ -78,7 +76,7 @@ public class Lista_Resumen_Fragment extends Fragment {
 
                 SiloSuma siloSuma = siloSumas.get(recyclerView.getChildAdapterPosition(v));
 
-                Intent intent = new Intent(getContext(), CargaDiferenciaGrano.class);
+                Intent intent = new Intent(getContext(), CargaDiferenciaGranoActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("diferencia", siloSuma);

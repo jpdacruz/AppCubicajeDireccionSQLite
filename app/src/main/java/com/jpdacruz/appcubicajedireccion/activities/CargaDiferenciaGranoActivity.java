@@ -19,9 +19,9 @@ import com.jpdacruz.appcubicajedireccion.clases.DiferenciaGrano;
 import com.jpdacruz.appcubicajedireccion.clases.SiloSuma;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
-public class CargaDiferenciaGrano extends AppCompatActivity {
+public class CargaDiferenciaGranoActivity extends AppCompatActivity {
 
-    private static final String TAG = "CargaDiferenciaGrano";
+    private static final String TAG = "CargaDiferenciaGranoActivity";
 
     //vars
 
@@ -70,9 +70,8 @@ public class CargaDiferenciaGrano extends AppCompatActivity {
     private void comprobarBundle() {
 
         Bundle bundleEnviado = getIntent().getExtras();
-        SiloSuma datosGranoEnviado = null;
 
-        datosGranoEnviado = (SiloSuma) bundleEnviado.getSerializable("diferencia");
+        SiloSuma datosGranoEnviado = (SiloSuma) bundleEnviado.getSerializable("diferencia");
 
         granoDifString = datosGranoEnviado.getTipoGrano();
         cubicaje = datosGranoEnviado.getCubicaje() * 1000;

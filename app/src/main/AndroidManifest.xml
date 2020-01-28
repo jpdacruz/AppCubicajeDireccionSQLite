@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.CargaDiferenciaGrano">
+            android:name=".activities.CargaDiferenciaGranoActivity">
             android:label="@string/title_activity_carga_diferencia_granop"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
