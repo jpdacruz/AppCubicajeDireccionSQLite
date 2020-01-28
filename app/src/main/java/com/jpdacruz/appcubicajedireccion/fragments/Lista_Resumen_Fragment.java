@@ -27,6 +27,7 @@ import com.jpdacruz.appcubicajedireccion.clases.SiloSuma;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,9 +61,8 @@ public class Lista_Resumen_Fragment extends Fragment {
         recyclerViewDif = view.findViewById(R.id.reciclerViewDif);
         recyclerViewDif.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mostrarSuma();
         mostrarDif();
-        //verificarDiferencias();
+        mostrarSuma();
         armarReciclerSuma();
         armarReciclerDife();
         return view;
@@ -152,37 +152,24 @@ public class Lista_Resumen_Fragment extends Fragment {
         Cursor cursorSum = conexion.sumarGranos();
         SiloSuma siloSuma;
 
-        while ( (cursorSum.moveToNext())){
+        while ((cursorSum.moveToNext())){
 
             siloSuma = new SiloSuma();
             siloSuma.setTipoGrano(cursorSum.getString(0));
             siloSuma.setCubicaje(cursorSum.getDouble(1));
 
             siloSumas.add(siloSuma);
-        }
-    }
 
-    private void verificarDiferencias() {
+            Iterator<DiferenciaGrano> it = diferenciaGranos.iterator();
 
-        SiloSuma siloSuma;
-        String granoSumaString;
-        String granoDifString;
+            while (it.hasNext()) {
 
-        if (siloSumas.size() > 0) {
+            DiferenciaGrano diferenciaGrano = it.next();
 
-            for (int i = 0; i < siloSumas.size()-1; i++) {
+                if (diferenciaGrano.getGrano().equals(siloSuma.getTipoGrano())) {
 
-                granoSumaString = siloSumas.get(i).getTipoGrano();
+                    siloSumas.remove(siloSuma);
 
-                for (int f = 0; f < diferenciaGranos.size()-1; f++) {
-
-                    granoDifString = diferenciaGranos.get(i).getGrano();
-
-                    if (granoSumaString.equals(granoDifString)) {
-
-                        siloSuma = siloSumas.get(i);
-                        siloSumas.remove(siloSuma);
-                    }
                 }
             }
         }
