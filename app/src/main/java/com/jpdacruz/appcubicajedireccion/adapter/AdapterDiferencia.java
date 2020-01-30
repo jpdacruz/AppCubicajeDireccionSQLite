@@ -1,5 +1,6 @@
 package com.jpdacruz.appcubicajedireccion.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +44,20 @@ public class AdapterDiferencia extends RecyclerView.Adapter<AdapterDiferencia.Vi
     @Override
     public void onBindViewHolder(@NonNull AdapterDiferencia.ViewHolder holder, int position) {
 
+        double porcentaje = diferenciaGranos.get(position).getPorcentaje();
+
         holder.grano.setText(diferenciaGranos.get(position).getGrano());
-        holder.cubicaje.setText("Cubicaje: " + String.valueOf(diferenciaGranos.get(position).getCubicajeKg() + "kgs"));
-        holder.afip.setText("AFIP: " + String.valueOf(diferenciaGranos.get(position).getAfip())+ "kgs");
-        holder.diferencia.setText("Diferencia: " + String.valueOf(diferenciaGranos.get(position).getDiferencia()) + "kgs");
-        holder.porcentaje.setText("Porcentaje: " + String.valueOf(diferenciaGranos.get(position).getPorcentaje()));
+        holder.cubicaje.setText(String.format("Cubicaje: %s", String.valueOf(diferenciaGranos.get(position).getCubicajeKg() + "kgs")));
+        holder.afip.setText(String.format("AFIP: %skgs", String.valueOf(diferenciaGranos.get(position).getAfip())));
+        holder.diferencia.setText(String.format("Diferencia: %skgs", String.valueOf(diferenciaGranos.get(position).getDiferencia())));
+        holder.porcentaje.setText(String.format("Porcentaje: %s", porcentaje));
         holder.masomenos.setText(String.valueOf(diferenciaGranos.get(position).getMasOmenos()));
+
+        if (porcentaje >= 10){
+
+            holder.porcentaje.setTextColor(Color.parseColor("#D32F2F"));
+            holder.masomenos.setTextColor(Color.parseColor("#D32F2F"));
+        }
     }
 
     @Override

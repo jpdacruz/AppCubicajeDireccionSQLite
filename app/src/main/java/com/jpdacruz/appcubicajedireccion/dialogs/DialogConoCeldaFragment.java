@@ -45,8 +45,7 @@ public class DialogConoCeldaFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Ingrese altura Cono inferior")
-                .setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         listener.enviarDatosConoInfDialogCelda(altuConoInfCeldaString, tipoCelda);
@@ -136,7 +135,7 @@ public class DialogConoCeldaFragment extends DialogFragment {
         
         if (altuConoInfCeldaString.isEmpty()){
 
-            mAlturaConoInferior.setError("Dato obligatorio");
+            mAlturaConoInferior.setError("Dato requerido");
             altuConoInfCeldaString ="0.00";
             tipoCelda = "Elegir";
             return false;

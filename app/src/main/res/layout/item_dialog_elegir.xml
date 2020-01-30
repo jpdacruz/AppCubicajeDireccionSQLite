@@ -23,8 +23,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Agregar Silo"
-        android:textColor="@android:color/tertiary_text_light"
-        android:textSize="14sp"
+        android:textColor="@color/hintcolor"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/textViewFlecha"
         app:layout_constraintStart_toEndOf="@+id/imagen_itemRec"
         app:layout_constraintTop_toTopOf="parent" />

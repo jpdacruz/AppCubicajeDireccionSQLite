@@ -21,6 +21,7 @@
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
             app:errorEnabled="true"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +35,8 @@
                 android:ems="10"
                 android:hint="@string/idSilo"
                 android:inputType="textPersonName"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonTipoPH"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputIDSilo">
@@ -61,7 +64,8 @@
                 android:enabled="false"
                 android:hint="@string/TipoyPH"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,6 +78,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonCalcularDiametro"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputPHSilo">
@@ -88,7 +93,8 @@
                 android:hint="@string/diametro"
                 android:inputType="numberDecimal"
                 android:maxLength="5"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +135,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonCalcularAlturaGrano"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputDiametroSilo">
@@ -142,7 +148,8 @@
                 android:hint="@string/alturagrano"
                 android:inputType="numberDecimal"
                 android:maxLength="4"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +161,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonCalcularCono"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputAlturaGrano">
@@ -167,7 +174,8 @@
                 android:hint="@string/cono"
                 android:inputType="numberSigned|numberDecimal"
                 android:maxLength="5"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -192,7 +200,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonCalcularCopete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputConoSilo">
@@ -205,7 +213,8 @@
                 android:hint="@string/copete"
                 android:inputType="numberSigned|numberDecimal"
                 android:maxLength="5"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

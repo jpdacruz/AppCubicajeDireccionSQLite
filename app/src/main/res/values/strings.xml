@@ -33,7 +33,7 @@
     <string name="title_activity_carga_silos">Cargar Silo</string>
     <string name="title_activity_carga_celda">Cargar Celda</string>
     <string name="title_activity_carga_silobolsa">Cargar Silo Bolsa</string>
-    <string name="title_activity_carga_diferencia_granop">Cargar diferencia grano</string>
+    <string name="title_activity_carga_diferencia_granop">Diferencia cubicaje</string>
     <string name="anchoChapas">Ancho chapas (mts)</string>
     <string name="cancelar">CANCELAR</string>
     <string name="continuar">OK</string>
@@ -55,4 +55,5 @@
     <string name="delete">Eliminar</string>
     <string name="largoCelda">Largo celda (mts)</string>
     <string name="anchoCelda">Ancho Celda (mts)</string>
+    <string name="nuevafiscar">O ... comenzar una nueva Asignación</string>
 </resources>

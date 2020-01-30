@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
@@ -213,13 +214,13 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                if (!validarProcesoCalcular()){
+                if (!validarProcesoCalcular(view)){
 
                     return;
 
                 }else if  (cubicajeStringSb.isEmpty()){
 
-                    Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view,"Presione CALCULAR Para Continuar",Snackbar.LENGTH_LONG).show();
                     return;
 
                 }else {
@@ -247,14 +248,13 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                if (!validarProcesoCalcular()){
+                if (!validarProcesoCalcular(v)){
 
                     return;
 
                 }else if  (mToneladasSb.getText().equals("")){
 
-                    Toast.makeText(getApplicationContext(),
-                            "Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    Snackbar.make(v,"Presione CALCULAR Para Continuar",Snackbar.LENGTH_LONG).show();
                     return;
 
                 }else {
@@ -279,57 +279,26 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                calcularcubicajeSb();
+                calcularcubicajeSb(v);
             }
         });
     }
 
     private void actualizarSbDB() {
 
-        boolean insertSb = conexion.upDateSb(idAutoSb, idSb,tipoGranSb,phGranoSb,largoSb, anchoSb,
+        conexion.upDateSb(idAutoSb, idSb,tipoGranSb,phGranoSb,largoSb, anchoSb,
                 alturaBaseSb, alturaParabolaSb, volumenaSb,cubicajeSb);
-
-        if (insertSb){
-
-            Toast.makeText(getApplicationContext(), "SiloBolsa actualizado",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void eliminarSbDB() {
 
-        Integer deleteRow = conexion.deleteSb(idAutoSb);
-
-        if (deleteRow > 0 ){
-
-            Toast.makeText(getApplicationContext(),"Silo Bolsa eliminado",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
-        }
+        conexion.deleteSb(idAutoSb);
     }
 
     private void insertaSbDB() {
 
-        boolean insertSb = conexion.addSb(idSb,tipoGranSb,phGranoSb,largoSb, anchoSb,
+        conexion.addSb(idSb,tipoGranSb,phGranoSb,largoSb, anchoSb,
                 alturaBaseSb, alturaParabolaSb, volumenaSb,cubicajeSb);
-
-        if (insertSb){
-
-            String b = idSb +" " +tipoGranSb +" "+ phGranoSb +" "+ largoSb +" "+ anchoSb
-                    +" "+ alturaBaseSb +" "+ alturaParabolaSb +" "+ volumenaSb +" "+cubicajeSb;
-
-            Log.i(TAG,b);
-            Toast.makeText(getApplicationContext(), "Datos insertados correctamente",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void iniciarDialogTipoPH() {
@@ -338,9 +307,9 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    public void calcularcubicajeSb() {
+    public void calcularcubicajeSb(View view) {
 
-        if (!validarProcesoCalcular()){
+        if (!validarProcesoCalcular(view)){
 
             return;
         }
@@ -352,16 +321,20 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
 
         volumenaSb = (anchoSb * largoSb * alturaBaseSb) + (((anchoSb * largoSb * alturaParabolaSb ) * 2) / 3);
 
-        cubicajeSb = Math.round((volumenaSb * phGranoSb) * 100) /100.0;
+        double temp = volumenaSb * phGranoSb;
+        cubicajeSb = formatearDecimales(temp,2);
 
         cubicajeStringSb = String.valueOf(cubicajeSb);
 
         mToneladasSb.setText(cubicajeStringSb + " Toneladas");
-
-
     }
 
-    private boolean validarProcesoCalcular() {
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
+    }
+
+    private boolean validarProcesoCalcular(View view) {
 
         idSb = getEditTextString(mIdSb);
         largoSbString = getEditTextString(mLargoSb);
@@ -376,12 +349,12 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
 
         }else if (tipoGranSb.isEmpty()) {
 
-            Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
+            Snackbar.make(view,"DEBE SELECCIONAR UN GRANO",Snackbar.LENGTH_LONG).show();
             return false;
 
         }else if (tipoGranSb.equals("SELECCIONA GRANO")) {
 
-            Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
+            Snackbar.make(view,"DEBE SELECCIONAR UN GRANO",Snackbar.LENGTH_LONG).show();
             return false;
 
         }else if (phGranoSbString.isEmpty()) {

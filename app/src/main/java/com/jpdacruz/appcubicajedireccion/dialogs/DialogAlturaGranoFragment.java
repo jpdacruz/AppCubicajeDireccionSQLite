@@ -43,8 +43,7 @@ public class DialogAlturaGranoFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Calcular Altura Grano")
-                .setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         listener.enviarDatosDialogAlturaGrano(AlturaGranoDialogString);
                     }
@@ -114,13 +113,13 @@ public class DialogAlturaGranoFragment extends DialogFragment {
 
         if (anchoChapaString.isEmpty()){
 
-            mAnchoChapa.setError("Dato obligatorio");
+            mAnchoChapa.setError("Dato requerido");
             return false;
         }
 
         if (cantChapasAltoString.isEmpty()){
 
-            mChapasAlto.setError("Dato obligatorio");
+            mChapasAlto.setError("Dato requerido");
             return false;
         }
 

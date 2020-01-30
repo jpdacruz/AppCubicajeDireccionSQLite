@@ -46,8 +46,7 @@ public class DialogDiametroSiloFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Calcular Diametro")
-                .setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         listener.enviarDatosDialogDiametro(diametroDialogString);
                     }
@@ -118,13 +117,13 @@ public class DialogDiametroSiloFragment extends DialogFragment {
 
         if (largoChapaString.isEmpty()){
 
-            mLargoChapa.setError("Dato obligatorio");
+            mLargoChapa.setError("Dato requerido");
             return false;
         }
 
         if (cantChapasString.isEmpty()){
 
-            mChapasLargo.setError("Dato obligatorio");
+            mChapasLargo.setError("Dato requerido");
             return false;
         }
 

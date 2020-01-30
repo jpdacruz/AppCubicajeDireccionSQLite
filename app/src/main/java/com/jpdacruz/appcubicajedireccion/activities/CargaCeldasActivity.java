@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
@@ -238,13 +239,13 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                if (!validarDatos()){
+                if (!validarDatos(view)){
 
                     return;
 
                 }else if  (cubicajeStringCelda.isEmpty()){
 
-                    Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view,"Presiona CALCULAR para continuar",Snackbar.LENGTH_LONG).show();
                     return;
 
                 }else {
@@ -272,14 +273,13 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                if (!validarDatos()){
+                if (!validarDatos(v)){
 
                     return;
 
                 }else if  (mToneladasCelda.getText().equals("")){
 
-                    Toast.makeText(getApplicationContext(),
-                            "Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    Snackbar.make(v,"Presiona CALCULAR para continuar",Snackbar.LENGTH_LONG).show();
                     return;
 
                 }else {
@@ -304,7 +304,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                iniciarDialogCono();
+                iniciarDialogCono(view);
             }
         });
 
@@ -312,53 +312,26 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                calcularcubicajeCelda();
+                calcularcubicajeCelda(v);
             }
         });
     }
 
     private void actualizarCeldaDB() {
 
-        boolean insertCelda = conexion.upDateCelda(idAutoCelda, idCelda,tipoGranoCelda,phGranoCelda,largoCelda, anchoCelda,
+        conexion.upDateCelda(idAutoCelda, idCelda,tipoGranoCelda,phGranoCelda,largoCelda, anchoCelda,
                 alturaGrano, tipoCeldaString, alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
-
-        if (insertCelda){
-
-            Toast.makeText(getApplicationContext(), "Celda actualizada",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void eliminarCeldaDB() {
 
-        Integer deleteRow = conexion.deleteCelda(idAutoCelda);
-
-        if (deleteRow > 0 ){
-
-            Toast.makeText(getApplicationContext(),"Celda eliminada",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
-        }
+        conexion.deleteCelda(idAutoCelda);
     }
 
     private void insertaCeldaDB() {
 
-        boolean insertCelda = conexion.addCelda(idCelda,tipoGranoCelda,phGranoCelda,largoCelda, anchoCelda,
+        conexion.addCelda(idCelda,tipoGranoCelda,phGranoCelda,largoCelda, anchoCelda,
                 alturaGrano,tipoCeldaString, alturaConoCelda, alturaCopeteCelda, volumenCelda,cubicajeCelda);
-
-        if (insertCelda){
-
-            Toast.makeText(getApplicationContext(), "Datos insertados correctamente",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void iniciarDialogTipoPH() {
@@ -367,9 +340,9 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    private void iniciarDialogCono() {
+    private void iniciarDialogCono(View view) {
 
-        if (!validadProcesoConoCopete()){
+        if (!validadProcesoConoCopete(view)){
 
             return;
         }
@@ -378,9 +351,9 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    public void calcularcubicajeCelda() {
+    public void calcularcubicajeCelda(View v) {
 
-        if (!validarDatos()){
+        if (!validarDatos(v)){
 
             return;
         }
@@ -416,17 +389,17 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         mToneladasCelda.setText(cubicajeStringCelda + " Toneladas");
     }
 
-    private boolean validarDatos() {
+    private boolean validarDatos(View view) {
 
-        if (!validarProcesoDiametro()){
-
-            return false;
-
-        }else if (!validadProcesoConoCopete()){
+        if (!validarProcesoDiametro(view)){
 
             return false;
 
-        }else if (!validarProcesoCalcular()) {
+        }else if (!validadProcesoConoCopete(view)){
+
+            return false;
+
+        }else if (!validarProcesoCalcular(view)) {
 
             return false;
 
@@ -436,7 +409,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         }
     }
 
-    private boolean validarProcesoCalcular() {
+    private boolean validarProcesoCalcular(View view) {
 
         alturaGranoStringCelda = getEditTextString(mAlturaGranoCelda);
         alturaConoStringCelda = getEditTextString(mConoCelda);
@@ -454,7 +427,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
         }else if (tipoCeldaString.equals("Elegir")) {
 
-            Toast.makeText(getApplicationContext(),"Debe seleccionar altura  y tipo de Cono",Toast.LENGTH_LONG).show();
+            Snackbar.make(view,"Debe seleccionar altura  y tipo de Cono",Snackbar.LENGTH_LONG).show();
             return false;
 
         }else if (alturaCopeteStringCelda.isEmpty()){
@@ -470,7 +443,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         return true;
     }
 
-    private boolean validarProcesoDiametro() {
+    private boolean validarProcesoDiametro(View view) {
 
         idCelda = getEditTextString(midCelda);
         phGranoCeldaStringCelda = getEditTextString(mphGranoCeldaCelda);
@@ -487,7 +460,8 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
         } else if (tipoGranoCelda.equals("SELECCIONA GRANO")) {
 
-            Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
+            Snackbar.make(view,"DEBE SELECCIONAR UN GRANO",Snackbar.LENGTH_LONG).show();
+
             return false;
 
         } else {
@@ -498,7 +472,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         }
     }
 
-    private boolean validadProcesoConoCopete() {
+    private boolean validadProcesoConoCopete(View view) {
 
         largoCeldaString = getEditTextString(mLargoCelda);
         anchoCeldaString = getEditTextString(mAnchoCelda);

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".dialogs.DialogDiametroSiloFragment">
 
@@ -20,13 +20,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextPhGrano"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
         app:errorEnabled="true"
-        app:helperTextEnabled="true"
+        android:textColorHint="@color/hintcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonListadoPh"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,20 +35,20 @@
 
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/Ph"
             android:inputType="numberDecimal"
             android:maxLength="4"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/buttonListadoPh"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="63dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_youtube_searched_for_black_24dp"

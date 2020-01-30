@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -58,7 +59,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL9_VOL_SB = "totalm3";
     public static final String COL10_CUBC_SB = "totaltons";
 
-    //tabla diferenciasG
+    //tabla diferencias
 
     public static final String TABLE_NAME_DIF = "difgranos_table";
     public static final String COL1_IDA_DIF = "idAuto";
@@ -138,6 +139,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SB);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_DIF);
         onCreate(db);
+    }
+
+    public void onDelete (){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME_SILOS);
+        db.execSQL("DELETE FROM " + TABLE_NAME_CELDAS);
+        db.execSQL("DELETE FROM " + TABLE_NAME_SB);
+        db.execSQL("DELETE FROM " + TABLE_NAME_DIF);
     }
 
     public boolean addSilo(String id, String tipoGrano, double phGrano, double diametro, double altoGrano,

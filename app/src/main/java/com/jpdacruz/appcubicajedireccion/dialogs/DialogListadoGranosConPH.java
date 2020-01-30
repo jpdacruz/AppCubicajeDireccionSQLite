@@ -37,7 +37,6 @@ public class DialogListadoGranosConPH extends DialogFragment{
                 .setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-
                     }
                 })
                 .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {

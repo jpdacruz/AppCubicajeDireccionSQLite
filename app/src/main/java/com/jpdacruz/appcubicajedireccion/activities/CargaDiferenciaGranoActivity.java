@@ -65,6 +65,8 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
 
         mCalcularDif = findViewById(R.id.botonCalcularDif);
         mIngresarDif = findViewById(R.id.botonIngresarDif);
+
+        mAfipDif.getEditText().requestFocus();
     }
 
     private void comprobarBundle() {
@@ -115,7 +117,7 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
 
                 if (afipString.isEmpty()){
 
-                    mAfipDif.setError("Dato Obligatorio");
+                    mAfipDif.setError("Dato requerido");
                     return;
 
                 }else {
@@ -126,7 +128,8 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
                     diferenciaString = String.valueOf(diferencia);
                     setEditText(mDifereciaDif, diferenciaString);
 
-                    porcentaje = (((cubicaje - afip) / cubicaje ) * 100);
+                    double porceTemp = (((cubicaje - afip) / cubicaje ) * 100);
+                    porcentaje = formatearDecimales(porceTemp,2);
                     porcentajeString = String.valueOf(porcentaje);
                     setEditText(mPorcentajeDif,porcentajeString);
 
@@ -170,16 +173,7 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
 
     private void insertDiferenciaDB() {
 
-        boolean insertDif = conexion.addDifGrano(granoDifString,cubicaje,afip,diferencia,porcentaje,masOmenosString);
-
-        if (insertDif){
-
-            Toast.makeText(getApplicationContext(), "Datos insertados correctamente",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
+        conexion.addDifGrano(granoDifString,cubicaje,afip,diferencia,porcentaje,masOmenosString);
     }
 
     private void setEditText(TextInputLayout editText, String string) {
@@ -190,7 +184,10 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
     private String getEditTextString(TextInputLayout editText) {
 
         return editText.getEditText().getText().toString();
-
     }
 
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
+    }
 }

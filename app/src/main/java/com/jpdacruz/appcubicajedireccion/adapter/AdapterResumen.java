@@ -40,7 +40,7 @@ public class AdapterResumen extends RecyclerView.Adapter<AdapterResumen.ViewHold
     public void onBindViewHolder(@NonNull AdapterResumen.ViewHolder holder, int position) {
 
         holder.granos.setText(siloSumas.get(position).getTipoGrano());
-        holder.totales.setText(String.valueOf(siloSumas.get(position).getCubicaje())+ " tons");
+        holder.totales.setText(siloSumas.get(position).getCubicaje()+ " tons");
     }
 
     @Override

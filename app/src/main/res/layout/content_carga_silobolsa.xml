@@ -21,6 +21,7 @@
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
             app:errorEnabled="true"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +35,8 @@
                 android:ems="10"
                 android:hint="Identificador SB"
                 android:inputType="textPersonName"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonTipoPHsb"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputIDsb">
@@ -61,7 +64,8 @@
                 android:enabled="false"
                 android:hint="@string/TipoyPH"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,6 +78,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColorHint="@color/hintcolor"
             android:background="@color/accent_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +93,8 @@
                 android:ems="10"
                 android:hint="Largo SB (mts)"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,6 +107,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColorHint="@color/hintcolor"
             android:background="@color/accent_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +122,8 @@
                 android:ems="10"
                 android:hint="Ancho SB (mts)"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +137,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputAnchosb">
@@ -141,7 +149,8 @@
                 android:ems="10"
                 android:hint="Altura de la base del SB (mts)"
                 android:inputType="numberDecimal"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +163,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputAlturaBasesb">
@@ -166,7 +175,8 @@
                 android:ems="10"
                 android:hint="Altura de la parabola del SB (mts)"
                 android:inputType="numberSigned|numberDecimal"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,7 +204,7 @@
             android:layout_marginEnd="32dp"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            android:maxLength="6"
+            android:maxLength="9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputAlturaParabolasb" />

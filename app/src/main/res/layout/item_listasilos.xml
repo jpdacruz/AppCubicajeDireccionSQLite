@@ -33,49 +33,54 @@
 
     <TextView
         android:id="@+id/textViewPHLS"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/background_light"
         android:text="PH grano:"
-        android:textColor="@android:color/tertiary_text_light"
+        android:textColor="@color/hintcolor"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textViewIdLS"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewDiaLS"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="Diametro:"
+        android:textColor="@color/hintcolor"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textViewIdLS"
         app:layout_constraintTop_toBottomOf="@+id/textViewPHLS" />
 
     <TextView
         android:id="@+id/textViewAlGrLS"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="Altura Grano:"
+        android:textColor="@color/hintcolor"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textViewDiaLS" />
 
     <TextView
         android:id="@+id/textViewCopLS"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:text="Altura copete:"
+        android:textColor="@color/hintcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/textViewTonSL"
-        app:layout_constraintTop_toBottomOf="@+id/textViewConoLS" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewConoLS"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewTonSL"
@@ -83,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:gravity="right"
         android:textColor="@android:color/background_light"
         android:textSize="28sp"
@@ -92,12 +97,13 @@
 
     <TextView
         android:id="@+id/textViewConoLS"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="Altura cono:"
+        android:textColor="@color/hintcolor"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/textViewTGLS"
         app:layout_constraintTop_toBottomOf="@+id/textViewAlGrLS" />
 
@@ -118,7 +124,7 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:text="Toneladas:"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"

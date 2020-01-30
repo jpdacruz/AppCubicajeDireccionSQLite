@@ -20,6 +20,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,8 @@
                 android:ems="10"
                 android:hint="Identificador Celda"
                 android:inputType="textPersonName"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonTipoPHCelda"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputIDCelda">
@@ -61,7 +64,8 @@
                 android:enabled="false"
                 android:hint="@string/TipoyPH"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,6 +79,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputPHCelda">
@@ -88,7 +93,8 @@
                 android:ems="10"
                 android:hint="Largo Celda (mts)"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,6 +108,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputLargoCelda">
@@ -115,7 +122,8 @@
                 android:ems="10"
                 android:hint="Ancho Celda (mts)"
                 android:inputType="numberDecimal"
-                android:textSize="12sp"
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +137,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputAnchoCelda">
@@ -142,7 +150,8 @@
                 android:hint="Altura del grano (mts)"
                 android:inputType="numberDecimal"
                 android:maxLength="4"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +163,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toStartOf="@+id/buttonCalcularConoCelda"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputAlturaGranoCelda">
@@ -164,10 +173,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="Tipo y altura del cono inferior (mts)"
                 android:inputType="numberSigned|numberDecimal"
-                android:enabled="false"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,7 +203,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@color/accent_light"
-            app:helperTextEnabled="false"
+            android:textColorHint="@color/hintcolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textinputConoCelda">
@@ -206,7 +216,8 @@
                 android:hint="Altura del cono superior (mts)"
                 android:inputType="numberSigned|numberDecimal"
                 android:maxLength="5"
-                android:textSize="12sp" />
+                android:textColor="@color/hintcolor"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

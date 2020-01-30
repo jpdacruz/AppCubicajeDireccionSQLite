@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
@@ -102,7 +103,6 @@ public class CargaSilosActivity extends AppCompatActivity implements
             alturaGranoString = String.valueOf(siloEnviado.getAltoGrano());
             alturaConoSiloString = String.valueOf(siloEnviado.getCono());
             alturaCopeteSiloString = String.valueOf(siloEnviado.getCopete());
-            //cubicajeSiloString = String.valueOf(siloEnviado.getTotaltons());
 
             setEditText(mIdSilo, idSilo);
             setEditText(mPhGrano, tipoGrano + " " +  phGranoString);
@@ -222,14 +222,13 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                if (!validarDatos()){
+                if (!validarDatos(view)){
 
                     return;
 
                 }else if  (cubicajeSiloString.isEmpty()){
 
-                    Toast.makeText(getApplicationContext(),"Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
-                    return;
+                    Snackbar.make(view,"Presiona CALCULAR para continuar",Snackbar.LENGTH_LONG).show();
 
                 }else {
 
@@ -256,14 +255,14 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                if (!validarDatos()){
+                if (!validarDatos(v)){
 
                     return;
 
                 }else if  (mToneladasSilo.getText().equals("")){
 
-                    Toast.makeText(getApplicationContext(),
-                            "Presione Calcular Para Continuar", Toast.LENGTH_LONG).show();
+                    Snackbar.make(v,"Presiona CALCULAR para continuar",Snackbar.LENGTH_LONG).show();
+
                     return;
 
                 }else {
@@ -288,7 +287,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                calcularDiametro();
+                calcularDiametro(view);
             }
         });
 
@@ -320,53 +319,26 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                calcularCubicajeSilo();
+                calcularCubicajeSilo(v);
             }
         });
     }
 
     private void actualizarSiloDB() {
 
-        boolean insertSilo = conexion.upDateSilo(idAuto, idSilo,tipoGrano,phGrano,diametroSilo,
+        conexion.upDateSilo(idAuto, idSilo,tipoGrano,phGrano,diametroSilo,
                 alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo);
-
-        if (insertSilo){
-
-            Toast.makeText(getApplicationContext(), "Silo actualizado",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void eliminarSiloDB() {
 
-        Integer deleteRow = conexion.deleteSilo(idAuto);
-
-        if (deleteRow > 0 ){
-
-            Toast.makeText(getApplicationContext(),"Silo eliminado",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
-        }
+        conexion.deleteSilo(idAuto);
     }
 
     private void insertaSiloDB() {
 
-        boolean insertSilo = conexion.addSilo(idSilo,tipoGrano,phGrano,diametroSilo,
+        conexion.addSilo(idSilo,tipoGrano,phGrano,diametroSilo,
                 alturaGrano,alturaConoSilo, alturaCopeteSilo, volumenSilo,cubicajeSilo);
-
-        if (insertSilo){
-
-            Toast.makeText(getApplicationContext(), "Datos insertados correctamente",Toast.LENGTH_LONG).show();
-
-        }else {
-
-            Toast.makeText(getApplicationContext(),"Error en el ingreso de datos", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void iniciarDialogTipoPH() {
@@ -375,9 +347,9 @@ public class CargaSilosActivity extends AppCompatActivity implements
         dialogF.show(getSupportFragmentManager(),TAG);
     }
 
-    private void calcularDiametro() {
+    private void calcularDiametro(View view) {
 
-        if (!validarProcesoDiametro()){
+        if (!validarProcesoDiametro(view)){
 
             return;
         }
@@ -453,9 +425,9 @@ public class CargaSilosActivity extends AppCompatActivity implements
         }
     }
 
-    public void calcularCubicajeSilo() {
+    public void calcularCubicajeSilo(View v) {
 
-        if (!validarDatos()){
+        if (!validarDatos(v)){
 
             return;
         }
@@ -500,9 +472,9 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
     }
 
-    private boolean validarDatos() {
+    private boolean validarDatos(View v) {
 
-        if (!validarProcesoDiametro()){
+        if (!validarProcesoDiametro(v)){
 
             return false;
 
@@ -550,7 +522,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
         return true;
     }
 
-    private boolean validarProcesoDiametro() {
+    private boolean validarProcesoDiametro(View view) {
 
         idSilo = getEditTextString(mIdSilo);
         phGranoString = getEditTextString(mPhGrano);
@@ -567,7 +539,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
         } else if (tipoGrano.equals("SELECCIONA GRANO")) {
 
-            Toast.makeText(getApplicationContext(), "DEBE SELECCIONAR UN GRANO", Toast.LENGTH_LONG).show();
+            Snackbar.make(view,"DEBE SELECCIONAR UN GRANO",Snackbar.LENGTH_LONG).show();
             return false;
 
         } else {

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.activities.CargaDiferenciaGranoActivity;
@@ -38,6 +39,8 @@ public class Lista_Resumen_Fragment extends Fragment {
     DataBaseHelper conexion;
 
     private RecyclerView recyclerView, recyclerViewDif;
+
+    int idAutoDif;
 
     public Lista_Resumen_Fragment() {
         // Required empty public constructor
@@ -102,20 +105,19 @@ public class Lista_Resumen_Fragment extends Fragment {
             public void onClick(View v) {
 
                 DiferenciaGrano diferenciaGrano = diferenciaGranos.get(recyclerViewDif.getChildAdapterPosition(v));
+                idAutoDif = diferenciaGrano.getIdAuto();
 
-                int idAutoDif = diferenciaGrano.getIdAuto();
-                Integer deleteRow = conexion.deleteDif(idAutoDif);
+                Snackbar.make(v,"Eliminar resumen diferencia de grano?",Snackbar.LENGTH_LONG)
+                        .setAction("Continuar", new View.OnClickListener() {
 
-                    if (deleteRow > 0 ){
+                            @Override
+                            public void onClick(View v) {
 
-                        Toast.makeText(getContext(),"Eliminado",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        startActivity(intent);
-
-                    }else {
-
-                        Toast.makeText(getContext(),"No se pudo eliminar",Toast.LENGTH_LONG).show();
-                }
+                                conexion.deleteDif(idAutoDif);
+                                Intent intent = new Intent(getContext(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).show();
             }
         });
 
@@ -149,12 +151,16 @@ public class Lista_Resumen_Fragment extends Fragment {
 
         Cursor cursorSum = conexion.sumarGranos();
         SiloSuma siloSuma;
+        double cubicajeTemp, cubicaje;
 
         while ((cursorSum.moveToNext())){
 
+            cubicajeTemp = cursorSum.getDouble(1);
+            cubicaje = formatearDecimales(cubicajeTemp,2);
+
             siloSuma = new SiloSuma();
             siloSuma.setTipoGrano(cursorSum.getString(0));
-            siloSuma.setCubicaje(cursorSum.getDouble(1));
+            siloSuma.setCubicaje(cubicaje);
 
             siloSumas.add(siloSuma);
 
@@ -171,5 +177,10 @@ public class Lista_Resumen_Fragment extends Fragment {
                 }
             }
         }
+    }
+
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 }
