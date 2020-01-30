@@ -92,7 +92,6 @@
                 android:ems="10"
                 android:hint="@string/diametro"
                 android:inputType="numberDecimal"
-                android:maxLength="5"
                 android:textColor="@color/hintcolor"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +146,6 @@
                 android:ems="10"
                 android:hint="@string/alturagrano"
                 android:inputType="numberDecimal"
-                android:maxLength="4"
                 android:textColor="@color/hintcolor"
                 android:textSize="14sp" />
 
@@ -173,7 +171,6 @@
                 android:ems="10"
                 android:hint="@string/cono"
                 android:inputType="numberSigned|numberDecimal"
-                android:maxLength="5"
                 android:textColor="@color/hintcolor"
                 android:textSize="14sp" />
 
@@ -212,7 +209,6 @@
                 android:ems="10"
                 android:hint="@string/copete"
                 android:inputType="numberSigned|numberDecimal"
-                android:maxLength="5"
                 android:textColor="@color/hintcolor"
                 android:textSize="14sp" />
 

@@ -47,14 +47,15 @@ public class AdapterDiferencia extends RecyclerView.Adapter<AdapterDiferencia.Vi
         double porcentaje = diferenciaGranos.get(position).getPorcentaje();
 
         holder.grano.setText(diferenciaGranos.get(position).getGrano());
-        holder.cubicaje.setText(String.format("Cubicaje: %s", String.valueOf(diferenciaGranos.get(position).getCubicajeKg() + "kgs")));
-        holder.afip.setText(String.format("AFIP: %skgs", String.valueOf(diferenciaGranos.get(position).getAfip())));
-        holder.diferencia.setText(String.format("Diferencia: %skgs", String.valueOf(diferenciaGranos.get(position).getDiferencia())));
-        holder.porcentaje.setText(String.format("Porcentaje: %s", porcentaje));
+        holder.cubicaje.setText(String.format("Cubicaje: %s", String.valueOf(diferenciaGranos.get(position).getCubicajeKg() + "k")));
+        holder.afip.setText(String.format("AFIP: %sk", String.valueOf(diferenciaGranos.get(position).getAfip())));
+        holder.diferencia.setText(String.format("Diferencia: %sk", String.valueOf(diferenciaGranos.get(position).getDiferencia())));
+        holder.porcentaje.setText(String.format("Porcentaje: %s%%", porcentaje));
         holder.masomenos.setText(String.valueOf(diferenciaGranos.get(position).getMasOmenos()));
 
         if (porcentaje >= 10){
 
+            holder.diferencia.setTextColor(Color.parseColor("#D32F2F"));
             holder.porcentaje.setTextColor(Color.parseColor("#D32F2F"));
             holder.masomenos.setTextColor(Color.parseColor("#D32F2F"));
         }

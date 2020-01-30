@@ -26,6 +26,7 @@ import com.jpdacruz.appcubicajedireccion.adapter.AdapterCeldas;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterSb;
 import com.jpdacruz.appcubicajedireccion.clases.Celda;
 
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.clases.SiloBolsa;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Lista_Celdas_Fragment extends Fragment {
+public class Lista_Celdas_Fragment extends Fragment implements InterfaceGeneral {
 
     private static final String TAG = "Lista_Celdas_Fragment";
 
@@ -162,9 +163,14 @@ public class Lista_Celdas_Fragment extends Fragment {
             celda.setCono(data.getDouble(8));
             celda.setCopete(data.getDouble(9));
             celda.setTotalm3(data.getDouble(10));
-            celda.setTotaltons(data.getDouble(11));
-
+            celda.setTotaltons(formatearDecimales(data.getDouble(11),2));
             celdas.add(celda);
         }
+    }
+
+    @Override
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 }

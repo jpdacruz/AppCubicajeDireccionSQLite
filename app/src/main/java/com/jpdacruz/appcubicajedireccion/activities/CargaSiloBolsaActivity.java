@@ -326,7 +326,7 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
 
         cubicajeStringSb = String.valueOf(cubicajeSb);
 
-        mToneladasSb.setText(cubicajeStringSb + " Toneladas");
+        mToneladasSb.setText(cubicajeStringSb + " tons");
     }
 
     public Double formatearDecimales(Double numero, Integer numeroDecimales) {

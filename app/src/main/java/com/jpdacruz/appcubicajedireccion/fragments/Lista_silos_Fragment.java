@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.activities.CargaSilosActivity;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterSilos;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Lista_silos_Fragment extends Fragment{
+public class Lista_silos_Fragment extends Fragment implements InterfaceGeneral {
 
     ArrayList<Silo> silos;
     DataBaseHelper conexion;
@@ -87,10 +88,15 @@ public class Lista_silos_Fragment extends Fragment{
             silo.setCono(data.getDouble(6));
             silo.setCopete(data.getDouble(7));
             silo.setTotalm3(data.getDouble(8));
-            silo.setTotaltons(data.getDouble(9));
+            silo.setTotaltons(formatearDecimales(data.getDouble(9),2));
 
             silos.add(silo);
 
         }
+    }
+
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 }

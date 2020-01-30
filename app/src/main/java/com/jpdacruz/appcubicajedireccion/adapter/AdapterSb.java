@@ -43,10 +43,10 @@ public class AdapterSb extends RecyclerView.Adapter<AdapterSb.ViewHolder>
         holder.id.setText(String.format("ID SB: %s", siloBolsa.get(position).getId()));
         holder.tipoGrano.setText(String.format("Grano: %s", siloBolsa.get(position).getTipoGrano()));
         holder.phGrano.setText(String.format("PH: %s", String.valueOf(siloBolsa.get(position).getpHgrano())));
-        holder.largo.setText(String.format("Largo: %s mts", String.valueOf(siloBolsa.get(position).getLargoSB())));
-        holder.ancho.setText(String.format("Ancho: %s mts", String.valueOf(siloBolsa.get(position).getAnchoSB())));
-        holder.base.setText(String.format("Base: %s mts", String.valueOf(siloBolsa.get(position).getAlturaBase())));
-        holder.parabola.setText(String.format("Parabola: %s mts", String.valueOf(siloBolsa.get(position).getAlturaParabola())));
+        holder.largo.setText(String.format("Largo: %s m", String.valueOf(siloBolsa.get(position).getLargoSB())));
+        holder.ancho.setText(String.format("Ancho: %s m", String.valueOf(siloBolsa.get(position).getAnchoSB())));
+        holder.base.setText(String.format("Base: %s m", String.valueOf(siloBolsa.get(position).getAlturaBase())));
+        holder.parabola.setText(String.format("Parabola: %s m", String.valueOf(siloBolsa.get(position).getAlturaParabola())));
         holder.tons.setText(String.valueOf(siloBolsa.get(position).getToneladasSB()));
     }
 

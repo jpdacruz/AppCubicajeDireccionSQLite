@@ -8,11 +8,15 @@
         <item>TRIGO</item>
         <item>CEBADA</item>
         <item>GIRASOL</item>
-        <item>ARROZ</item>
+        <item>ARROZ CASCARA</item>
         <item>GARBANZO</item>
         <item>MANI</item>
         <item>POROTO</item>
         <item>SORGO</item>
+        <item>AVENA</item>
+        <item>LINO</item>
+        <item>ALPISTE</item>
+        <item>CENTENO</item>
     </string-array>
 
 </resources>

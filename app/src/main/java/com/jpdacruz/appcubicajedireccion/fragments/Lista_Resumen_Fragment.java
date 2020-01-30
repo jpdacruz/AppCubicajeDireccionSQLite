@@ -22,6 +22,7 @@ import com.jpdacruz.appcubicajedireccion.activities.CargaDiferenciaGranoActivity
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterDiferencia;
 import com.jpdacruz.appcubicajedireccion.adapter.AdapterResumen;
 import com.jpdacruz.appcubicajedireccion.clases.DiferenciaGrano;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.clases.SiloSuma;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
@@ -31,7 +32,7 @@ import java.util.Iterator;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Lista_Resumen_Fragment extends Fragment {
+public class Lista_Resumen_Fragment extends Fragment implements InterfaceGeneral {
 
     private static final String TAG = "Lista_Resumen_Fragment";
     private ArrayList<SiloSuma> siloSumas;
@@ -137,10 +138,10 @@ public class Lista_Resumen_Fragment extends Fragment {
             diferenciaGrano = new DiferenciaGrano();
             diferenciaGrano.setIdAuto(cursorDif.getInt(0));
             diferenciaGrano.setGrano(cursorDif.getString(1));
-            diferenciaGrano.setCubicajeKg(cursorDif.getDouble(2));
+            diferenciaGrano.setCubicajeKg(formatearDecimales(cursorDif.getDouble(2),2));
             diferenciaGrano.setAfip(cursorDif.getDouble(3));
-            diferenciaGrano.setDiferencia(cursorDif.getDouble(4));
-            diferenciaGrano.setPorcentaje(cursorDif.getDouble(5));
+            diferenciaGrano.setDiferencia(formatearDecimales(cursorDif.getDouble(4),2));
+            diferenciaGrano.setPorcentaje(formatearDecimales(cursorDif.getDouble(5),2));
             diferenciaGrano.setMasOmenos(cursorDif.getString(6));
 
             diferenciaGranos.add(diferenciaGrano);
@@ -155,12 +156,9 @@ public class Lista_Resumen_Fragment extends Fragment {
 
         while ((cursorSum.moveToNext())){
 
-            cubicajeTemp = cursorSum.getDouble(1);
-            cubicaje = formatearDecimales(cubicajeTemp,2);
-
             siloSuma = new SiloSuma();
             siloSuma.setTipoGrano(cursorSum.getString(0));
-            siloSuma.setCubicaje(cubicaje);
+            siloSuma.setCubicaje(formatearDecimales(cursorSum.getDouble(1),2));
 
             siloSumas.add(siloSuma);
 

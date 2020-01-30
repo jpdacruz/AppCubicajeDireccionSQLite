@@ -149,7 +149,6 @@
                 android:ems="10"
                 android:hint="Altura del grano (mts)"
                 android:inputType="numberDecimal"
-                android:maxLength="4"
                 android:textColor="@color/hintcolor"
                 android:textSize="14sp" />
 
@@ -174,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="Tipo y altura del cono inferior (mts)"
+                android:hint="Tipo y altura cono (mts)"
                 android:inputType="numberSigned|numberDecimal"
                 android:textColor="@color/hintcolor"
                 android:textSize="14sp" />
@@ -213,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Altura del cono superior (mts)"
+                android:hint="Altura cono superior (mts)"
                 android:inputType="numberSigned|numberDecimal"
                 android:maxLength="5"
                 android:textColor="@color/hintcolor"

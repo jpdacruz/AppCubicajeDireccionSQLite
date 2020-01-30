@@ -44,12 +44,12 @@ implements View.OnClickListener {
         holder.id.setText(String.format("ID Celda: %s", celdas.get(position).getId()));
         holder.tipoGrano.setText(String.format("Grano: %s", celdas.get(position).getTipoGrano()));
         holder.phGrano.setText(String.format("PH: %s", String.valueOf(celdas.get(position).getPhGrano())));
-        holder.largo.setText(String.format("Largo: %s mts", String.valueOf(celdas.get(position).getLargoCelda())));
-        holder.ancho.setText(String.format("Ancho: %s mts", String.valueOf(celdas.get(position).getAnchoCelda())));
-        holder.altuGrano.setText(String.format("Alt Grano: %s mts", String.valueOf(celdas.get(position).getAltoGrano())));
+        holder.largo.setText(String.format("Largo: %s m", String.valueOf(celdas.get(position).getLargoCelda())));
+        holder.ancho.setText(String.format("Ancho: %s m", String.valueOf(celdas.get(position).getAnchoCelda())));
+        holder.altuGrano.setText(String.format("Alt Grano: %s m", String.valueOf(celdas.get(position).getAltoGrano())));
         holder.tipo.setText(String.format("Tipo: %s", celdas.get(position).getTipoCelda()));
-        holder.cono.setText(String.format("Cono: %s mts", String.valueOf(celdas.get(position).getCono())));
-        holder.copete.setText(String.format("Copete: %s mts", String.valueOf(celdas.get(position).getCopete())));
+        holder.cono.setText(String.format("Cono: %s m", String.valueOf(celdas.get(position).getCono())));
+        holder.copete.setText(String.format("Copete: %s m", String.valueOf(celdas.get(position).getCopete())));
         holder.tons.setText(String.valueOf(celdas.get(position).getTotaltons()));
     }
 

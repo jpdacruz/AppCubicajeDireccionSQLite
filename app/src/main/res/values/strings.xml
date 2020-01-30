@@ -13,13 +13,15 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="ListadoGranosPh">Trigo 0.72 al 0.80 \nSoja 0.70 al 0.76 \nMaiz 0.72 al 0.80 </string>
+    <string name="ListadoGranosPh">Trigo 0.74 a 0.84 \nSoja 0.65 a 0.75 \nMaiz 0.70 a 0.80 \nGirasol 0.35 a 0.45 \nCebada 0.58 a 0.72 \n
+                                   Avena 0.5 a 0.65 \nArroz Cascara 0.55 a 0.65 \nMijo 0.55 a 0.75 \nSorgo 0.70 a 0.80 \nCenteno 0.65 0.75 \n
+                                   Lino 0.6 a 0.7 \n Alpiste 0.70 a 0.80 \nPoroto 0.72 a 0.78 \nGarbanzo 0.62 a 0.68</string>
     <string name="TipoyPH">Tipo de grano y Ph</string>
     <string name="Ph">Ph del grano</string>
-    <string name="diametro">Conozco el diametro (en mts)</string>
-    <string name="alturagrano">Conozco la altura del grano (mts)</string>
-    <string name="cono">Conozco la altura del cono (mts)</string>
-    <string name="copete">Conozco la altura del copete (mts)</string>
+    <string name="diametro">Diametro (mts)</string>
+    <string name="alturagrano">Altura del grano (mts)</string>
+    <string name="cono">Altura del cono (mts)</string>
+    <string name="copete">Altura del copete (mts)</string>
     <string name="toneladas">TONELADAS</string>
     <string name="calcular">CALCULAR</string>
     <string name="negativo">Negativo</string>

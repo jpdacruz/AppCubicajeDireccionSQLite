@@ -16,10 +16,11 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.DiferenciaGrano;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.clases.SiloSuma;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 
-public class CargaDiferenciaGranoActivity extends AppCompatActivity {
+public class CargaDiferenciaGranoActivity extends AppCompatActivity implements InterfaceGeneral {
 
     private static final String TAG = "CargaDiferenciaGranoActivity";
 
@@ -127,10 +128,8 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
                     diferencia = cubicaje - afip;
                     diferenciaString = String.valueOf(diferencia);
                     setEditText(mDifereciaDif, diferenciaString);
-
-                    double porceTemp = (((cubicaje - afip) / cubicaje ) * 100);
-                    porcentaje = formatearDecimales(porceTemp,2);
-                    porcentajeString = String.valueOf(porcentaje);
+                    porcentaje = formatearDecimales((((cubicaje *100)/afip)-100),2);
+                    porcentajeString = porcentaje+"%";
                     setEditText(mPorcentajeDif,porcentajeString);
 
                     if (cubicaje > afip){
@@ -186,6 +185,7 @@ public class CargaDiferenciaGranoActivity extends AppCompatActivity {
         return editText.getEditText().getText().toString();
     }
 
+    @Override
     public Double formatearDecimales(Double numero, Integer numeroDecimales) {
 
         return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
