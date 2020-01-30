@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/textViewGranoRecDif"
-        android:layout_width="160dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/textViewCubicajeRecDif"
-        android:layout_width="160dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@color/white"
@@ -33,50 +33,55 @@
 
     <TextView
         android:id="@+id/textViewAfipRecDif"
-        android:layout_width="160dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
         android:text="AFIP: "
-        android:textColor="@android:color/tertiary_text_light"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCubicajeRecDif" />
 
     <TextView
         android:id="@+id/textViewDifRecDif"
-        android:layout_width="170dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Diferencia: "
+        android:textColor="@color/hintcolor"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/textViewGranoRecDif"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewPorRecDif"
-        android:layout_width="170dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:maxLength="17"
         android:text="Porcentaje: "
+        android:textColor="@color/hintcolor"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/textViewCubicajeRecDif"
         app:layout_constraintTop_toBottomOf="@+id/textViewDifRecDif" />
 
     <TextView
         android:id="@+id/textViewMoMRecDif"
-        android:layout_width="170dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:text="Mas o menos"
+        android:textColor="@color/hintcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/textViewAfipRecDif"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPorRecDif" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPorRecDif"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView"
