@@ -42,7 +42,7 @@ implements View.OnClickListener {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.id.setText(String.format("ID Celda: %s", celdas.get(position).getId()));
-        holder.tipoGrano.setText(String.format("Grano: %s", celdas.get(position).getTipoGrano()));
+        holder.tipoGrano.setText(celdas.get(position).getTipoGrano());
         holder.phGrano.setText(String.format("PH: %s", String.valueOf(celdas.get(position).getPhGrano())));
         holder.largo.setText(String.format("Largo: %s m", String.valueOf(celdas.get(position).getLargoCelda())));
         holder.ancho.setText(String.format("Ancho: %s m", String.valueOf(celdas.get(position).getAnchoCelda())));

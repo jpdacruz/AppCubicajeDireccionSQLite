@@ -12,6 +12,6 @@
         android:text="@string/ListadoGranosPh"
         android:textAlignment="center"
         android:textColor="@color/hintcolor"
-        android:textSize="24sp" />
+        android:textSize="14dp" />
 
 </FrameLayout>

@@ -41,7 +41,7 @@ public class AdapterSb extends RecyclerView.Adapter<AdapterSb.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.id.setText(String.format("ID SB: %s", siloBolsa.get(position).getId()));
-        holder.tipoGrano.setText(String.format("Grano: %s", siloBolsa.get(position).getTipoGrano()));
+        holder.tipoGrano.setText(siloBolsa.get(position).getTipoGrano());
         holder.phGrano.setText(String.format("PH: %s", String.valueOf(siloBolsa.get(position).getpHgrano())));
         holder.largo.setText(String.format("Largo: %s m", String.valueOf(siloBolsa.get(position).getLargoSB())));
         holder.ancho.setText(String.format("Ancho: %s m", String.valueOf(siloBolsa.get(position).getAnchoSB())));

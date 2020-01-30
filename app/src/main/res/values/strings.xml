@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">CubicApp</string>
     <string name="tab_text_1">SILOS</string>
     <string name="tab_text_2">CELDAS y SB</string>
     <string name="tab_text_3">RESUMEN</string>
