@@ -56,13 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         asignacion = findViewById(R.id.textinputAsig);
         continuar = findViewById(R.id.btnContinuar);
         nueva = findViewById(R.id.btnNueva);
-
-        razon.getEditText().setEnabled(false);
-        cuit.getEditText().setEnabled(false);
-        asignacion.getEditText().setEnabled(false);
     }
 
-    private void iniciarBotones() {
+     private void iniciarBotones() {
 
         continuar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +138,22 @@ public class LoginActivity extends AppCompatActivity {
         razon.getEditText().setText(razonString);
         cuit.getEditText().setText(cuitString);
         asignacion.getEditText().setText(asignacionString);
+
+        if (!razonString.equals("")){
+
+            razon.getEditText().setEnabled(false);
+        }
+        
+
+        if (!cuitString.equals("")){
+
+            cuit.getEditText().setEnabled(false);
+        }
+
+        if (!asignacionString.equals("")){
+
+            asignacion.getEditText().setEnabled(false);
+        }
     }
 
     private Boolean validaDatos(View v) {
