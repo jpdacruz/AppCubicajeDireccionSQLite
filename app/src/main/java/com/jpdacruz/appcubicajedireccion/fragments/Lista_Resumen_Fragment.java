@@ -152,7 +152,6 @@ public class Lista_Resumen_Fragment extends Fragment implements InterfaceGeneral
 
         Cursor cursorSum = conexion.sumarGranos();
         SiloSuma siloSuma;
-        double cubicajeTemp, cubicaje;
 
         while ((cursorSum.moveToNext())){
 

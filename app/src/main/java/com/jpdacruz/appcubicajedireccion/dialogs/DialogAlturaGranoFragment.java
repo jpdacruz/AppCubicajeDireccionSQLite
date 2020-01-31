@@ -18,11 +18,12 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogAlturaGranoFragment extends DialogFragment {
+public class DialogAlturaGranoFragment extends DialogFragment implements InterfaceGeneral {
 
     private TextInputLayout mAnchoChapa, mChapasAlto;
     private TextView mALturaGranoDialog;
@@ -101,7 +102,7 @@ public class DialogAlturaGranoFragment extends DialogFragment {
         mAnchoChapa.setError("");
         AnchoChapa = Double.parseDouble(anchoChapaString);
         cantChapasAlto = Double.parseDouble(cantChapasAltoString);
-        AlturaGranoDialog = AnchoChapa * cantChapasAlto;
+        AlturaGranoDialog = formatearDecimales((AnchoChapa * cantChapasAlto),2);
         AlturaGranoDialogString = String.valueOf(AlturaGranoDialog);
         mALturaGranoDialog.setText(AlturaGranoDialogString);
     }
@@ -124,6 +125,12 @@ public class DialogAlturaGranoFragment extends DialogFragment {
         }
 
         return true;
+    }
+
+    @Override
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 
     public interface TomarDatosDialogListener {

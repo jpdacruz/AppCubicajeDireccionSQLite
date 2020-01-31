@@ -18,14 +18,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Celda;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.clases.SiloBolsa;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoCeldaFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
 
 public class CargaSiloBolsaActivity extends AppCompatActivity implements
-
-        DialogTipoPHFragment.TomarDatosDialogListener{
+        DialogTipoPHFragment.TomarDatosDialogListener,
+        InterfaceGeneral {
 
     //vars
     private static final String TAG = "CargaSiloBolsaActivity";
@@ -237,10 +238,19 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                eliminarSbDB();
+                Snackbar.make(v,"Eliminar silo bolsa?",Snackbar.LENGTH_LONG)
+                        .setAction("Continuar", new View.OnClickListener() {
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                            @Override
+                            public void onClick(View v) {
+
+                                eliminarSbDB();
+
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).show();
+
             }
         });
 
@@ -320,9 +330,7 @@ public class CargaSiloBolsaActivity extends AppCompatActivity implements
         alturaParabolaSb = Double.parseDouble(alturaParabolSbString);
 
         volumenaSb = (anchoSb * largoSb * alturaBaseSb) + (((anchoSb * largoSb * alturaParabolaSb ) * 2) / 3);
-
-        double temp = volumenaSb * phGranoSb;
-        cubicajeSb = formatearDecimales(temp,2);
+        cubicajeSb = formatearDecimales((volumenaSb * phGranoSb),2);
 
         cubicajeStringSb = String.valueOf(cubicajeSb);
 

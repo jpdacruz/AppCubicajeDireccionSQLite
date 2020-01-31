@@ -50,7 +50,7 @@ public class AdapterDiferencia extends RecyclerView.Adapter<AdapterDiferencia.Vi
         holder.cubicaje.setText(String.format("Cubicaje: %s", String.valueOf(diferenciaGranos.get(position).getCubicajeKg() + "k")));
         holder.afip.setText(String.format("AFIP: %sk", String.valueOf(diferenciaGranos.get(position).getAfip())));
         holder.diferencia.setText(String.format("Diferencia: %sk", String.valueOf(diferenciaGranos.get(position).getDiferencia())));
-        holder.porcentaje.setText(String.format("Porcentaje: %s%%", porcentaje));
+        holder.porcentaje.setText(String.format("%s%%", porcentaje));
         holder.masomenos.setText(String.valueOf(diferenciaGranos.get(position).getMasOmenos()));
 
         if (porcentaje >= 10){

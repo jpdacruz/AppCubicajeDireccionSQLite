@@ -18,11 +18,12 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogDiametroSiloFragment extends DialogFragment {
+public class DialogDiametroSiloFragment extends DialogFragment implements InterfaceGeneral {
 
     //widget
     private TextInputLayout mLargoChapa, mChapasLargo;
@@ -105,7 +106,7 @@ public class DialogDiametroSiloFragment extends DialogFragment {
         largoChapa = Double.parseDouble(largoChapaString);
         cantChapas = Integer.parseInt(cantChapasString);
 
-        diametroDialog = Math.round(((largoChapa * cantChapas)/Math.PI) * 100) / 100.0;
+        diametroDialog = formatearDecimales(((largoChapa * cantChapas)/Math.PI),2);
         diametroDialogString = String.valueOf(diametroDialog);
         mDiametroDialgo.setText(diametroDialogString);
     }
@@ -128,6 +129,12 @@ public class DialogDiametroSiloFragment extends DialogFragment {
         }
 
         return true;
+    }
+
+    @Override
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 
     public interface TomarDatosDialogListener {

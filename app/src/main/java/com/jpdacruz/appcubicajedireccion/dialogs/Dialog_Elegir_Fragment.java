@@ -85,6 +85,7 @@ public class Dialog_Elegir_Fragment extends DialogFragment {
                     startActivity(intent);
                 }
 
+
                 if (seleccion.equals("Agregar silo/bolsa")){
 
                     Intent intent = new Intent(getContext(), CargaSiloBolsaActivity.class);

@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.clases.Celda;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogConoCeldaFragment;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
@@ -24,7 +25,8 @@ import com.jpdacruz.appcubicajedireccion.dialogs.DialogTipoPHFragment;
 public class CargaCeldasActivity extends AppCompatActivity implements
 
         DialogConoCeldaFragment.TomarDatosDialogListener,
-        DialogTipoPHFragment.TomarDatosDialogListener{
+        DialogTipoPHFragment.TomarDatosDialogListener,
+        InterfaceGeneral {
 
     //vars
     private static final String TAG = "CargaCeldasActivity";
@@ -262,10 +264,20 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                eliminarCeldaDB();
+                Snackbar.make(v,"Eliminar celda?",Snackbar.LENGTH_LONG)
+                        .setAction("Continuar", new View.OnClickListener() {
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                            @Override
+                            public void onClick(View v) {
+
+                                eliminarCeldaDB();
+
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).show();
+
+
             }
         });
 
@@ -382,7 +394,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
             volumenCelda = tamañoCelda + ((anchoCelda*largoCelda*alturaConoCelda)/2);
         }
 
-        cubicajeCelda = Math.round((volumenCelda * phGranoCelda) * 100 / 100.0);
+        cubicajeCelda = formatearDecimales((volumenCelda * phGranoCelda),2);
 
         cubicajeStringCelda = String.valueOf(cubicajeCelda);
 
@@ -513,7 +525,7 @@ public class CargaCeldasActivity extends AppCompatActivity implements
         alturaConoStringCelda = altuConoInfCelda;
         tipoCeldaString = tipoCelda;
 
-        alturaConoCelda = Double.parseDouble(alturaConoStringCelda);
+        alturaConoCelda = formatearDecimales(Double.parseDouble(alturaConoStringCelda),2);
 
         setEditText(mConoCelda, alturaConoStringCelda + "mts / " + tipoCeldaString);
     }
@@ -538,5 +550,11 @@ public class CargaCeldasActivity extends AppCompatActivity implements
 
         mToneladasCelda .setText("");
         cubicajeStringCelda = "";
+    }
+
+    @Override
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 }

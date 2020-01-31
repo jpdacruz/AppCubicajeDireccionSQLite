@@ -17,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jpdacruz.appcubicajedireccion.MainActivity;
 import com.jpdacruz.appcubicajedireccion.R;
+import com.jpdacruz.appcubicajedireccion.clases.InterfaceGeneral;
 import com.jpdacruz.appcubicajedireccion.clases.Silo;
 import com.jpdacruz.appcubicajedireccion.database.DataBaseHelper;
 import com.jpdacruz.appcubicajedireccion.dialogs.DialogAlturaGranoFragment;
@@ -30,7 +31,8 @@ public class CargaSilosActivity extends AppCompatActivity implements
         DialogConoSiloFragment.TomarDatosDialogListener,
         DialogCopeteSiloFragment.TomarDatosDialogListener,
         DialogAlturaGranoFragment.TomarDatosDialogListener,
-        DialogTipoPHFragment.TomarDatosDialogListener{
+        DialogTipoPHFragment.TomarDatosDialogListener,
+        InterfaceGeneral {
 
     //vars
 
@@ -244,10 +246,19 @@ public class CargaSilosActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                eliminarSiloDB();
+                Snackbar.make(v,"Eliminar silo?",Snackbar.LENGTH_LONG)
+                        .setAction("Continuar", new View.OnClickListener() {
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                            @Override
+                            public void onClick(View v) {
+
+                                eliminarSiloDB();
+
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+
+                            }
+                        }).show();
             }
         });
 
@@ -259,7 +270,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
                     return;
 
-                }else if  (mToneladasSilo.getText().equals("")){
+                }else if (mToneladasSilo.getText().equals("")){
 
                     Snackbar.make(v,"Presiona CALCULAR para continuar",Snackbar.LENGTH_LONG).show();
 
@@ -395,7 +406,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
         diametroSiloString = getEditTextString(mDiametro);
         diametroSilo = Double.parseDouble(diametroSiloString);
-        alturaConoSilo = Math.round(((diametroSilo / 2) * 0.7) * 100) / 100.0;
+        alturaConoSilo = formatearDecimales(((diametroSilo/2)*0.7),2);
         alturaConoSiloString = String.valueOf(alturaConoSilo);
         setEditText(mCono,alturaConoSiloString);
     }
@@ -411,7 +422,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
             diametroSiloString = getEditTextString(mDiametro);
             diametroSilo = Double.parseDouble(diametroSiloString);
-            alturaCopeteSilo = Math.round(((diametroSilo / 2) * 0.5) * 100) / 100.0;
+            alturaCopeteSilo = formatearDecimales(((diametroSilo/2)*0.5),2);
             alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
             setEditText(mCopete, alturaCopeteSiloString);
 
@@ -419,7 +430,7 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
             diametroSiloString = getEditTextString(mDiametro);
             diametroSilo = Double.parseDouble(diametroSiloString);
-            alturaCopeteSilo = -((diametroSilo /2) *0.5);
+            alturaCopeteSilo = formatearDecimales(-((diametroSilo/2)*0.5),2);
             alturaCopeteSiloString = String.valueOf(alturaCopeteSilo);
             setEditText(mCopete, alturaCopeteSiloString);
         }
@@ -464,12 +475,10 @@ public class CargaSilosActivity extends AppCompatActivity implements
         }
 
         volumenSilo = volumenCilindro + conoSilo + copeteSilo;
-        cubicajeSilo = Math.round((volumenSilo * phGrano) * 100)/100.0;
-
+        cubicajeSilo = formatearDecimales((volumenSilo * phGrano),2);
         cubicajeSiloString = String.valueOf(cubicajeSilo);
 
         mToneladasSilo.setText(cubicajeSiloString + " Toneladas");
-
     }
 
     private boolean validarDatos(View v) {
@@ -641,5 +650,11 @@ public class CargaSilosActivity extends AppCompatActivity implements
 
         mToneladasSilo.setText("");
         cubicajeSiloString = "";
+    }
+
+    @Override
+    public Double formatearDecimales(Double numero, Integer numeroDecimales) {
+
+        return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
     }
 }
