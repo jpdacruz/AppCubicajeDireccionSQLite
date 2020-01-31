@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
+        android:background="@color/colorAccent"
         android:text="Grano: "
-        android:textColor="@color/hintcolor"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,9 +25,9 @@
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
         android:text="Cubicaje:"
-        android:textColor="@color/white"
+        android:textColor="@color/hintcolor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewGranoRecDif" />
 
