@@ -40,7 +40,6 @@ public class AdapterDialog
 
         holder.imageView.setImageResource(estructura.get(position).getImagenEstructura());
         holder.textViewTitulo.setText(estructura.get(position).getEstructura());
-        holder.textViewFlecha.setText(">");
     }
 
     @Override
@@ -73,7 +72,6 @@ public class AdapterDialog
 
         imageView = itemView.findViewById(R.id.imagen_itemRec);
         textViewTitulo = itemView.findViewById(R.id.to_add_silo);
-        textViewFlecha = itemView.findViewById(R.id.textViewFlecha);
         }
     }
 }

@@ -5,15 +5,14 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    tools:context=".dialogs.Dialog_Elegir_Fragment"
-    >
+    android:background="@color/accent_light"
+    tools:context=".dialogs.Dialog_Elegir_Fragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDialog"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewDialog"/>
+        android:layout_height="wrap_content" />
 
 
 </FrameLayout>

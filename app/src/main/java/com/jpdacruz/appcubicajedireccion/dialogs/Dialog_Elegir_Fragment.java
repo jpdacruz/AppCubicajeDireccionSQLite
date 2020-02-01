@@ -14,12 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.jpdacruz.appcubicajedireccion.R;
 import com.jpdacruz.appcubicajedireccion.activities.CargaCeldasActivity;
@@ -73,20 +67,20 @@ public class Dialog_Elegir_Fragment extends DialogFragment {
 
                 String seleccion = estructura.get(recyclerView.getChildAdapterPosition(v)).getEstructura();
 
-                if (seleccion.equals("Agregar silo")){
+                if (seleccion.equals(" + silo")){
 
                     Intent intent = new Intent(getContext(),CargaSilosActivity.class);
                     startActivity(intent);
                 }
 
-                if (seleccion.equals("Agregar celda")){
+                if (seleccion.equals(" + celda")){
 
                     Intent intent = new Intent(getContext(),CargaCeldasActivity.class);
                     startActivity(intent);
                 }
 
 
-                if (seleccion.equals("Agregar silo/bolsa")){
+                if (seleccion.equals(" + silo bolsa")){
 
                     Intent intent = new Intent(getContext(), CargaSiloBolsaActivity.class);
                     startActivity(intent);
@@ -101,10 +95,10 @@ public class Dialog_Elegir_Fragment extends DialogFragment {
     private void llenarLista() {
 
         estructura.add(new Estructura
-                ("Agregar silo",R.drawable.entresilos));
+                (" + silo",R.drawable.silofun));
         estructura.add(new Estructura
-                ("Agregar celda",R.drawable.celda));
+                (" + celda",R.drawable.celdafun));
         estructura.add(new Estructura
-                ("Agregar silo/bolsa",R.drawable.silobolsa));
+                (" + silo bolsa",R.drawable.silobolsafun));
     }
 }
