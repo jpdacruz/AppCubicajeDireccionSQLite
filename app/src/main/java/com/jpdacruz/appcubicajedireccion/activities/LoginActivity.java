@@ -137,9 +137,9 @@ public class LoginActivity extends AppCompatActivity implements InterfaceGeneral
                     public void onLocationChanged(Location location) {
 
                         gpsS = formatearDecimales(location.getLatitude(),5);
-                        gpsSur.setText("GPS sur: " +gpsS);
+                        gpsSur.setText("GPS sur: " + gpsS);
                         gpsO = formatearDecimales(location.getLongitude(),5);
-                        gpsOeste.setText("GPS oeste: "+gpsO);
+                        gpsOeste.setText("GPS oeste: "+ gpsO);
                         locationManager.removeUpdates(locationListener);
                     }
 
